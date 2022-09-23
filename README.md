@@ -1,4 +1,4 @@
-# Domestic-Violence-Rescue-System
+# Domestic Violence Rescue System
 A web-based system using laravel framework for domestic violence's emergency rescue
 
 # About system
