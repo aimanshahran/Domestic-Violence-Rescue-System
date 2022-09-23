@@ -18,6 +18,9 @@ The identified modules in this project are based on the requirements of project.
 - Feedback module
 - Statistics module
 
+# Use case diagram
+<img src="https://github.com/aifanshahran/Domestic-Violence-Rescue-System/blob/main/public/img/DVRS%20UC%20Diagram-4.png" width="25%"></img>
+
 # Contributors
 - Aiman Shahran - Registration, Login, Manage Profile, Emergency Incident, Feedback, and Blog Post
 - Faiz Aiman - Manage User, Statistics, Help Chat, DV Information, Notification, and Blog Post
