@@ -19,7 +19,7 @@ The identified modules in this project are based on the requirements of project.
 - Statistics module
 
 # Use case diagram
-<img src="https://github.com/aifanshahran/Domestic-Violence-Rescue-System/blob/main/public/img/DVRS%20UC%20Diagram-4.png" width="25%"></img>
+<img src="https://user-images.githubusercontent.com/55566101/192056514-6bb5f170-5342-4e49-9040-02d9559eec26.png" width="25%"></img>
 
 # Contributors
 - Aiman Shahran - Registration, Login, Manage Profile, Emergency Incident, Feedback, and Blog Post
