@@ -1,0 +1,97 @@
+body {
+    background-color    : #d0d0ce;
+    background-image    : linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) , url(../img/blank-background.png);
+    background-repeat   : no-repeat;
+    background-position : center;
+    background-size     : cover;
+}
+
+.brand-wrapper {
+    margin-bottom: 19px;
+}
+
+.brand-wrapper .logo {
+    width : 200px;
+    height: 80px;
+}
+
+.login-card {
+    border: 1;
+    border-radius: 27.5px;
+    overflow: hidden;
+}
+
+.login-card-img {
+    border-radius: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.login-card .card-body {
+    padding: 85px 60px 60px;
+}
+
+    @media (max-width: 422px) {
+      .login-card .card-body {
+        padding: 35px 24px;
+      }
+    }
+
+.login-card-description {
+    font-size: 25px;
+    color: #000;
+    font-weight: normal;
+    margin-bottom: 23px;
+}
+
+.login-card form {
+    max-width: 326px;
+}
+
+.login-card .form-control {
+    border: 1px solid #d5dae2;
+}
+
+.login-card .login-btn {
+    padding: 13px 20px 12px;
+    background-color: #000;
+    border-radius: 4px;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #fff;
+    margin-bottom: 24px;
+}
+
+.login-card .login-btn:hover {
+      border: 1px solid #000;
+      background-color: transparent;
+      color: #000;
+}
+
+.login-card .forgot-password-link {
+    font-size: 14px;
+    color: #919aa3;
+    margin-bottom: 12px;
+}
+
+.login-card-footer-text {
+    font-size: 16px;
+    color: #0d2366;
+    margin-bottom: 60px;
+}
+
+    @media (max-width: 767px) {
+
+      .login-card-footer-text {
+        margin-bottom: 24px;
+      }
+    }
+
+.login-card-footer-nav a {
+    font-size: 14px;
+    color: #919aa3;
+}
