@@ -1,5 +1,7 @@
 <!-- # site header ================================================== -->
 <link rel="stylesheet" href="{{ URL::asset('css/navstyle.css') }}">
+
+{{-- FOR HOME PAGE --}}
 @if(Request::is('/','home'))
     <header class="s-header">
 
@@ -18,18 +20,28 @@
             <nav class="s-header__nav">
                 <ul>
                     <li class="current"><a href="#intro" class="smoothscroll">Home</a></li>
-                    <li><a href="#about" class="smoothscroll">About Us</a></li>
+                    @guest
+                        <li><a href="#about" class="smoothscroll">About Us</a></li>
+                    @else
+                        @if((Auth::user()->role_id)==1)
+                            <li><a href="#">Emergency</a></li>
+                        @else
+                            <li><a href="#about" class="smoothscroll">About Us</a></li>
+                        @endif
+                    @endguest
                     <li><a href="#">DV Information</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Statistics</a></li>
                     @guest
                         @if (Route::has('login'))
-                            <li><a href="{{ route('login') }}" class="d-none">{{ __('Login') }}</a></li>
+                            <li><a href="{{ route('login') }}" class="n-none">{{ __('Login') }}</a></li>
                         @endif
                     @else
-                        <li @if(Route::is('feedback'))class="current"@endif><a href="@if(Route::is('feedback'))@else{{ route('feedback') }}@endif">Feedback</a></li>
+                        <li><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">Feedback</a></li>
                         <li><a href="{{ route('manage-profile') }}" class="n-none" >Manage Profile</a></li>
-                        <li><a href="{{ route('manage-feedback') }}" class="n-none" >Manage Feedback</a></li>
+                        @if((Auth::user()->role_id)!=1)
+                        <li><a href="{{ route('feedback.index') }}" class="n-none" >Manage Feedback</a></li>
+                        @endif
                         <li><a href="{{ route('logout') }}" class="n-none"
                                onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
@@ -53,7 +65,9 @@
                         <button class="btn btn--stroke s-header__cta-btn">{{ __('Hi, ') }}{{ ucfirst(Auth::user()->name) }}&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
                         <div class="dropdown-content">
                             <a href="{{ route('manage-profile') }}">{{ __('Manage Profile') }}</a>
-                            <a href="{{ route('manage-feedback') }}">{{ __('Manage Feedback') }}</a>
+                            @if((Auth::user()->role_id)!=1)
+                            <a href="{{ route('feedback.index') }}">{{ __('Manage Feedback') }}</a>
+                            @endif
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -69,6 +83,7 @@
         </div> <!-- end s-header__inner -->
     </header>
 @else
+{{-- FOR OTHER THAN HOME PAGE --}}
     <header class="s-header-no-index">
 
         <div class="row s-header__inner">
@@ -86,8 +101,16 @@
             <nav class="s-header__nav">
                 <ul>
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
-                    <li><a href="#">DV Information</a></li>
+                    @guest
+                        <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
+                    @else
+                        @if((Auth::user()->role_id)==1)
+                            <li><a href="#">Emergency</a></li>
+                        @else
+                            <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
+                        @endif
+                    @endguest
+                    <li><a href="{{route('feedback.index')}}">DV Information</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Statistics</a></li>
                     @guest
@@ -95,9 +118,11 @@
                             <li><a href="{{ route('login') }}" class="d-none">{{ __('Login') }}</a></li>
                         @endif
                     @else
-                        <li @if(Route::is('feedback'))class="current"@endif><a href="@if(Route::is('feedback'))@else{{ route('feedback') }}@endif">Feedback</a></li>
+                        <li @if(str_contains(Route::currentRouteName(), 'feedback'))class="current"@endif><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">Feedback</a></li>
                         <li><a href="{{ route('manage-profile') }}" class="n-none" >Manage Profile</a></li>
-                        <li><a href="{{ route('manage-feedback') }}" class="n-none" >Manage Feedback</a></li>
+                        @if((Auth::user()->role_id)!=1)
+                        <li><a href="{{ route('feedback.index') }}" class="n-none" >Manage Feedback</a></li>
+                        @endif
                         <li><a href="{{ route('logout') }}" class="n-none"
                                onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
@@ -121,7 +146,9 @@
                         <button class="btn btn--stroke s-header__cta-btn">{{ __('Hi, ') }}{{ ucfirst(Auth::user()->name) }}&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
                         <div class="dropdown-content">
                             <a href="{{ route('manage-profile') }}">{{ __('Manage Profile') }}</a>
-                            <a href="{{ route('manage-feedback') }}">{{ __('Manage Feedback') }}</a>
+                            @if((Auth::user()->role_id)!=1)
+                            <a href="{{ route('feedback.index') }}">{{ __('Manage Feedback') }}</a>
+                            @endif
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">

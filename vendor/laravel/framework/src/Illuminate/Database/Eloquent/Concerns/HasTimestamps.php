@@ -93,7 +93,9 @@ trait HasTimestamps
      */
     public function freshTimestamp()
     {
-        return Date::now();
+        date_default_timezone_set("Asia/Kuala_Lumpur");
+        $timestamp  = date('Y/m/d H:i:s');
+        return $timestamp;
     }
 
     /**

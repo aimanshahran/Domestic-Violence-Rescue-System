@@ -8,8 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @if(Request::is('/','home'))
         <title>{{ config ('app.name', 'Laravel') }}</title>
+    @elseif(View::hasSection('title'))
+        <title> @yield('title') | {{ config ('app.name', 'Laravel') }}</title>
     @else
-        <title>{{ ucwords(str_replace("-", " ", Request::route()->getName())) }} | {{ config ('app.name', 'Laravel') }}</title>
+        <title>{{ ucwords(str_replace(array( '-', '.', 'index'), ' ', Request::route()->getName())) }} | {{ config ('app.name', 'Laravel') }}</title>
     @endif
 
     @yield('content')

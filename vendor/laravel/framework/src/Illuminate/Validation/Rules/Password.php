@@ -373,6 +373,7 @@ class Password implements Rule, DataAwareRule, ValidatorAwareRule
             'validation.password.uncompromised' => 'The given :attribute has appeared in a data leak. Please choose a different :attribute.',
         ];
 
+
         return $messages[$key];
     }
 

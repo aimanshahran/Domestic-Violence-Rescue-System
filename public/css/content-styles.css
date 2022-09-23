@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Heebo:wght@300;400;500;600;700&display=swap");
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #d0d0ce;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family            : "Heebo", sans-serif;;
+    font-weight            : 450;
+    color                  : #161616;
+    font-variant-ligatures : common-ligatures;
+    text-rendering         : optimizeLegibility;
+}
+
+/* ==========================================================================
+#CARD
+========================================================================== */
+.row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.card {
+    background: #fff;
+    border-radius: 25px;
+    overflow: hidden;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 0;
+    min-height: 100%;
+}
+
+.card-2 {
+    -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    width: 100%;
+    display: table;
+}
+
+.card-2 .card-heading {
+    background: url("../img/feedback.png");
+    border-radius: 0;
+    width: 32%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    overflow: auto;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.card-heading img{
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display:block;
+}
+
+.card-2 .card-body {
+    display: table-cell;
+    padding: 40px;
+}
+
+.container{
+    padding-top: 20px;
+}
+
+.container-error{
+    padding: 30px 0px;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.loader{
+    position: relative;
+    transform: translate(40%, -10%);
+    display: inline-flex;
+    align-content: left;
+
+}
+/* Creating the dots */
+.loader span{
+    height: 5px;
+    width: 5px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background-color: #622c8c;
+    animation: loading 1s linear infinite;
+}
+/* Creating the loading animation*/
+@keyframes loading {
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(15px);
+    }
+    50%{
+        transform: translateX(-15px);
+    }
+    100%{
+        transform: translateX(0);
+    }
+
+}
+
+.loader span:nth-child(1){
+    animation-delay: 0.1s;
+}
+.loader span:nth-child(2){
+    animation-delay: 0.2s;
+}
+.loader span:nth-child(3){
+    animation-delay: 0.3s;
+}
+.loader span:nth-child(4){
+    animation-delay: 0.4s;
+}
+.loader span:nth-child(5){
+    animation-delay: 0.5s;
+}
+
+.change-btn {
+    padding: 13px 20px 12px;
+    background-color: #000;
+    border-radius: 4px;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #fff;
+    border-color: black;
+}
+
+.change-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+@media (max-width: 767px) {
+    .card-2 {
+        display: block;
+    }
+    .card-2 .card-heading {
+        display: none;
+    }
+    .card-2 .card-body {
+        display: block;
+        padding: 60px 50px;
+    }
+    .border-right{
+        border-right: 0px;
+    }
+    .change-btn {
+        padding: 13px 20px 12px;
+        margin: 0;
+    }
+}
+
+/* ==========================================================================
+#PAGINATION
+========================================================================== */
+    .pagination-wrapper {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .pagination {
+        display: inline-block;
+        border-radius: 35px;
+        padding: 0 10px;
+        background-color: #622c8c;
+    }
+
+    .page-numbers {
+        display: block;
+        padding: 0 10px;
+        float: left;
+        transition: 400ms ease;
+        color: #d0d0ce;
+        letter-spacing: 1px;
+        line-height: 40px;
+        pointer-events: none;
+    }
+
+    .page-numbers.current {
+        color: #fff;
+        text-decoration: none;
+        pointer-events: visible;
+    }
+
