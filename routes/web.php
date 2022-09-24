@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::resource('feedback', FeedbackController::class, [
     'only' => ['index']
-]);
+])->middleware('auth');
 
 //Admin
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
