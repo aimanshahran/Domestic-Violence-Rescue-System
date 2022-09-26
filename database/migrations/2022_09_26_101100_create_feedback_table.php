@@ -21,6 +21,7 @@ class CreateFeedbackTable extends Migration
             $table->integer('status')->default(1)->index('FK_FD-STATUS_ID');
             $table->string('remark')->nullable();
             $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
