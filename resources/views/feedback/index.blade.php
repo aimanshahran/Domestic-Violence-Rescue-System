@@ -38,26 +38,33 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($feedbacks as $feedback)
-                        <tr>
-                            @if((Auth::user()->role_id)==1)
-                                <td style="text-align: center">{{ $feedback->id }}</td>
-                                <td>{{ $feedback->name }}</td>
-                                <td>{{ $feedback->title }}</td>
-                                <td>{{ $feedback->details }}</td>
-                                <td><form action="{{route('feedback.edit', $feedback->id)}}" method="get">
-                                        @csrf
-                                        <button type="submit" class="btn btn-primary">Details</button>
-                                    </form></td>
-                            @else
-                                <td style="text-align: center">{{ $feedback->id }}</td>
-                                <td>{{ $feedback->title }}</td>
-                                <td>{{ $feedback->details }}</td>
-                                <td>{{ $feedback->status }}</td>
-                                <td>{{ $feedback->remark }}</td>
-                            @endif
-                        </tr>
-                    @endforeach
+
+                    @if(count($feedbacks))
+                        @foreach ($feedbacks as $feedback)
+                            <tr>
+                                @if((Auth::user()->role_id)==1)
+                                    <td style="text-align: center">{{ $feedback->id }}</td>
+                                    <td>{{ $feedback->name }}</td>
+                                    <td>{{ $feedback->title }}</td>
+                                    <td>{{ $feedback->details }}</td>
+                                    <td>
+                                        <form action="{{route('feedback.edit', $feedback->id)}}" method="get">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Details</button>
+                                        </form>
+                                    </td>
+                                @else
+                                    <td style="text-align: center">{{ $feedback->id }}</td>
+                                    <td>{{ $feedback->title }}</td>
+                                    <td>{{ $feedback->details }}</td>
+                                    <td>{{ $feedback->status }}</td>
+                                    <td>{{ $feedback->remark }}</td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    @else
+                        <td colspan="5" style="text-align: center">{{ 'No feedback as '.date_format(now(), "d-m-Y H:i:s") }}</td>
+                    @endif
                     </tbody>
                 </table>
                 {!! $feedbacks->links() !!}
