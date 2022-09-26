@@ -10,8 +10,6 @@ class Feedback extends Model
 {
     use HasFactory;
 
-    const UPDATED_AT = null;
-
     protected $table = 'feedback';
 
     protected $primaryKey = 'id';
@@ -22,7 +20,8 @@ class Feedback extends Model
         'details',
         'status',
         'remark',
-        'created_at'
+        'created_at',
+        'updated_at'
     ];
 
     public function user()
