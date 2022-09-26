@@ -18,8 +18,6 @@ class CreateEmergencyPhotoTable extends Migration
             $table->integer('case_id')->index('FK_CaseID');
             $table->integer('user_id')->index('FK_UserID_EmerPhoto');
             $table->string('photo_name')->nullable();
-
-            $table->unique(['ID'], 'photoID');
         });
     }
 

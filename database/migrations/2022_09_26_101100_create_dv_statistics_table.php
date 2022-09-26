@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeedbackStatusTable extends Migration
+class CreateDvStatisticsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateFeedbackStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('feedback_status', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->string('name');
-
-            $table->unique(['id'], 'fd-status_id');
+        Schema::create('dv_statistics', function (Blueprint $table) {
+            $table->integer('id')->primary();
+            $table->integer('user_id')->index('FK_UserID_Stats');
+            $table->year('year');
+            $table->integer('data');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateFeedbackStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feedback_status');
+        Schema::dropIfExists('dv_statistics');
     }
 }

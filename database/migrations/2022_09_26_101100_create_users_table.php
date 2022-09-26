@@ -24,10 +24,8 @@ class CreateUsersTable extends Migration
             $table->integer('gender_id')->nullable()->index('FK_Gender');
             $table->string('photo')->nullable();
             $table->integer('role_id')->default(2)->index('FK_Role');
-            $table->timestamp('created_at')->default('0000-00-00 00:00:00');
+            $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
-
-            $table->unique(['id'], 'id');
         });
     }
 

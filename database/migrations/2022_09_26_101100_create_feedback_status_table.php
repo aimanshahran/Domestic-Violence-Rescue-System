@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDvCategoryTable extends Migration
+class CreateFeedbackStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateDvCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('dv_category', function (Blueprint $table) {
+        Schema::create('feedback_status', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('name');
-
-            $table->unique(['id'], 'id');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateDvCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dv_category');
+        Schema::dropIfExists('feedback_status');
     }
 }

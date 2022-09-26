@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGenderTable extends Migration
+class CreateChatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateGenderTable extends Migration
      */
     public function up()
     {
-        Schema::create('gender', function (Blueprint $table) {
+        Schema::create('chat', function (Blueprint $table) {
             $table->integer('id')->primary();
-            $table->string('type');
-
-            $table->unique(['id'], 'gender_id');
+            $table->integer('sender_id')->index('FK_UserID_Chat_Sender');
+            $table->integer('receiver_id')->index('FK_UserID_Chat_Receiver');
+            $table->string('messages');
+            $table->timestamp('chat_time')->useCurrent();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateGenderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gender');
+        Schema::dropIfExists('chat');
     }
 }

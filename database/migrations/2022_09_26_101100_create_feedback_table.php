@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotificationTable extends Migration
+class CreateFeedbackTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateNotificationTable extends Migration
      */
     public function up()
     {
-        Schema::create('notification', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table) {
             $table->integer('id', true);
+            $table->integer('user_id')->index('FK_UserID_Feedback');
             $table->string('title');
-            $table->string('description');
+            $table->string('details');
+            $table->integer('status')->default(1)->index('FK_FD-STATUS_ID');
+            $table->string('remark')->nullable();
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrentOnUpdate()->nullable();
-            $table->integer('read_status_id')->index('FK_ReadStatus');
-            $table->integer('receiver_id')->index('FK_UserID_Noti');
-
-            $table->unique(['id'], 'notification_id');
         });
     }
 
@@ -33,6 +31,6 @@ class CreateNotificationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notification');
+        Schema::dropIfExists('feedback');
     }
 }

@@ -23,8 +23,6 @@ class CreateEmergencyTable extends Migration
             $table->integer('severity_status')->index('FK_SeverityStatus_ID');
             $table->integer('status')->default(1)->index('FK_CaseStatus');
             $table->string('remarks')->nullable();
-
-            $table->unique(['id'], 'case_id');
         });
     }
 

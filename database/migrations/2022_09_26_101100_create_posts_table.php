@@ -16,13 +16,11 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('editor_id')->index('FK_UserID_Posts');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('content')->nullable();
             $table->integer('photo_id')->index('FK_PhotoID_Posts');
+            $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
-            $table->timestamp('edit_at')->useCurrentOnUpdate()->default('0000-00-00 00:00:00');
-
-            $table->unique(['id'], 'post_id');
         });
     }
 
