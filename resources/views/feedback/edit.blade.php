@@ -58,7 +58,13 @@
                                         <option @if(( old('status') ?? $feedback->status)==1)selected
                                                 @endif value="1">Received</option>
                                         <option @if(( old('status') ?? $feedback->status)==2)selected
-                                                @endif value="2">Reply</option>
+                                                @endif value="2">In Process</option>
+                                        <option @if(( old('status') ?? $feedback->status)==3)selected
+                                                @endif value="3">Reply</option>
+                                        <option @if(( old('status') ?? $feedback->status)==4)selected
+                                                @endif value="4">Closed</option>
+                                        <option @if(( old('status') ?? $feedback->status)==5)selected
+                                                @endif value="5">Archived</option>
                                     </select>
                                     @error('status')
                                         <span class="invalid-feedback" role="alert">
