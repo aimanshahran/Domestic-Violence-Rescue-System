@@ -26,7 +26,6 @@ class FeedbackController extends Controller
                 ->paginate(6);
         }
 
-
         if (!$feedbacks) {
             abort(404);
         }
