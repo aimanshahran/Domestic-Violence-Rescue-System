@@ -116,14 +116,19 @@
                                 <div class="row mt-3">
                                     <div class="col-md-12">
                                         <label class="labels">Gender</label>
-                                        <select name="gender" class="custom-select" id="inputGroupSelect02">
+                                        <select name="gender" class="custom-select @error('gender') is-invalid @enderror" id="inputGroupSelect02">
                                             <option @if((Auth::user()->gender_id)==NULL)selected
-                                                @endif>Choose...</option>
+                                                @endif value="">Choose...</option>
                                             <option @if((Auth::user()->gender_id)==1)selected
                                                     @endif value="1">Male</option>
                                             <option @if((Auth::user()->gender_id)==2)selected
                                                     @endif value="2">Female</option>
                                         </select>
+                                        @error('gender')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="mt-5 text-center">
