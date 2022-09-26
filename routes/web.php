@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['verify' => true]);
 
+//ALL USER
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::view('/loginemail', 'Auth/loginemail')->name('loginemail');
+
+Auth::routes(['verify' => true]);
 Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
@@ -23,6 +27,11 @@ Route::get('/email/verify', function () {
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('manageprofile', 'App\Http\Controllers\Auth\ManageProfileController@index')->name('manage-profile')->middleware(['auth', 'password.confirm']);
+Route::post('manageprofile/profile','App\Http\Controllers\Auth\ManageProfileController@edit')->name('manage-profile.edit');
+Route::post('manageprofile/password','App\Http\Controllers\Auth\ManageProfileController@editpassword')->name('manage-profile.editpassword');
+
 
 Route::resource('feedback', FeedbackController::class, [
     'only' => ['index']
@@ -41,9 +50,3 @@ Route::prefix('user')->middleware(['auth','isUser'])->group(function (){
         'only' => ['create', 'store']
     ]);
 });
-
-Route::get('manageprofile', 'App\Http\Controllers\Auth\ManageProfileController@index')->name('manage-profile')->middleware(['auth', 'password.confirm']);
-Route::post('manageprofile/profile','App\Http\Controllers\Auth\ManageProfileController@edit')->name('manage-profile.edit');
-Route::post('manageprofile/password','App\Http\Controllers\Auth\ManageProfileController@editpassword')->name('manage-profile.editpassword');
-Route::view('/loginemail', 'Auth/loginemail')->name('loginemail');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
