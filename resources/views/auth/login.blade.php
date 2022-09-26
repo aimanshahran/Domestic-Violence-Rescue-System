@@ -59,13 +59,16 @@
                         </button>!-->
                     </div>
                 </form>
-                <span class="forgot-password-link"><a href="#!" class="forgot-password-link">Login with OTP</a></span>
-                <p class="login-card-footer-text">Don't have an account? <a href="{{ route('register') }}" class="text-reset">Register here</a></p>
+                <p class="login-card-footer-text">
+                    <a href="#!" class="text-reset">Login with OTP</a></br>
+                    Don't have an account?<a href="{{ route('register') }}" class="text-reset"> Register here</a>
                 @if (Route::has('password.request'))
-                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                    </br>
+                    <a href="{{ route('password.request') }}" class="text-reset">
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif
+                </p>
                 <nav class="login-card-footer-nav">
                   <a href="#!">Terms of use.</a>
                   <a href="#!">Privacy policy</a>
