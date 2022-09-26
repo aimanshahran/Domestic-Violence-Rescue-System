@@ -40,6 +40,7 @@ class ManageProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id)],
             'phone' => 'required|regex:/^(01)[0-46-9]-*[0-9]{7,8}$/|numeric|' . Rule::unique('users', 'phone')->ignore(Auth::user()->id),
+            'gender' => "required|in:1,2",
         ], ['phone.regex' => 'The :attribute number must be a valid :attribute number.']);
 
         //INSERT DATA TO DATABASE
