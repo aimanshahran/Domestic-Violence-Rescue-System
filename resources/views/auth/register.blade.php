@@ -15,14 +15,14 @@
             <div class="card login-card">
                 <div class="row no-gutters">
                 <div class="col-md-5">
-                    <img src="../img/login-card.png" alt="login" class="login-card-img">
+                    <img src="{{ URL::asset('img/login-card.png') }}" alt="login" class="login-card-img">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
                     <div class="brand-wrapper">
-                        <img src="../svg/logo.svg" alt="logo" class="logo">
+                        <img src="{{ URL::asset('svg/logo.svg') }}" alt="logo" class="logo">
                     </div>
-                    <p class="login-card-description">{{ __('Register') }}</p>
+                    <h3>{{ __('Register') }}</h3>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group">
@@ -65,28 +65,33 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
                             </div>
                             <div class="input-group mb-3">
-                                <!--<button type="button" class="btn btn-block button--loading login-btn mb-4" data-toggle="modal" data-target="#myModal">
-                                    {{ __('Register') }}
-                                </button>!-->
+                                <a type="button" class="btn btn-block button--loading login-btn mb-4" data-toggle="modal" data-target="#myModal">
+                                    {{ __('Verify phone number') }}
+                                </a>
                                 <button type="submit" class="btn btn-block button--loading login-btn mb-4">
                                     {{ __('Register') }}
                                 </button>
                             </div>
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="OTP" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="height-100 d-flex justify-content-center align-items-center">
-                                        <div class="position-relative">
-                                            <div class="card p-2 text-center">
-                                                <h6>Please enter the one time password <br> to verify your account</h6>
-                                                <div> <span>A code has been sent to</span> <small>*******9897</small> </div>
-                                                <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="fifth" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="sixth" maxlength="1" /> </div>
-                                                <div class="mt-4"> <button class="btn btn-danger px-4 validate">Validate</button> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
-                                            </div>
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <a class="logo" href="{{ url('/') }}">
+                                                <img src="{{ URL::asset('svg/logo.svg') }}" width="20%" alt="Homepage">
+                                            </a>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body text-justify">
+                                            <h3>{!! __('alert.alert_title') !!}</h3>
+                                            <p>{!! __('alert.monitored', [ 'url' => 'tel:15999' ]) !!}</p>
+                                            <p>{!! __('alert.send_message') !!}</p>
+                                            <p><b>{!! __('alert.close') !!}</b></p>
+                                            <div class="mt-4"><button class="btn btn-danger btn-lg float-right">OKAY</button></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                         </form>

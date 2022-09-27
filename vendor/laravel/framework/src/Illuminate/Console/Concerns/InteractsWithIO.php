@@ -361,7 +361,7 @@ trait InteractsWithIO
     }
 
     /**
-     * Write a string in an alert box.
+     * Write a string in an alert.php box.
      *
      * @param  string  $string
      * @return void

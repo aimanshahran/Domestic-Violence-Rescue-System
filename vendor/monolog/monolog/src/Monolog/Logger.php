@@ -79,7 +79,7 @@ class Logger implements LoggerInterface, ResettableInterface
     public const ALERT = 550;
 
     /**
-     * Urgent alert.
+     * Urgent alert.php.
      */
     public const EMERGENCY = 600;
 

@@ -21,7 +21,7 @@
               <div class="brand-wrapper">
                 <img src="../svg/logo.svg" alt="logo" class="logo">
               </div>
-              <p class="login-card-description">Sign into your account</p>
+              <h3>Sign into your account</h3>
               <form method="POST" action="{{ route('login') }}">
               @csrf
                 <div class="form-group">

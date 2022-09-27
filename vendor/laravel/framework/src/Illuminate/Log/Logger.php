@@ -59,7 +59,7 @@ class Logger implements LoggerInterface
     }
 
     /**
-     * Log an alert message to the logs.
+     * Log an alert.php message to the logs.
      *
      * @param  \Illuminate\Contracts\Support\Arrayable|\Illuminate\Contracts\Support\Jsonable|\Illuminate\Support\Stringable|array|string  $message
      * @param  array  $context

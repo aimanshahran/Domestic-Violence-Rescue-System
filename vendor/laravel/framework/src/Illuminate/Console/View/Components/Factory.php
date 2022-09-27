@@ -5,7 +5,7 @@ namespace Illuminate\Console\View\Components;
 use InvalidArgumentException;
 
 /**
- * @method void alert(string $string, int $verbosity = \Symfony\Component\Console\Output\OutputInterface::VERBOSITY_NORMAL)
+ * @method void alert.php(string $string, int $verbosity = \Symfony\Component\Console\Output\OutputInterface::VERBOSITY_NORMAL)
  * @method void bulletList(array $elements, int $verbosity = \Symfony\Component\Console\Output\OutputInterface::VERBOSITY_NORMAL)
  * @method mixed choice(string $question, array $choices, $default = null)
  * @method bool confirm(string $question, bool $default = false)

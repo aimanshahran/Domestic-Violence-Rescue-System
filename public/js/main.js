@@ -8,9 +8,9 @@
     'use strict';
 
     const cfg = {
-        
+
         // MailChimp URL
-        mailChimpURL : 'https://facebook.us1.list-manage.com/subscribe/post?u=1abf75f6981256963a47d197a&amp;id=37c6d8f4d6' 
+        mailChimpURL : 'https://facebook.us1.list-manage.com/subscribe/post?u=1abf75f6981256963a47d197a&amp;id=37c6d8f4d6'
 
     };
 
@@ -24,7 +24,7 @@
         if (!preloader) return;
 
         html.classList.add('ss-preload');
-        
+
         window.addEventListener('load', function() {
             html.classList.remove('ss-preload');
             html.classList.add('ss-loaded');
@@ -46,7 +46,7 @@
 
 
    /* swiper
-    * ------------------------------------------------------ */ 
+    * ------------------------------------------------------ */
     const ssSwiper = function() {
 
         const infoSwiper = new Swiper('.s-about__info-slider', {
@@ -105,7 +105,7 @@
 
 
    /* mailchimp form
-    * ---------------------------------------------------- */ 
+    * ---------------------------------------------------- */
     const ssMailChimpForm = function() {
 
         const mcForm = document.querySelector('#mc-form');
@@ -187,7 +187,7 @@
             mcStatus.classList.add('success-message');
         };
 
-        // Submit the form 
+        // Submit the form
         function submitMailChimpForm(form) {
 
             let url = cfg.mailChimpURL;
@@ -262,16 +262,16 @@
     }; // end ssVideoLightbox
 
 
-   /* alert boxes
+   /* alert.php boxes
     * ------------------------------------------------------ */
     const ssAlertBoxes = function() {
 
-        const boxes = document.querySelectorAll('.alert-box');
-  
+        const boxes = document.querySelectorAll('.alert.php-box');
+
         boxes.forEach(function(box){
 
             box.addEventListener('click', function(event) {
-                if (event.target.matches('.alert-box__close')) {
+                if (event.target.matches('.alert.php-box__close')) {
                     event.stopPropagation();
                     event.target.parentElement.classList.add('hideit');
 

@@ -1,9 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Heebo:wght@300;400;500;600;700&display=swap");
+
 body {
     background-color    : #d0d0ce;
     background-image    : linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) , url(../img/blank-background.png);
     background-repeat   : no-repeat;
     background-position : center;
     background-size     : cover;
+}
+
+h1 {
+    font-size : 2em;
+    margin    : 0.67em 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family            : "Heebo", sans-serif;;
+    font-weight            : 450;
+    color                  : #161616;
+    margin                 : 0.67em 0;
+    font-variant-ligatures : common-ligatures;
+    text-rendering         : optimizeLegibility;
 }
 
 .brand-wrapper {
@@ -94,4 +121,19 @@ body {
 .login-card-footer-nav a {
     font-size: 14px;
     color: #919aa3;
+}
+
+.modal-content {
+    -webkit-border-radius: 30px !important;
+    -moz-border-radius: 30px !important;
+    border-radius: 30px !important;
+}
+
+.modal-header {
+    border-bottom: 0 none;
+    padding-bottom: 0;
+}
+
+.modal-footer {
+    border-top: 0 none;
 }

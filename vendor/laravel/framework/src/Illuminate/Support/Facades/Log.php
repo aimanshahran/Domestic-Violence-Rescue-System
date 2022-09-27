@@ -10,7 +10,7 @@ namespace Illuminate\Support\Facades;
  * @method static \Illuminate\Log\Logger withoutContext()
  * @method static \Illuminate\Log\LogManager shareContext(array $context)
  * @method static array sharedContext()
- * @method static void alert(string $message, array $context = [])
+ * @method static void alert.php(string $message, array $context = [])
  * @method static void critical(string $message, array $context = [])
  * @method static void debug(string $message, array $context = [])
  * @method static void emergency(string $message, array $context = [])

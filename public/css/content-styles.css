@@ -12,6 +12,11 @@ body {
     min-height: 100%;
 }
 
+h1 {
+    font-size : 2em;
+    margin    : 0.67em 0;
+}
+
 h1,
 h2,
 h3,
@@ -27,6 +32,7 @@ h6,
     font-family            : "Heebo", sans-serif;;
     font-weight            : 450;
     color                  : #161616;
+    margin                 : 0.67em 0;
     font-variant-ligatures : common-ligatures;
     text-rendering         : optimizeLegibility;
 }
@@ -215,5 +221,23 @@ h6,
         color: #fff;
         text-decoration: none;
         pointer-events: visible;
+    }
+
+/* ==========================================================================
+#MODAL
+========================================================================== */
+    .modal-content {
+        -webkit-border-radius: 30px !important;
+        -moz-border-radius: 30px !important;
+        border-radius: 30px !important;
+    }
+
+    .modal-header {
+        border-bottom: 0 none;
+        padding-bottom: 0;
+    }
+
+    .modal-footer {
+        border-top: 0 none;
     }
 

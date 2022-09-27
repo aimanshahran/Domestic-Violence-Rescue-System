@@ -19,7 +19,7 @@ trait ParsesLogConfiguration
         'warning' => Monolog::WARNING,
         'error' => Monolog::ERROR,
         'critical' => Monolog::CRITICAL,
-        'alert' => Monolog::ALERT,
+        'alert.php' => Monolog::ALERT,
         'emergency' => Monolog::EMERGENCY,
     ];
 
