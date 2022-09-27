@@ -39,7 +39,7 @@ class ManageProfileController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id)],
-            'phone' => 'required|regex:/^(01)[0-46-9]-*[0-9]{7,8}$/|numeric|' . Rule::unique('users', 'phone')->ignore(Auth::user()->id),
+            'phone' => 'required|regex:/^(1)[0-46-9]-*[0-9]{7,8}$/|numeric|' . Rule::unique('users', 'phone')->ignore(Auth::user()->id),
             'gender' => "required|in:1,2",
         ], ['phone.regex' => 'The :attribute number must be a valid :attribute number.']);
 
@@ -74,7 +74,7 @@ class ManageProfileController extends Controller
 
         //VALIDATE PASSWORD INPUT BEFORE INSERT INTO DATABASE
         $request->validate([
-            'oldpassword' => ['required', new MatchOldPassword],
+            'oldpassword' => ['required', new MatchOldPassword], //CHECK IF THE PASSWORD SAME WITH OLD PASSWORD
             'newpassword' => [
                 'required',
                 'string',
@@ -83,7 +83,7 @@ class ManageProfileController extends Controller
                     ->numbers()
                     ->uncompromised(),
             ],
-            'confirm' => ['required', 'same:newpassword'],
+            'confirm' => ['required', 'same:newpassword'], //CHECK IF CONFIRM PASSWORD SAME WITH NEW PASSWORD
         ], [], $attributes);
 
         //INSERT NEW PASSWORD TO DATABASE

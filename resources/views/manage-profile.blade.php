@@ -86,7 +86,7 @@
                                         <label class="labels">Mobile Number</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text form-control" id="basic-addon1">+6</span>
+                                                <span class="input-group-text form-control" id="basic-addon1">+60</span>
                                             </div>
                                             <input type="number" name="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Phone number" value="{{ old('phone') ?? (Auth::user()->phone) }}">
                                             @error('phone')

@@ -44,7 +44,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text form-control" id="basic-addon1">+6</span>
+                                    <span class="input-group-text form-control" id="basic-addon1">+60</span>
                                 </div>
                                 <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="{{ old('phone') }}" required>
                                 @error('phone')
