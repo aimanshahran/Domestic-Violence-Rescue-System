@@ -45,7 +45,7 @@ class FeedbackController extends Controller
         ]);
 
         /*SAVE TO DATABASE*/
-        $insert = Feedback::create($request->all());
+        $insert = Feedback::create($request->only('title', 'details'));
 
        /*DISPLAY SUCCESS AND ERROR MESSAGE*/
         if($insert){
