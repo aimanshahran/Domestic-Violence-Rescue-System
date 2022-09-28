@@ -8,6 +8,8 @@
 
     <!-- CSS
     ================================================== -->
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ URL::asset('css/vendor.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}">
     <!-- Favicon -->
@@ -84,7 +86,7 @@
                             <h2 class="title text-display-1">{{ config ('app.name', 'Laravel') }}</h2>
                         </div>
                         <div class="column lg-6 stack-on-1000 desc-block">
-                            <p class="desc lead">
+                            <p>
                             An emergency system to help Domestic Violence (DV) victims to get immediate support.
                             </p>
                         </div>
@@ -205,12 +207,41 @@
 
         </footer> <!-- end footer -->
         </section>
-
+        <div class="modal fade" id="security" tabindex="-1" role="dialog" aria-labelledby="OTP" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a class="logo" href="{{ url('/') }}">
+                            <img src="{{ URL::asset('svg/logo.svg') }}" width="20%" alt="Homepage">
+                        </a>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-justify">
+                        <h3>{!! __('alert.alert_title') !!}</h3>
+                        <p>{!! __('alert.monitored', [ 'url' => 'tel:15999' ]) !!}</p>
+                        <p>{!! __('alert.send_message') !!}</p>
+                        <p><b>{!! __('alert.close') !!}</b></p>
+                        <div class="mt-4"><button class="btn btn-danger btn-lg float-right close" data-dismiss="modal" aria-label="Close">OKAY</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <!-- Java Script
     ================================================== -->
+    <script type="text/javascript">
+        window.onload = function () {
+            OpenBootstrapPopup();
+        };
+        function OpenBootstrapPopup() {
+            $("#security").modal('show');
+        }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="{{ URL::asset('js/plugins.js') }}"></script>
     <script src="{{ URL::asset('js/main.js') }}"></script>
     <script src="{{ URL::asset('js/nav.js') }}"></script>
