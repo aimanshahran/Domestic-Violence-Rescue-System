@@ -53,12 +53,12 @@
                     <div class="column lg-12 s-intro__content-inner">
                         <div class="s-intro__content-left">
                             <h1 class="s-intro__content-title">
-                            We are here<br> to help
+                                {!! trans('home.emergency_title') !!}
                             </h1>
                         </div>
                         <div class="s-intro__content-right">
                             <p class="s-intro__content-desc body-text-2">
-                            You are not alone. If you need immediate help, please use the emergency button below.
+                                {!! __('home.emergency_content') !!}
                             </p>
 
                             <div class="s-intro__content-buttons">
@@ -82,11 +82,11 @@
 
                     <div class="row section-header">
                         <div class="column lg-6 stack-on-1000 title-block">
-                            <h2 class="title text-display-1">{{ config ('app.name', 'Laravel') }}</h2>
+                            <h2>{{ config ('app.name', 'Laravel') }}</h2>
                         </div>
                         <div class="column lg-6 stack-on-1000 desc-block">
                             <p>
-                            An emergency system to help Domestic Violence (DV) victims to get immediate support.
+                                {{ config ('app.description', 'Laravel') }}
                             </p>
                         </div>
                     </div>
@@ -97,39 +97,35 @@
                             <div class="swiper-container s-about__info-slider">
                                 <div class="swiper-wrapper">
 
-                                    <div class="s-about__info-slide swiper-slide">
-                                        <h4 class="h5">Emergency</h4>
+                                    <div class="swiper-slide">
+                                        <h3>{!! __('home.emergency_header') !!}</h3>
 
                                         <p>
-                                            To provide an emergency rescue system using the location tracking feature in the
-                                            smartphone for authorities to access the exact location of victims and ease domestic
-                                            violence victims to get emergency assistance immediately.
+                                            {!! __('home.emergency_description') !!}
                                         </p>
                                     </div>  <!-- end s-about__info-slide  -->
 
-                                    <div class="s-about__info-slide swiper-slide">
-                                        <h4 class="h5">Consultation</h4>
+                                    <div class="swiper-slide">
+                                        <h3>{!! __('home.consultation_header') !!}</h3>
 
                                         <p>
-                                            To provide advice, options, online consultation, counselling service
-                                            and emotional support for domestic violence victims by using the chat function.
+                                            {!! __('home.consultation_description') !!}
                                         </p>
                                     </div>  <!-- end s-about__info-slide  -->
 
-                                    <div class="s-about__info-slide swiper-slide">
-                                        <h4 class="h5">DV News/Blog</h4>
+                                    <div class="swiper-slide">
+                                        <h3>{!! __('home.news_header') !!}</h3>
 
                                         <p>
-                                            Raise awareness and understanding of domestic violence issues among Malaysians
-                                            by providing current news in Malaysia.
+                                            {!! __('home.news_description') !!}
                                         </p>
                                     </div>  <!-- end s-about__info-slide  -->
 
-                                    <div class="s-about__info-slide swiper-slide">
-                                        <h4 class="h5">DV Statistic</h4>
+                                    <div class="swiper-slide">
+                                        <h3>{!! __('home.statistic_header') !!}</h3>
 
                                         <p>
-                                            Awareness of current data of Domestic Violence in this system and Malaysia.
+                                            {!! __('home.statistic_description') !!}
                                         </p>
                                     </div>  <!-- end s-about__info-slide  -->
 
@@ -159,7 +155,7 @@
                     </div>
 
                     <p>
-                        An emergency system to help Domestic Violence (DV) victims to get immediate support.
+                        {{ config ('app.description', 'Laravel') }}
                     </p>
 
                     <ul class="s-footer__social">
@@ -184,13 +180,13 @@
                 <div class="column lg-6 stack-on-900 end">
                 @auth
                     <p class="s-footer__contact">
-                        Do you have a question? Send us<br>
-                        <a href="{{ route('feedback.create') }}">Feedback</a>
+                        {!! __('home.feedback_description') !!}<br />
+                        <a href="{{ route('feedback.create') }}">{!! __('home.feedback_title') !!}</a>
                     </p>
                 @endauth
                     <div class="ss-copyright">
-                        <span>&copy; Domestic Violence Rescue System</span>
-                        <span>Designed by Aiman Shahran | Faiz Aiman</span>
+                        <span>&#169;&nbsp;{{ config ('app.name', 'Laravel') }}</span>
+                        <span>{!! __('home.copyright') !!}&nbsp;{{ config ('app.creator') }}</span>
                     </div>
                 </div>
 

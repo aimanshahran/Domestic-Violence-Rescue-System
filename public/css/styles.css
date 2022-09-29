@@ -1268,7 +1268,7 @@ button {
 .section-header {
     justify-content : space-between;
     position        : relative;
-    margin-bottom   : var(--vspace-1);
+    margin-bottom   : 50px;
 }
 
 .section-header .title,
@@ -1725,8 +1725,8 @@ button {
 .s-about {
     --screen-width   : 340px;
     --screen-height  : 736px;
-    padding-top      : var(--vspace-5);
-    padding-bottom   : var(--vspace-5);
+    padding-top      : 100px;
+    padding-bottom   : 90px;
     background-color : var(--color-gray-6);
 }
 
@@ -1734,17 +1734,13 @@ button {
  * ## info
  * -------------------------------------------------------------------- */
 .s-about__info {
-    margin-top : var(--vspace-4);
+    margin-top : 1px;
 }
 
 .s-about__info-slider {
     padding-bottom : var(--vspace-2);
 }
 
-.s-about__info-slider h4 {
-    margin-top    : 0;
-    margin-bottom : var(--vspace-0_75);
-}
 /* -------------------------------------------------------------------
  * responsive:
  * about
@@ -1804,7 +1800,7 @@ button {
 .s-footer {
     background-color : var(--color-gray-19);
     padding-top      : 70px;
-    padding-bottom   : var(--vspace-3_5);
+    padding-bottom   : 50px;
     margin-top       : auto;
     font-weight      : 300;
     color            : rgba(255, 255, 255, 0.4);
@@ -1910,10 +1906,14 @@ button {
  * ## footer social
  * ------------------------------------------------------------------- */
 .s-footer__social {
-    list-style  : none;
-    display     : flex;
-    margin-top  : 10px;
-    margin-left : 0;
+    list-style       : none;
+    display          : flex;
+    margin-top       : 20px;
+    margin-left      : 30px;
+    align-items      : center;
+    justify-content  : center;
+    height           : var(--vspace-1_25);
+    width            : var(--vspace-1_25);
 }
 
 .s-footer__social li {
