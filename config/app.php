@@ -16,6 +16,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'description' => env('APP_DESCRIPTION', 'Laravel'),
+    'creator' => 'Mohamad Aiman | Faiz Aiman',
 
     /*
     |--------------------------------------------------------------------------
