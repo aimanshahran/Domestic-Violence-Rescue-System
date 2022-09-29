@@ -258,6 +258,7 @@ button.btn--stroke:hover {
 
 .sticky .s-header__cta .btn {
     --btn-height     : calc(calc(2 * calc(3.2rem * 1)) - 1.6rem);
+    line-height      : 40px;
     font-size        : calc(calc(1.8rem * 1) * 0.8333);
     background-color : rgba(255, 255, 255, 0.1) !important;
     border-color     : transparent;

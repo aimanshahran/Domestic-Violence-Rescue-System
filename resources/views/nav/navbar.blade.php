@@ -14,7 +14,7 @@
                     </a>
                 </div>
 
-                <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
+                <a class="s-header__menu-toggle" href="#"><span>Menu</span></a>
             </div><!-- end s-header__block -->
 
             <nav class="s-header__nav">
@@ -95,7 +95,7 @@
                     </a>
                 </div>
 
-                <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
+                <a class="s-header__menu-toggle" href="#"><span>Menu</span></a>
             </div><!-- end s-header__block -->
 
             <nav class="s-header__nav">
