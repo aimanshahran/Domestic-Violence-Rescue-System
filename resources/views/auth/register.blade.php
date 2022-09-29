@@ -15,12 +15,16 @@
             <div class="card login-card">
                 <div class="row no-gutters">
                 <div class="col-md-5">
-                    <img src="{{ URL::asset('img/login-card.png') }}" alt="login" class="login-card-img">
+                    <picture>
+                        <source srcset="{{ URL::asset('img/login-card.avif') }}" type="image/avif">
+                        <source srcset="{{ URL::asset('img/login-card.webp') }}" type="image/webp">
+                        <img src="{{ URL::asset('img/login-card.png') }}" alt="dvrs-login-card" class="login-card-img">
+                    </picture>
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
                     <div class="brand-wrapper">
-                        <img src="{{ URL::asset('svg/logo.svg') }}" alt="logo" class="logo">
+                        @include('layouts.logo')
                     </div>
                     <h3>{{ __('Register') }}</h3>
                     <form method="POST" action="{{ route('register') }}">

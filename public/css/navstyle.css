@@ -162,7 +162,7 @@ button.btn--stroke:hover {
 .s-header__cta .btn{
     --btn-height                : 60px;
     font-size                   : 18px;
-    line-height                 : calc(var(--btn-height) - 4px);;
+    line-height                 : 56px;
     font-weight                 : 400;
     margin                      : 0;
     padding                     : 0 1rem;
@@ -179,6 +179,7 @@ button.btn--stroke:hover {
 .s-header__cta .btn:hover {
     background-color : #161616;
     border-color     : #161616;
+    color            : white;
 }
 
   .s-header__cta .dropdown {
@@ -377,7 +378,7 @@ button.btn--stroke:hover {
         transform        : scaleY(0);
         transform-origin : center top;
         display          : block;
-        background-color : #622c8c;;
+        background-color : #622c8c;
         width            : 100%;
         padding-top      : calc(64px + (1.25 * (3.2rem * 1)));
         padding-right    : 4.2rem;

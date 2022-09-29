@@ -10,7 +10,7 @@
             <div class="s-header__block">
                 <div class="s-header__logo">
                     <a class="logo" href="{{ url('/') }}">
-                        <img src="{{ URL::asset('svg/logo.svg') }}" alt="Homepage">
+                        @include('layouts.logo')
                     </a>
                 </div>
 
@@ -91,7 +91,7 @@
             <div class="s-header__block">
                 <div class="s-header__logo">
                     <a class="logo" href="{{ url('/') }}">
-                        <img src="{{ URL::asset('svg/logo.svg') }}" alt="Homepage">
+                        @include('layouts.logo')
                     </a>
                 </div>
 
