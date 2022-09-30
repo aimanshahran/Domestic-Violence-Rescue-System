@@ -1,14 +1,15 @@
-/* -------------------------------------------------------------------
- * ## fonts
- * ------------------------------------------------------------------- */
- @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Heebo:wght@300;400;500;600;700&display=swap");
- @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 /* ===================================================================
  * # SITE HEADER
  *
  *
  * ------------------------------------------------------------------- */
+
+@font-face {
+    font-family: Heebo;
+    src: url('../fonts/Heebo-VariableFont_wght.ttf');
+}
 
  .s-header {
     --header-height  : 64px;
@@ -282,7 +283,8 @@ button.btn--stroke:hover {
     width            : 22px;
     height           : 2px;
     margin-top       : -1px;
-    font             : 0/0 a;
+    font-size        : 0;
+    line-height      : 0;
     text-shadow      : none;
     color            : transparent;
     transition       : background-color 0.2s ease-in-out;

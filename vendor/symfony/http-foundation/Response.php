@@ -195,7 +195,7 @@ class Response
         425 => 'Too Early',                                                   // RFC-ietf-httpbis-replay-04
         426 => 'Upgrade Required',                                            // RFC2817
         428 => 'Precondition Required',                                       // RFC6585
-        429 => 'Too Many Requests',                                           // RFC6585
+        429 => 'Too Many Requests. Try again later',                          // RFC6585
         431 => 'Request Header Fields Too Large',                             // RFC6585
         451 => 'Unavailable For Legal Reasons',                               // RFC7725
         500 => 'Internal Server Error',

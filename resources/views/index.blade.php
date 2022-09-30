@@ -216,7 +216,7 @@
                         <p>{!! __('alert.monitored', [ 'url' => 'tel:15999' ]) !!}</p>
                         <p>{!! __('alert.send_message') !!}</p>
                         <p><b>{!! __('alert.close') !!}</b></p>
-                        <div class="mt-4"><button class="btn btn-danger btn-lg float-right close" data-dismiss="modal" aria-label="Close">OKAY</button></div>
+                        <div class="mt-4"><button class="btn btn-danger s-intro__content-btn float-right smoothscroll" data-dismiss="modal" aria-label="Close">OKAY</button></div>
                     </div>
                 </div>
             </div>

@@ -3,9 +3,10 @@
 /* -------------------------------------------------------------------
  * ## fonts
  * ------------------------------------------------------------------- */
-:root {
-    --font-1    : "Inter", sans-serif;
-    --font-2    : "Heebo", sans-serif;
+
+@font-face {
+    font-family: Heebo;
+    src: url('../fonts/Heebo-VariableFont_wght.ttf');
 }
 
 /* -------------------------------------------------------------------
@@ -51,7 +52,7 @@
 
     /* preloader
      */
-    --color-preloader-bg            : /*var(--color-gray-19)*/ #622c8c;
+    --color-preloader-bg            : #622c8c;
     --color-loader                  : white;
     --color-loader-light            : rgba(255, 255, 255, 0.1);
 
@@ -965,7 +966,6 @@ pre {
  * ## base type styles
  * -------------------------------------------------------------------- */
 body {
-    font-family : var(--font-1);
     font-size   : var(--base-font-size);
     font-weight : 400;
     line-height : var(--vspace-1);
@@ -986,7 +986,6 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family            : var(--font-2);
     font-weight            : 500;
     color                  : var(--color-text-dark);
     font-variant-ligatures : common-ligatures;
@@ -1056,7 +1055,6 @@ h5,
 
 h6,
 .h6 {
-    font-family    : var(--font-1);
     font-weight    : 600;
     font-size      : var(--text-sm);
     line-height    : var(--vspace-0_75);
@@ -1290,7 +1288,6 @@ button {
 
 .section-header::before {
     content     : attr(data-num);
-    font-family : var(--font-1);
     font-weight : 600;
     font-size   : 8em;
     line-height : 1;
@@ -1809,6 +1806,7 @@ button {
 
 .s-footer a {
     color : var(--color-1);
+    text-decoration-line: none;
 }
 
 .s-footer a:focus,

@@ -13,18 +13,24 @@
     <div class="container">
       <div class="card login-card">
         <div class="row no-gutters">
-          <div class="col-md-5">
+          <div class="col-md-6">
               <picture>
                   <source srcset="{{ URL::asset('img/login-card.avif') }}" type="image/avif">
                   <source srcset="{{ URL::asset('img/login-card.webp') }}" type="image/webp">
                   <img src="{{ URL::asset('img/login-card.png') }}" alt="dvrs-login-card" class="login-card-img">
               </picture>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-6">
             <div class="card-body">
               <div class="brand-wrapper">
                   @include('layouts.logo')
               </div>
+                @if (session('message'))
+                    <div class="alert alert-danger col-md-9" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ session('message') }}
+                    </div>
+                @endif
               <h3>Sign into your account</h3>
               <form method="POST" action="{{ route('login') }}">
               @csrf
