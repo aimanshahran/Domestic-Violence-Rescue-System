@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserMiddleware
+class CheckRole
 {
     /**
      * Handle an incoming request.
@@ -15,19 +15,27 @@ class UserMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, String $role)
     {
         if (Auth::check()){
-            //Admin role
-            if(Auth::user()->role_id == '2'){
-                return $next($request);
-            }else{
-                return abort(401);
+            $roles = [
+                'Admin' => [1],
+                'User' => [2],
+                'Counselor' => [3],
+                'Writer' => [4],
+                'AllUser' => [1,2,3,4]
+                ];
+
+            $roleIds = $roles[$role] ?? [];
+
+            if(!in_array(Auth::user()->role_id, $roleIds)){
+                abort(401); // Show error if not authorized.
             }
+
+            return $next($request); //Return to requested page.
         }else{
             return redirect('/login')->with('message', 'Please login to use this function');
-        }
 
-        return $next($request);
+        }
     }
 }
