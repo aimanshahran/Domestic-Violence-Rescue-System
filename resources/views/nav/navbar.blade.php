@@ -1,5 +1,5 @@
 <!-- # site header ================================================== -->
-<link rel="stylesheet" href="{{ URL::asset('css/navstyle.css') }}">
+<link href="{{ URL::asset('css/navstyle.css') }}" rel="stylesheet">
 
 {{-- FOR HOME PAGE --}}
 @if(Request::is('/','home'))

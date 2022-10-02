@@ -14,7 +14,10 @@
 ================================================== -->
 </head>
 <body>
-  <div class="col mx-auto">
+    <!-- EXIT BUTTON -->
+    @include('nav.exit')
+    <!-- EXIT BUTTON -->
+    <div class="col mx-auto">
         <div class="card card-2">
             <div class="card-heading">
                 <img src="{{ URL::asset('svg/feedback.svg') }}">
@@ -95,12 +98,12 @@
             </div>
         </div>
         <!-- /.8 -->
-  </div>
+    </div>
     <!-- /.row-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <script src="{{ URL::asset('js/nav.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="{{ URL::asset('js/nav.js') }}"></script>
 </body>
 @endsection
 

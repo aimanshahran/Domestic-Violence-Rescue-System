@@ -40,7 +40,7 @@ h6,
     margin-bottom: 19px;
 }
 
-.brand-wrapper .logo {
+.brand-wrapper img {
     width : 200px;
     height: 80px;
 }
@@ -123,8 +123,12 @@ h6,
 
 .login-card-footer-nav a {
     font-size: 14px;
-    color: #919aa3;
+    color: #6d6e76;
 }
+
+/* ==========================================================================
+#MODAL
+========================================================================== */
 
 .modal-content {
     -webkit-border-radius: 30px !important;
@@ -137,6 +141,41 @@ h6,
     padding-bottom: 0;
 }
 
+.modal-header img {
+    width : 200px;
+    margin: 0;
+}
+
 .modal-footer {
     border-top: 0 none;
+}
+
+/* ==========================================================================
+#EXIT BUTTON
+========================================================================== */
+
+.exit1-wrap {
+    position: fixed;
+    top: 30%;
+    right: 0px;
+    height: 0px;
+    z-index:9999;
+}
+
+.exit1-wrap button {
+    background-color: #DC3545;
+    color: #fff;
+    border-radius: 0;
+    border: none;
+    padding: 10px 15px;
+    line-height: 1.2;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    outline: none;
+}
+
+.exit1-wrap button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }

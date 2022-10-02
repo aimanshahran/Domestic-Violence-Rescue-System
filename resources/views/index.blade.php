@@ -8,9 +8,9 @@
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ URL::asset('css/vendor.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ URL::asset('css/vendor.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/styles.css') }}" rel="stylesheet">
     <!-- Favicon -->
     @include('nav.favicon')
     <!-- Favicon -->
@@ -21,16 +21,17 @@
 </head>
 
 <body id="top">
-
-
     <!-- preloader
     ================================================== -->
+
     <div id="preloader">
         <div id="loader">
         </div>
     </div>
 
-
+    <!-- EXIT BUTTON -->
+    @include('nav.exit')
+    <!-- EXIT BUTTON -->
 
     <!-- page wrap
     ================================================== -->
@@ -187,6 +188,7 @@
                     <div class="ss-copyright">
                         <span>&#169;&nbsp;{{ config ('app.name', 'Laravel') }}</span>
                         <span>{!! __('home.copyright') !!}&nbsp;{{ config ('app.creator') }}</span>
+                        <unscript><span>{{ __('home.javascript') }}</span></unscript>
                     </div>
                 </div>
 
@@ -204,9 +206,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <a href="{{ url('/') }}">
-                            <img src="{{ URL::asset('svg/logo.svg') }}" width="20%" alt="Homepage">
-                        </a>
+                            @include('layouts.logo')
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -214,7 +214,7 @@
                     <div class="modal-body text-justify">
                         <h3>{!! __('alert.alert_title') !!}</h3>
                         <p>{!! __('alert.monitored', [ 'url' => 'tel:15999' ]) !!}</p>
-                        <p>{!! __('alert.send_message') !!}</p>
+                        <p>{!! __('alert.suggestion') !!}</p>
                         <p><b>{!! __('alert.close') !!}</b></p>
                         <div class="mt-4"><button class="btn btn-danger s-intro__content-btn float-right smoothscroll" data-dismiss="modal" aria-label="Close">OKAY</button></div>
                     </div>
@@ -238,5 +238,6 @@
     <script src="{{ URL::asset('js/plugins.js') }}"></script>
     <script src="{{ URL::asset('js/main.js') }}"></script>
     <script src="{{ URL::asset('js/nav.js') }}"></script>
+    <script src="{{ URL::asset('js/exit.js') }}"></script>
 </body>
 @endsection

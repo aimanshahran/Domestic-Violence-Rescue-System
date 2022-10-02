@@ -8,8 +8,11 @@
     @include('nav.favicon')
     <!-- Favicon -->
 </head>
-    <body>
-        <div class="container">
+<body>
+    <!-- EXIT BUTTON -->
+    @include('nav.exit')
+    <!-- EXIT BUTTON -->
+    <div class="container">
         <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
             <div class="container">
             <div class="card login-card">
@@ -80,9 +83,7 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <a class="logo" href="{{ url('/') }}">
-                                                <img src="{{ URL::asset('svg/logo.svg') }}" width="20%" alt="Homepage">
-                                            </a>
+                                                @include('layouts.logo')
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -111,23 +112,23 @@
             </div>
             </div>
         </main>
-        </div>
-        {{--<script>
-        $('#security').on('shown.bs.modal', function () {
-            $('#myInput').trigger('focus')
-        })
-        </script>--}}
+    </div>
+    {{--<script>
+    $('#security').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+    </script>--}}
 
-        {{--<script type="text/javascript">
-            window.onload = function () {
-                OpenBootstrapPopup();
-            };
-            function OpenBootstrapPopup() {
-                $("#myModal").modal('show');
-            }
-        </script>--}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    </body>
+    {{--<script type="text/javascript">
+        window.onload = function () {
+            OpenBootstrapPopup();
+        };
+        function OpenBootstrapPopup() {
+            $("#myModal").modal('show');
+        }
+    </script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
 @endsection

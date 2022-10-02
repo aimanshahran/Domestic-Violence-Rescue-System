@@ -14,6 +14,9 @@
     ================================================== -->
     </head>
     <body>
+    <!-- EXIT BUTTON -->
+    @include('nav.exit')
+    <!-- EXIT BUTTON -->
     <div id="verifyModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
