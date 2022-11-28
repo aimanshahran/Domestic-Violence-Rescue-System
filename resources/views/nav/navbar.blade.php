@@ -29,7 +29,7 @@
                             <li><a href="#about" class="smoothscroll">About Us</a></li>
                         @endif
                     @endguest
-                    <li><a href="#">DV Information</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'dvinfo'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Statistics</a></li>
                     @guest
@@ -110,12 +110,12 @@
                             <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
                         @endif
                     @endguest
-                    <li><a href="{{route('feedback.index')}}">DV Information</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'dvinfo'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Statistics</a></li>
                     @guest
                         @if (Route::has('login'))
-                            <li><a href="{{ route('login') }}" class="d-none">{{ __('Login') }}</a></li>
+                            <li><a href="{{ route('login') }}" class="n-none">{{ __('Login') }}</a></li>
                         @endif
                     @else
                         <li @if(str_contains(Route::currentRouteName(), 'feedback'))class="current"@endif><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">Feedback</a></li>

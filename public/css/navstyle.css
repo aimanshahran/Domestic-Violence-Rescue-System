@@ -410,7 +410,9 @@ button.btn--stroke:hover {
         visibility  : hidden;
     }
 
-    .s-header__nav .n-none {
+    .s-header__nav .n-none,
+    .s-header-no-index .s-header__nav .n-none
+    {
         display : inline-block;
     }
 

@@ -83,7 +83,7 @@
 
                     <div class="row section-header">
                         <div class="column lg-6 stack-on-1000 title-block">
-                            <h2>{{ config ('app.name', 'Laravel') }}</h2>
+                            <h1>{{ config ('app.name', 'Laravel') }}</h1>
                         </div>
                         <div class="column lg-6 stack-on-1000 desc-block">
                             <p>
@@ -99,7 +99,7 @@
                                 <div class="swiper-wrapper">
 
                                     <div class="swiper-slide">
-                                        <h3>{!! __('home.emergency_header') !!}</h3>
+                                        <h2>{!! __('home.emergency_header') !!}</h2>
 
                                         <p>
                                             {!! __('home.emergency_description') !!}
@@ -107,7 +107,7 @@
                                     </div>  <!-- end s-about__info-slide  -->
 
                                     <div class="swiper-slide">
-                                        <h3>{!! __('home.consultation_header') !!}</h3>
+                                        <h2>{!! __('home.consultation_header') !!}</h2>
 
                                         <p>
                                             {!! __('home.consultation_description') !!}
@@ -115,7 +115,7 @@
                                     </div>  <!-- end s-about__info-slide  -->
 
                                     <div class="swiper-slide">
-                                        <h3>{!! __('home.news_header') !!}</h3>
+                                        <h2>{!! __('home.news_header') !!}</h2>
 
                                         <p>
                                             {!! __('home.news_description') !!}
@@ -123,7 +123,7 @@
                                     </div>  <!-- end s-about__info-slide  -->
 
                                     <div class="swiper-slide">
-                                        <h3>{!! __('home.statistic_header') !!}</h3>
+                                        <h2>{!! __('home.statistic_header') !!}</h2>
 
                                         <p>
                                             {!! __('home.statistic_description') !!}
@@ -212,7 +212,7 @@
                         </button>
                     </div>
                     <div class="modal-body text-justify">
-                        <h3>{!! __('alert.alert_title') !!}</h3>
+                        <h1>{!! __('alert.alert_title') !!}</h1>
                         <p>{!! __('alert.monitored', [ 'url' => 'tel:15999' ]) !!}</p>
                         <p>{!! __('alert.suggestion') !!}</p>
                         <p><b>{!! __('alert.close') !!}</b></p>
