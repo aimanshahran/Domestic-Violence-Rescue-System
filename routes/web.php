@@ -21,9 +21,23 @@ Route::get('/', function () {
     return view('index');
 });
 Route::view('/loginemail', 'Auth/loginemail')->name('loginemail');
+Route::view('/dvinfo', 'dv-information/dvinfo')->name('dvinfo');
 
 Auth::routes(['verify' => true]); // Helper class that helps to generate all the routes required for user authentication
 
+Route::get('/verify', function () {
+    return view('auth.verify');
+})->name('verify');
+
+Route::get('/verifyphone', function () {
+    return view('verifyphone');
+})->name('verify-phone');
+Route::post('/verifyphone', [App\Http\Controllers\Auth\RegisterController::class,'verifyPhone'])->name('verify-phone.verify');
+
+Route::get('/registerphone', function () {
+    return view('auth/registerphone');
+})->name('register-phone');
+Route::post('/registerphone', [App\Http\Controllers\Auth\RegisterController::class,'sendSMS'])->name('register-phone.sms');
 
 /*User must login to access page*/
 Route::middleware(['CheckRole:AllUser'])->group(function (){

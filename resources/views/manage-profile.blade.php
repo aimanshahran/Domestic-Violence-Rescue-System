@@ -86,7 +86,8 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-12">
-                                        <label class="labels">Mobile Number</label>
+                                        <label class="labels pr-3">Mobile Number</label>
+                                            <span class="badge badge-success">Verified</span>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text form-control" id="basic-addon1">+60</span>
