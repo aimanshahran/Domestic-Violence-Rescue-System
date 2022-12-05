@@ -30,7 +30,7 @@ Route::get('/verify', function () {
 })->name('verify');
 
 Route::get('/verifyphone', function () {
-    return view('verifyphone');
+    return view('auth/verifyphone');
 })->name('verify-phone');
 Route::post('/verifyphone', [App\Http\Controllers\Auth\RegisterController::class,'verifyPhone'])->name('verify-phone.verify');
 
@@ -51,6 +51,18 @@ Route::middleware(['CheckRole:AllUser'])->group(function (){
     Route::get('/email/verify', function () {
         return view('auth.verify');
     })->name('verification.notice');
+
+    Route::get('/changephone', function () {
+        return view('auth/changephonenumber');
+    })->name('change-phone-number');
+    Route::post('/changephone', 'App\Http\Controllers\Auth\ManageProfileController@editphone')->name('change-phone.sms');
+
+    Route::get('/verifychangephone', function () {
+        return view('auth/verifychangephone');
+    })->name('verify-change-phone');
+    Route::post('/verifychangephone', 'App\Http\Controllers\Auth\ManageProfileController@verifyPhone')->name('verify-change-phone.verify');
+
+
 });
 
 //Admin

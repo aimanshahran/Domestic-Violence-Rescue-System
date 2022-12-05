@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 use App\Rules\MatchOldPassword;
 use DB;
 use Auth;
+use Twilio\Rest\Client;
 
 class ManageProfileController extends Controller
 {
@@ -47,7 +48,6 @@ class ManageProfileController extends Controller
         $message = null;
         $user =Auth::user();
         $user->name = $request['name'];
-        $user->phone = $request['phone'];
         $user->email = $request['email'];
         if ($user->isDirty('email')) {  //TO CHECK IF EMAIL CHANGED, IF YES, VERIFICATION EMAIL WILL BE SENT
             $user->email_verified_at = null;
@@ -61,6 +61,54 @@ class ManageProfileController extends Controller
         }else{
             return redirect()->back()->with('unsuccessful', 'There is an error occurred. Please contact administrator');
         }
+    }
+
+    protected function editphone(Request $request){
+        //VALIDATE USER INPUT BEFORE SEND SMS
+        $request->validate([
+            'phone' => 'required|regex:/^(1)[0-46-9]-*[0-9]{7,8}$/|numeric|unique:users',
+        ], ['phone.regex' => 'The :attribute number must be a valid :attribute number.']);
+
+        // CREATE OTP CODE
+        $code = rand(100000, 999999);
+        $receiverNumber = '+60'.$request['phone'];
+        $message = "DVRS: You have requested to change your phone number. This is your code: ". $code . " NEVER share this code with others, including our staff.";
+
+        try {
+            $account_sid = getenv("TWILIO_SID");
+            $auth_token = getenv("TWILIO_TOKEN");
+            //$twilio_number = env("TWILIO_NUMBER");
+            $twilio_messaging_sid = getenv("TWILIO_MESSAGING_SID");
+
+            $client = new Client($account_sid, $auth_token);
+            $client->messages->create($receiverNumber, [
+                //'from' => $twilio_number,
+                'messagingServiceSid' => $twilio_messaging_sid,
+                'body' => $message]);
+
+        } catch (Exception $e) {
+            echo("Error: ". $e->getMessage());
+        }
+
+        session(['OTP' => $code]);
+        return redirect()->route('verify-change-phone')->with(['phone' => $request->phone]);
+    }
+
+    protected function verifyPhone(Request $request)
+    {
+        $OTP = $request->session()->get('OTP');
+        $inputOTP = $request['first'].$request['second'].$request['third'].$request['fourth'].$request['fifth'].$request['sixth'];
+
+        if ($OTP==$inputOTP) {
+                $user =Auth::user();
+                $user->phone = $request['phone'];
+                if($user->save()){
+                    return redirect()->route('manage-profile')->with('success', 'Your phone number is updated.');
+                }else{
+                    return redirect()->route('manage-profile')->with('unsuccessful', 'There is an error occurred. Please contact administrator');
+                }
+        }
+        return back()->with(['phone' => $request->phone, 'unsuccessful' => 'Wrong OTP.'.$OTP]);
     }
 
     protected function editpassword(Request $request) {

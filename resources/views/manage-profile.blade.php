@@ -92,7 +92,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text form-control" id="basic-addon1">+60</span>
                                             </div>
-                                            <input type="number" name="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Phone number" value="{{ old('phone') ?? (Auth::user()->phone) }}">
+                                            <input type="number" name="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Phone number" value="{{ old('phone') ?? (Auth::user()->phone) }}" readonly>
+                                            &nbsp;
+                                            <a href="{{ route('change-phone-number') }}" class="btn btn-dark mb-2">Change</a>
                                             @error('phone')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
