@@ -29,7 +29,7 @@
                             <li><a href="#about" class="smoothscroll">About Us</a></li>
                         @endif
                     @endguest
-                    <li @if(str_contains(Route::currentRouteName(), 'dvinfo'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'DV-Information'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Statistics</a></li>
                     @guest
@@ -110,7 +110,7 @@
                             <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
                         @endif
                     @endguest
-                    <li @if(str_contains(Route::currentRouteName(), 'dvinfo'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'DV-Information'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Statistics</a></li>
                     @guest

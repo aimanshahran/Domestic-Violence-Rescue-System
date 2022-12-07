@@ -15,6 +15,7 @@ class CreateDvInformationTable extends Migration
     {
         Schema::create('dv_information', function (Blueprint $table) {
             $table->integer('id', true);
+            $table->string('title')->nullable();
             $table->string('content')->nullable();
             $table->integer('category_id')->index('FK_CatID_DVCat');
             $table->integer('user_id')->index('FK_UserID_DVInfo');

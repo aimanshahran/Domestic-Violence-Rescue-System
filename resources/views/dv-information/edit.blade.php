@@ -150,8 +150,10 @@
                     </div>
 
                     <div id="intro" class="tabcontent">
-                        <h3>What is Domestic Violence?</h3>
-                        <p>
+                        <input type="text" name="title" class="form-control" style="font-weight: bold" placeholder="Title" value="What is Domestic Violence?">
+                        <br>
+                        <textarea>
+                            <p>
                             Domestic violence is a pattern of violence, abuse, or intimidation used to control or
                             maintain power over a partner who is or has been in an intimate relationship. Fundamentally,
                             domestic violence is about power and control.
@@ -161,6 +163,8 @@
                             often use more than one form of abuse to invoke fear or coerce a partner into behaving in ways
                             they don’t want to.
                         </p>
+                        </textarea>
+
                     </div>
 
                     <div id="safe" class="tabcontent">
@@ -201,7 +205,7 @@
                             <li>dishonestly misappropriating the victim’s property which causes</li>
                         </ul>
 
-                             </p>
+                        </p>
                     </div>
 
                     <div id="faq" class="tabcontent">
@@ -243,10 +247,6 @@
                                 <hr>
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -278,6 +278,18 @@
                 this.classList.toggle('active')
             })
         }
+    </script>
+    <script src="https://cdn.tiny.cloud/1/1tf6nfno3yi47i0rna6sogpqmrg2v0f8w12xpt60aegwbhq6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            menubar: false,
+            plugins: [ 'quickbars' ],
+            toolbar: 'undo redo | bold italic underline strikethrough | numlist bullist',
+            mobile: {
+                menubar: true
+            }
+        });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

@@ -23,6 +23,7 @@ class CheckRole
                 'User' => [2],
                 'Counselor' => [3],
                 'Writer' => [4],
+                'Admin-Writer' => [1,4],
                 'AllUser' => [1,2,3,4]
                 ];
 

@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('index');
 });
 Route::view('/loginemail', 'Auth/loginemail')->name('loginemail');
-Route::view('/dvinfo', 'dv-information/dvinfo')->name('dvinfo');
+Route::view('/dvinfo', 'dv-information/dvinfo')->name('DV-Information');
 
 Auth::routes(['verify' => true]); // Helper class that helps to generate all the routes required for user authentication
 
@@ -77,4 +77,8 @@ Route::prefix('user')->middleware(['CheckRole:User'])->group(function (){
     Route::resource('feedback', FeedbackController::class, [
         'only' => ['create', 'store']
     ]);
+});
+
+Route::middleware(['CheckRole:Admin-Writer'])->group(function (){
+    Route::view('/dvinfo/edit', 'dv-information/edit')->name('DV-Information.edit');
 });
