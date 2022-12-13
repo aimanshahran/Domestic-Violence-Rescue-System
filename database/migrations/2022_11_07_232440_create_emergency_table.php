@@ -16,6 +16,7 @@ class CreateEmergencyTable extends Migration
         Schema::create('emergency', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('user_id')->index('FK_UserID_Emergency');
+            $table->timestamp('reportTime')->useCurrent();
             $table->string('longitude');
             $table->string('latitude');
             $table->string('address', 2555)->nullable();
