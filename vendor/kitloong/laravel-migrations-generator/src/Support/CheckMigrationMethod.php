@@ -2,6 +2,7 @@
 
 namespace KitLoong\MigrationsGenerator\Support;
 
+use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Grammars\Grammar;
 
@@ -37,5 +38,27 @@ trait CheckMigrationMethod
     public function hasFullText(): bool
     {
         return method_exists(Grammar::class, 'compileFulltext');
+    }
+
+    /**
+     * Check if support anonymous migration.
+     * This feature is added in late Laravel v8 and above.
+     *
+     * @return bool
+     */
+    public function hasAnonymousMigration(): bool
+    {
+        return method_exists(Migrator::class, 'getMigrationClass');
+    }
+
+    /**
+     * Check if support add comment to a table.
+     * This feature is added since Laravel v9.
+     *
+     * @return bool
+     */
+    public function hasTableComment(): bool
+    {
+        return method_exists(Blueprint::class, 'comment');
     }
 }

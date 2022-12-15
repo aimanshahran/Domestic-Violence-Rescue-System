@@ -157,7 +157,6 @@ trait AuthenticatesUsers
         return 'email';
     }
 
-
     /**
      * Log the user out of the application.
      *

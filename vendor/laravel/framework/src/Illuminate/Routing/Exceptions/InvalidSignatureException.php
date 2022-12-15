@@ -13,6 +13,6 @@ class InvalidSignatureException extends HttpException
      */
     public function __construct()
     {
-        parent::__construct(403, 'Invalid signature. It could be the link is expired. Please request again.');
+        parent::__construct(403, 'Invalid signature.');
     }
 }

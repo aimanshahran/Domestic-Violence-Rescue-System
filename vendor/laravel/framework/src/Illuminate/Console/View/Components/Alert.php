@@ -21,7 +21,7 @@ class Alert extends Component
             Mutators\EnsureRelativePaths::class,
         ]);
 
-        $this->renderView('alert.php', [
+        $this->renderView('alert', [
             'content' => $string,
         ], $verbosity);
     }

@@ -15,15 +15,21 @@ use Twilio\Rest\FlexApi\V1;
 
 /**
  * @property \Twilio\Rest\FlexApi\V1 $v1
+ * @property \Twilio\Rest\FlexApi\V1\AssessmentsList $assessments
  * @property \Twilio\Rest\FlexApi\V1\ChannelList $channel
  * @property \Twilio\Rest\FlexApi\V1\ConfigurationList $configuration
  * @property \Twilio\Rest\FlexApi\V1\FlexFlowList $flexFlow
+ * @property \Twilio\Rest\FlexApi\V1\GoodDataList $goodData
  * @property \Twilio\Rest\FlexApi\V1\InteractionList $interaction
+ * @property \Twilio\Rest\FlexApi\V1\UserRolesList $userRoles
  * @property \Twilio\Rest\FlexApi\V1\WebChannelList $webChannel
+ * @method \Twilio\Rest\FlexApi\V1\AssessmentsContext assessments()
  * @method \Twilio\Rest\FlexApi\V1\ChannelContext channel(string $sid)
  * @method \Twilio\Rest\FlexApi\V1\ConfigurationContext configuration()
  * @method \Twilio\Rest\FlexApi\V1\FlexFlowContext flexFlow(string $sid)
+ * @method \Twilio\Rest\FlexApi\V1\GoodDataContext goodData()
  * @method \Twilio\Rest\FlexApi\V1\InteractionContext interaction(string $sid)
+ * @method \Twilio\Rest\FlexApi\V1\UserRolesContext userRoles()
  * @method \Twilio\Rest\FlexApi\V1\WebChannelContext webChannel(string $sid)
  */
 class FlexApi extends Domain {
@@ -83,6 +89,14 @@ class FlexApi extends Domain {
         throw new TwilioException('Unknown context ' . $name);
     }
 
+    protected function getAssessments(): \Twilio\Rest\FlexApi\V1\AssessmentsList {
+        return $this->v1->assessments;
+    }
+
+    protected function contextAssessments(): \Twilio\Rest\FlexApi\V1\AssessmentsContext {
+        return $this->v1->assessments();
+    }
+
     protected function getChannel(): \Twilio\Rest\FlexApi\V1\ChannelList {
         return $this->v1->channel;
     }
@@ -114,6 +128,14 @@ class FlexApi extends Domain {
         return $this->v1->flexFlow($sid);
     }
 
+    protected function getGoodData(): \Twilio\Rest\FlexApi\V1\GoodDataList {
+        return $this->v1->goodData;
+    }
+
+    protected function contextGoodData(): \Twilio\Rest\FlexApi\V1\GoodDataContext {
+        return $this->v1->goodData();
+    }
+
     protected function getInteraction(): \Twilio\Rest\FlexApi\V1\InteractionList {
         return $this->v1->interaction;
     }
@@ -123,6 +145,14 @@ class FlexApi extends Domain {
      */
     protected function contextInteraction(string $sid): \Twilio\Rest\FlexApi\V1\InteractionContext {
         return $this->v1->interaction($sid);
+    }
+
+    protected function getUserRoles(): \Twilio\Rest\FlexApi\V1\UserRolesList {
+        return $this->v1->userRoles;
+    }
+
+    protected function contextUserRoles(): \Twilio\Rest\FlexApi\V1\UserRolesContext {
+        return $this->v1->userRoles();
     }
 
     protected function getWebChannel(): \Twilio\Rest\FlexApi\V1\WebChannelList {

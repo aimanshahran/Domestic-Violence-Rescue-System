@@ -44,9 +44,6 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
         $this->requestStack = $requestStack;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function collect(Request $request, Response $response, \Throwable $exception = null)
     {
         // attributes are serialized and as they can be anything, they need to be converted to strings.
@@ -110,7 +107,7 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
             'session_metadata' => $sessionMetadata,
             'session_attributes' => $sessionAttributes,
             'session_usages' => array_values($this->sessionUsages),
-            'stateless_check' => $this->requestStack?->getMainRequest()->attributes->get('_stateless') ?? false,
+            'stateless_check' => $this->requestStack?->getMainRequest()?->attributes->get('_stateless') ?? false,
             'flashes' => $flashes,
             'path_info' => $request->getPathInfo(),
             'controller' => 'n/a',
@@ -391,9 +388,6 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return 'request';

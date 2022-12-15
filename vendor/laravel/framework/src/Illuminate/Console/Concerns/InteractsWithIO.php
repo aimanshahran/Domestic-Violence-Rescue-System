@@ -361,20 +361,21 @@ trait InteractsWithIO
     }
 
     /**
-     * Write a string in an alert.php box.
+     * Write a string in an alert box.
      *
      * @param  string  $string
+     * @param  int|string|null  $verbosity
      * @return void
      */
-    public function alert($string)
+    public function alert($string, $verbosity = null)
     {
         $length = Str::length(strip_tags($string)) + 12;
 
-        $this->comment(str_repeat('*', $length));
-        $this->comment('*     '.$string.'     *');
-        $this->comment(str_repeat('*', $length));
+        $this->comment(str_repeat('*', $length), $verbosity);
+        $this->comment('*     '.$string.'     *', $verbosity);
+        $this->comment(str_repeat('*', $length), $verbosity);
 
-        $this->newLine();
+        $this->comment('', $verbosity);
     }
 
     /**

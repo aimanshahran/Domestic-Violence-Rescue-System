@@ -7,7 +7,8 @@ use KitLoong\MigrationsGenerator\Enum\Migrations\Method\IndexType;
 interface Index extends Model
 {
     /**
-     * Get the index name.
+     * Get the index name. An index name could be empty.
+     * Empty name means the index uses the default name defined by the database platform.
      *
      * @return string
      */
@@ -26,6 +27,13 @@ interface Index extends Model
      * @return string[]
      */
     public function getColumns(): array;
+
+    /**
+     * Get the index column lengths, always same size with {@see self::getColumns()}.
+     *
+     * @return array<int|null>
+     */
+    public function getLengths(): array;
 
     /**
      * Get the index type.

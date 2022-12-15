@@ -22,9 +22,9 @@ class IndexModifier implements Modifier
      */
     public function chain(Method $method, Table $table, Column $column, ...$args): Method
     {
+        /** @var \Illuminate\Support\Collection<string, \KitLoong\MigrationsGenerator\Schema\Models\Index> $chainableIndexes Key is column name. */
         $chainableIndexes = $args[0];
 
-        /** @var \Illuminate\Support\Collection<string, \KitLoong\MigrationsGenerator\Schema\Models\Index> $chainableIndexes Key is column name. */
         if (!$chainableIndexes->has($column->getName())) {
             return $method;
         }
@@ -37,18 +37,30 @@ class IndexModifier implements Modifier
             return $method;
         }
 
+        $indexType = $this->adjustIndexType($index->getType());
+
         if ($this->indexNameHelper->shouldSkipName($table->getName(), $index)) {
-            $method->chain($index->getType());
+            $method->chain($indexType);
             return $method;
         }
 
-        // Chainable "fulltext" is lowercase.
-        if ($index->getType()->equals(IndexType::FULLTEXT())) {
-            $method->chain(IndexType::FULLTEXT_CHAIN(), $index->getName());
-            return $method;
-        }
-
-        $method->chain($index->getType(), $index->getName());
+        $method->chain($indexType, $index->getName());
         return $method;
+    }
+
+    /**
+     * FULLTEXT index method name is `fullText` (camelCase) but changed to `fulltext` (lowercase)
+     * when used for column chaining.
+     *
+     * @param  \KitLoong\MigrationsGenerator\Enum\Migrations\Method\IndexType  $indexType
+     * @return \KitLoong\MigrationsGenerator\Enum\Migrations\Method\IndexType
+     */
+    private function adjustIndexType(IndexType $indexType): IndexType
+    {
+        if ($indexType->equals(IndexType::FULLTEXT())) {
+            return IndexType::FULLTEXT_CHAIN();
+        }
+
+        return $indexType;
     }
 }

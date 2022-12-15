@@ -17,7 +17,7 @@ class HandleExceptions
     /**
      * Reserved memory so that errors can be displayed properly on memory exhaustion.
      *
-     * @var string
+     * @var string|null
      */
     public static $reservedMemory;
 
@@ -144,9 +144,11 @@ class HandleExceptions
 
             $this->ensureNullLogDriverIsConfigured();
 
-            $options = $config->get('logging.deprecations');
-
-            $driver = is_array($options) ? $options['channel'] : ($options ?? 'null');
+            if (is_array($options = $config->get('logging.deprecations'))) {
+                $driver = $options['channel'] ?? 'null';
+            } else {
+                $driver = $options ?? 'null';
+            }
 
             $config->set('logging.channels.deprecations', $config->get("logging.channels.{$driver}"));
         });
