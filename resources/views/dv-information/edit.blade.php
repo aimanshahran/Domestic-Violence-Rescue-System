@@ -26,7 +26,10 @@
                         <h2>Domestic Violence information and safety planning</h2>
 
                         <div class="submitbtn-mobile">
-                            <button href="{{ route('change-phone-number') }}" class="btn btn-dark" >SAVE</button>
+                            <form action = "{{ route('DV-Information.update') }}" method="post">
+                                @csrf
+                                @method('PUT')
+                            <button type="submit" class="btn btn-dark" >SAVE</button>
                         </div>
 
                         <div style="clear: both;"></div>
@@ -34,34 +37,35 @@
                         {{--TABS FOR DV INFORMATION--}}
 
                         <div id="tabs" class="nav nav-tabs">
-                            @foreach($dvinfos as $count => $dvinfo)
-                                <button id="tab-{{$count}}" href="#pane-{{$count}}"  @if($count == 0) class="active" @endif data-toggle="tab" role="tab">{{ $dvinfo->categoryName }}</button>
-                            @endforeach
-                        </div>
+                                    @foreach($dvinfos as $count => $dvinfo)
+                                        <button id="tab-{{$count}}" href="#pane-{{$count}}"  @if($count == 0) class="active" @endif data-toggle="tab" role="tab">{{ $dvinfo->categoryName }}</button>
+                                    @endforeach
+                                </div>
 
-                        {{--CONTENT FOR TABS DV INFORMATION--}}
-                        <div id="content" class="tab-content" role="tablist">
-                            @foreach ($dvinfos as $count => $dvinfo)
-                                <div id="pane-{{$count}}" class="card tab-pane fade show @if($count == 0) active @endif " role="tabpanel" aria-labelledby="tab-{{$count}}">
-                                    <button data-toggle="collapse" href="#collapse-{{$count}}" aria-expanded="true" aria-controls="collapse-{{$count}}">{{ $dvinfo->categoryName }}</button>
-                                    <div id="collapse-{{$count}}" class="collapse @if($count == 0) show @endif" role="tabpanel" data-parent="#content" aria-labelledby="heading-{{$count}}">
-                                        <div class="card-content">
-                                            <input type="text" name="title-{{ $dvinfo->categoryName }}" class="form-control" style="font-weight: bold" placeholder="Title" value="{{ $dvinfo->title }}">
-                                            <br>
-                                            <textarea name="content-{{ $dvinfo->categoryName }}">
-                                        {!!html_entity_decode($dvinfo->content)!!}
-                                        </textarea>
+                                {{--CONTENT FOR TABS DV INFORMATION--}}
+                                <div id="content" class="tab-content" role="tablist">
+                                    @foreach ($dvinfos as $count => $dvinfo)
+                                    <div id="pane-{{$count}}" class="card tab-pane fade show @if($count == 0) active @endif " role="tabpanel" aria-labelledby="tab-{{$count}}">
+                                        <button data-toggle="collapse" href="#collapse-{{$count}}" aria-expanded="true" aria-controls="collapse-{{$count}}">{{ $dvinfo->categoryName }}</button>
+                                        <div id="collapse-{{$count}}" class="collapse @if($count == 0) show @endif" role="tabpanel" data-parent="#content" aria-labelledby="heading-{{$count}}">
+                                            <div class="card-content">
+                                                    <input name="id[]" value="{{ $dvinfo->id }}" hidden>
+                                                    <input type="text" name="title[]" class="form-control" style="font-weight: bold" placeholder="Title" value="{{ $dvinfo->title }}">
+                                                    <br>
+                                                    <textarea name="contentfaq[]">
+                                                    {!!html_entity_decode($dvinfo->content)!!}
+                                                    </textarea>
+                                            </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
-                            @endforeach
                         </div>
-
-                    </div>
-                    <div class="col-1">
-                        <div class="submitbtn">
-                            <button href="{{ route('change-phone-number') }}" class="btn btn-dark">SAVE</button>
-                        </div>
+                            <div class="col-1">
+                                <div class="submitbtn">
+                                    <button type="submit" class="btn btn-dark">SAVE</button>
+                                </div>
+                            </form>
                     </div>
                 </div>
             </div>
