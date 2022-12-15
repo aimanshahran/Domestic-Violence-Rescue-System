@@ -26,7 +26,7 @@
                         <h2>Domestic Violence information and safety planning</h2>
 
                         <div class="submitbtn-mobile">
-                            <button href="{{ route('change-phone-number') }}" class="btn btn-dark" >SAVE</button>
+                            <a href="{{ route('DV-Information.edit') }}" class="btn btn-dark" role="button" aria-pressed="true">EDIT</a>
                         </div>
 
                         <div style="clear: both;"></div>
@@ -41,26 +41,24 @@
 
                         {{--CONTENT FOR TABS DV INFORMATION--}}
                         <div id="content" class="tab-content" role="tablist">
-                            @foreach ($dvinfos as $count => $dvinfo)
-                                <div id="pane-{{$count}}" class="card tab-pane fade show @if($count == 0) active @endif " role="tabpanel" aria-labelledby="tab-{{$count}}">
-                                    <button data-toggle="collapse" href="#collapse-{{$count}}" aria-expanded="true" aria-controls="collapse-{{$count}}">{{ $dvinfo->categoryName }}</button>
-                                    <div id="collapse-{{$count}}" class="collapse @if($count == 0) show @endif" role="tabpanel" data-parent="#content" aria-labelledby="heading-{{$count}}">
-                                        <div class="card-content">
-                                            <input type="text" name="title-{{ $dvinfo->categoryName }}" class="form-control" style="font-weight: bold" placeholder="Title" value="{{ $dvinfo->title }}">
-                                            <br>
-                                            <textarea name="content-{{ $dvinfo->categoryName }}">
+                        @foreach ($dvinfos as $count => $dvinfo)
+                            <div id="pane-{{$count}}" class="card tab-pane fade show @if($count == 0) active @endif " role="tabpanel" aria-labelledby="tab-{{$count}}">
+                                <button data-toggle="collapse" href="#collapse-{{$count}}" aria-expanded="true" aria-controls="collapse-{{$count}}">{{ $dvinfo->categoryName }}</button>
+                                <div id="collapse-{{$count}}" class="collapse @if($count == 0) show @endif" role="tabpanel" data-parent="#content" aria-labelledby="heading-{{$count}}">
+                                    <div class="card-content">
+                                        <h4>{{ $dvinfo->title }}</h4>
+                                        <br>
                                         {!!html_entity_decode($dvinfo->content)!!}
-                                        </textarea>
-                                        </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
+                        @endforeach
                         </div>
 
                     </div>
                     <div class="col-1">
                         <div class="submitbtn">
-                            <button href="{{ route('change-phone-number') }}" class="btn btn-dark">SAVE</button>
+                            <a href="{{ route('DV-Information.edit') }}" class="btn btn-dark" role="button" aria-pressed="true">EDIT</a>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,163 @@
+.nav-tabs {
+    display:none;
+    overflow: hidden;
+    width: 75%;
+    border-bottom: 2px dotted #000;
+}
+
+.nav-tabs button{
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 76px 14px 0;
+    transition: 0.3s;
+    font-size: 17px;
+    color: #000000B2;
+    width: auto;
+}
+
+.nav-tabs button.active{
+    color: #000;
+    font-weight: bold;
+    margin-bottom: -3px;
+    border: none;
+}
+
+.nav-tabs button:hover {
+    border: none;
+    color: #000;
+}
+
+.tab-content .card-body{
+    padding: 10px 0 0px 0;
+    margin: 0px;
+    text-align: justify-all;
+}
+
+.tab-pane > button {
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #808080;
+    border-radius: 3px;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+}
+
+.tab-pane > button::after{
+    content: '\022EE';
+    color: black;
+    position: relative;
+    padding-right: 20px;
+    float: right;
+}
+
+.card-content{
+    padding: 10px 0 10px 0;
+    width: 75%;
+}
+
+@media(min-width:1200px) {
+    .nav-tabs {
+        display: flex;
+    }
+
+    .tab-pane button {
+        display: none;
+    }
+
+    .card {
+        border: none;
+    }
+
+    .card .card-header {
+        display:none;
+    }
+
+    .card .collapse{
+        display:block;
+    }
+
+    .submitbtn-mobile{
+        display: none;
+    }
+}
+
+@media(max-width:1199px){
+    .tab-content .tab-pane {
+        display: block !important;
+        opacity: 1;
+    }
+
+    .submitbtn{
+        display: none;
+    }
+
+    .submitbtn-mobile{
+        padding-bottom: 10px;
+        float: right;
+    }
+
+    .card-content{
+        width: 100%;
+    }
+
+    #content > .card{
+        min-height: 0;
+    }
+}
+
+.submitbtn{
+    padding-top: 20px;
+    position: relative;
+    float: right;
+}
+
+.submitbtn button{
+    width: 111px;
+    height: 37px;
+}
+.accordion .container {
+    position: relative;
+}
+.accordion hr{
+    display: none;
+}
+/* Positions the labels relative to the .container. Adds padding to the top and bottom and increases font size. Also makes its cursor a pointer */
+.accordion .label {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    background: #E9EBEB;
+    border: 1px solid #808080;
+    border-radius: 3px;
+}
+/* Positions the plus sign 5px from the right. Centers it using the transform property. */
+.accordion .label::before {
+    content: '+';
+    color: black;
+    position: relative;
+    padding-right: 20px;
+}
+/* Hides the content (height: 0), decreases font size, justifies text and adds transition */
+.accordion .content {
+    position: relative;
+    height: 0px;
+    padding-top: 10px;
+    text-align: justify;
+    overflow: hidden;
+    transition: 0.5s;
+}
+/* Unhides the content part when active. Sets the height */
+.accordion .container.active .content {
+    height: 150px;
+}
+/* Changes from plus sign to negative sign once active */
+.accordion .container.active .label::before {
+    content: '-';
+}

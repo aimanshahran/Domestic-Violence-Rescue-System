@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\DvinfoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,7 +22,6 @@ Route::get('/', function () {
     return view('index');
 });
 Route::view('/loginemail', 'Auth/loginemail')->name('loginemail');
-Route::view('/dvinfo', 'dv-information/dvinfo')->name('DV-Information');
 
 Auth::routes(['verify' => true]); // Helper class that helps to generate all the routes required for user authentication
 
@@ -38,6 +38,11 @@ Route::get('/registerphone', function () {
     return view('auth/registerphone');
 })->name('register-phone');
 Route::post('/registerphone', [App\Http\Controllers\Auth\RegisterController::class,'sendSMS'])->name('register-phone.sms');
+
+Route::singleton('dvinfo', DvinfoController::class, [
+    'except' => ['edit', 'update'],
+    'names' => ['show' =>'DV-Information.show']
+]);
 
 /*User must login to access page*/
 Route::middleware(['CheckRole:AllUser'])->group(function (){
@@ -61,8 +66,6 @@ Route::middleware(['CheckRole:AllUser'])->group(function (){
         return view('auth/verifychangephone');
     })->name('verify-change-phone');
     Route::post('/verifychangephone', 'App\Http\Controllers\Auth\ManageProfileController@verifyPhone')->name('verify-change-phone.verify');
-
-
 });
 
 //Admin
@@ -79,6 +82,10 @@ Route::prefix('user')->middleware(['CheckRole:User'])->group(function (){
     ]);
 });
 
+
 Route::middleware(['CheckRole:Admin-Writer'])->group(function (){
-    Route::view('/dvinfo/edit', 'dv-information/edit')->name('DV-Information.edit');
+    Route::singleton('dvinfo', DvinfoController::class, [
+        'only' => ['edit', 'update'],
+        'names' => ['edit' =>'DV-Information.edit', 'update' =>'DV-Information.update']
+    ]);
 });
