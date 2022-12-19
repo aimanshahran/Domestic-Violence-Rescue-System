@@ -45,7 +45,9 @@ Route::singleton('dvinfo', DvinfoController::class, [
     'names' => ['show' =>'DV-Information.show']
 ]);
 
-Route::resource('/blog', BlogController::class);
+Route::resource('/blog', BlogController::class, [
+    'only' => ['index', 'show']
+]);
 
 /*User must login to access page*/
 Route::middleware(['CheckRole:AllUser'])->group(function (){
@@ -90,5 +92,9 @@ Route::middleware(['CheckRole:Admin-Writer'])->group(function (){
     Route::singleton('dvinfo', DvinfoController::class, [
         'only' => ['edit', 'update'],
         'names' => ['edit' =>'DV-Information.edit', 'update' =>'DV-Information.update']
+    ]);
+
+    Route::resource('/blog', BlogController::class, [
+        'except' => ['index', 'show']
     ]);
 });
