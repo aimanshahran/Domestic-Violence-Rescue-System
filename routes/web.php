@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\DvinfoController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,6 +44,8 @@ Route::singleton('dvinfo', DvinfoController::class, [
     'except' => ['edit', 'update'],
     'names' => ['show' =>'DV-Information.show']
 ]);
+
+Route::resource('/blog', BlogController::class);
 
 /*User must login to access page*/
 Route::middleware(['CheckRole:AllUser'])->group(function (){

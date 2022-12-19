@@ -30,7 +30,7 @@
                         @endif
                     @endguest
                     <li @if(str_contains(Route::currentRouteName(), 'DV-Information'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'blog'))class="current"@endif><a href="{{ url('/blog') }}">Blog</a></li>
                     <li><a href="#">Statistics</a></li>
                     @guest
                         @if (Route::has('login'))
@@ -111,7 +111,7 @@
                         @endif
                     @endguest
                     <li @if(str_contains(Route::currentRouteName(), 'DV-Information'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'blog'))class="current"@endif><a href="{{ url('/blog') }}">Blog</a></li>
                     <li><a href="#">Statistics</a></li>
                     @guest
                         @if (Route::has('login'))
