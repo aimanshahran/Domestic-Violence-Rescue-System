@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,34 @@ class AppServiceProvider extends ServiceProvider
             // If you want to accept hyphens use: /^[\pL\s-]+$/u.
             return preg_match('/^[\pL\s]+$/u', $value);
 
+        });
+
+        Blade::if('admin', function () {
+            if (auth()->user() && auth()->user()->role_id == 1) {
+                return 1;
+            }
+            return 0;
+        });
+
+        Blade::if('counselor', function () {
+            if (auth()->user() && auth()->user()->role_id == 3) {
+                return 1;
+            }
+            return 0;
+        });
+
+        Blade::if('writer', function () {
+            if (auth()->user() && auth()->user()->role_id == 4) {
+                return 1;
+            }
+            return 0;
+        });
+
+        Blade::if('admin_writer', function () {
+            if (auth()->user() && (auth()->user()->role_id == 4 || auth()->user()->role_id == 1)) {
+                return 1;
+            }
+            return 0;
         });
 
     }
