@@ -88,7 +88,7 @@ Route::prefix('user')->middleware(['CheckRole:User'])->group(function (){
 });
 
 
-Route::middleware(['CheckRole:Admin-Writer'])->group(function (){
+Route::prefix('admin-writer')->middleware(['CheckRole:Admin-Writer'])->group(function (){
     Route::singleton('dvinfo', DvinfoController::class, [
         'only' => ['edit', 'update'],
         'names' => ['edit' =>'DV-Information.edit', 'update' =>'DV-Information.update']
