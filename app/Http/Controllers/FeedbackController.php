@@ -56,7 +56,7 @@ class FeedbackController extends Controller
             $message = 'There is an error occurred. Please contact administrator';
         }
 
-        /*RETUREN TO MAIN FORM PAGE*/
+        /*RETURN TO MAIN FORM PAGE*/
         return redirect()->route('feedback.create')->with($status, $message);
     }
 
