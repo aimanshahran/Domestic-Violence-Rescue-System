@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration
             $table->integer('editor_id')->index('FK_UserID_Posts');
             $table->string('title')->nullable();
             $table->string('content')->nullable();
-            $table->integer('photo_id')->index('FK_PhotoID_Posts');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
