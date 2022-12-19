@@ -25,11 +25,13 @@
                     <div class="col-11">
                         <h2>Domestic Violence information and safety planning</h2>
 
+                        @if((Auth::user()->role_id)==1)
                         <div class="submitbtn-mobile">
                             <a href="{{ route('DV-Information.edit') }}" class="btn btn-dark" role="button" aria-pressed="true">EDIT</a>
                         </div>
 
                         <div style="clear: both;"></div>
+                        @endif
 
                         {{--TABS FOR DV INFORMATION--}}
 
@@ -55,11 +57,13 @@
                         @endforeach
                         </div>
                     </div>
+                    @if((Auth::user()->role_id)==1)
                     <div class="col-1">
                         <div class="submitbtn">
                             <a href="{{ route('DV-Information.edit') }}" class="btn btn-dark" role="button" aria-pressed="true">EDIT</a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
