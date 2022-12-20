@@ -19,7 +19,9 @@
     <!-- EXIT BUTTON -->
     <div class="col mx-auto">
         <div class="card card-2">
-
+            <div class="container rounded bg-white mt-5 mb-5">
+                {{--PUT YOUR CONTENT HERE--}}
+            </div>
         </div>
         <!-- /.8 -->
     </div>
@@ -28,6 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="{{ URL::asset('js/nav.js') }}"></script>
+    <script src="{{ URL::asset('js/exit.js') }}"></script>
     </body>
 @endsection
 

@@ -24,8 +24,8 @@
                   </picture>
               </div>
               <div class="col-md-6">
-                  <a href="{{ url('/') }}" type="button" class="close">×</a>
                 <div class="card-body">
+                    <a href="{{ url('/') }}" type="button" class="close">×</a>
                   <div class="brand-wrapper">
                       @include('layouts.logo')
                   </div>

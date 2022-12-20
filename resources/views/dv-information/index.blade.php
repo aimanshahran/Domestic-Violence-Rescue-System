@@ -25,13 +25,13 @@
                     <div class="col-11">
                         <h2>Domestic Violence information and safety planning</h2>
 
-                        @if((Auth::user()->role_id)==1)
+                        @admin_writer
                         <div class="submitbtn-mobile">
                             <a href="{{ route('DV-Information.edit') }}" class="btn btn-dark" role="button" aria-pressed="true">EDIT</a>
                         </div>
 
                         <div style="clear: both;"></div>
-                        @endif
+                        @endadmin_writer
 
                         {{--TABS FOR DV INFORMATION--}}
 
@@ -57,13 +57,13 @@
                         @endforeach
                         </div>
                     </div>
-                    @if((Auth::user()->role_id)==1)
+                    @admin_writer
                     <div class="col-1">
                         <div class="submitbtn">
                             <a href="{{ route('DV-Information.edit') }}" class="btn btn-dark" role="button" aria-pressed="true">EDIT</a>
                         </div>
                     </div>
-                    @endif
+                    @endadmin_writer
                 </div>
             </div>
         </div>
@@ -89,5 +89,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="{{ URL::asset('js/nav.js') }}"></script>
+    <script src="{{ URL::asset('js/exit.js') }}"></script>
     </body>
 @endsection

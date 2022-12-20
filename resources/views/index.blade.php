@@ -63,7 +63,7 @@
                             </p>
 
                             <div class="s-intro__content-buttons">
-                                <a href="#download" class="btn btn-danger s-intro__content-btn smoothscroll">Open Map for Emergency</a>
+                                <a href="{{ route('emergency') }}" class="btn btn-danger s-intro__content-btn">Open Map for Emergency</a>
                             </div>
                         </div>
                     </div> <!-- s-intro__content-inner -->

@@ -49,6 +49,8 @@ Route::resource('/blog', BlogController::class, [
     'only' => ['index', 'show']
 ]);
 
+Route::view('/emergency', 'emergency/index')->name('emergency');
+
 /*User must login to access page*/
 Route::middleware(['CheckRole:AllUser'])->group(function (){
     Route::get('manageprofile', 'App\Http\Controllers\Auth\ManageProfileController@index')->name('manage-profile');

@@ -24,7 +24,7 @@
                         <li><a href="#about" class="smoothscroll">About Us</a></li>
                     @else
                         @if((Auth::user()->role_id)==1)
-                            <li><a href="#">Emergency</a></li>
+                            <li @if(str_contains(Route::currentRouteName(), 'emergency'))class="current"@endif><a href="{{ url('/dvinfo') }}">Emergency</a></li>
                         @else
                             <li><a href="#about" class="smoothscroll">About Us</a></li>
                         @endif
@@ -105,7 +105,7 @@
                         <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
                     @else
                         @if((Auth::user()->role_id)==1)
-                            <li><a href="#">Emergency</a></li>
+                            <li @if(str_contains(Route::currentRouteName(), 'emergency'))class="current"@endif><a href="{{ url('/emergency') }}">Emergency</a></li>
                         @else
                             <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
                         @endif
