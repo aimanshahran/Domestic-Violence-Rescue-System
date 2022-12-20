@@ -1,5 +1,12 @@
 @extends('layouts.header')
 
+@if (!session('phone'))
+    @php
+        header("Location: " . URL::to('/emergency'), true, 302);
+        exit();
+    @endphp
+@endif
+
 @section('content')
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -68,13 +75,12 @@
         }
     </style>
     </head>
-    <div>
+    <body>
     <!-- EXIT BUTTON -->
     @include('nav.exit')
     <!-- EXIT BUTTON -->
 
     <div class="map" id="map" ></div>
-
     <div class="contactform">
         <div class="col">
             <div class="card">
@@ -82,95 +88,49 @@
                     @include('layouts.logo')
                     <a href="{{ url('/') }}" type="button" style="float: right" class="close">×</a>
                 </div>
-                <h2>Don't worry!</br>We are here to help!</h2>
-                <p>Before begin.... please key-in your phone number</p>
-                <form id="otp" method="POST" action="{{ route('emergency.sms') }}">
+                <h3>{{ __('OTP Verification') }}</h3>
+                @if(session('unsuccessful'))
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ session('unsuccessful') }}
+                    </div>
+                @endif
+                @error('verification_code')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+                <p>We have sent you 6 digits OTP code for +60{{session('phone')}}.</p>
+                <form action="{{route('emergency-verify-phone.verify')}}" method="POST">
                     @csrf
-                    <div class="form-group col-md-6 col-sm">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text form-control" id="basic-addon1">+60</span>
-                            </div>
-                            <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="{{ old('phone') }}" required>
-                            @error('phone')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                    @method('PUT')
+                    <input type="hidden" name="phone" value="{{session('phone')}}">
+                    <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+                        <input class="m-2 text-center form-control rounded" type="text" name="first"
+                               maxlength="1"/>
+                        <input class="m-2 text-center form-control rounded" type="text" name="second"
+                               maxlength="1"/>
+                        <input class="m-2 text-center form-control rounded" type="text" name="third"
+                               maxlength="1"/>
+                        <input class="m-2 text-center form-control rounded" type="text" name="fourth"
+                               maxlength="1"/>
+                        <input class="m-2 text-center form-control rounded" type="text" name="fifth"
+                               maxlength="1"/>
+                        <input class="m-2 text-center form-control rounded" type="text" name="sixth"
+                               maxlength="1" />
                     </div>
-
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input @error('confirm') is-invalid @enderror" type="checkbox" value="" name="confirm" required>
-                            <label class="form-check-label">
-                                By checking this box, I hereby confirm that I got abused and need immediate help by authorities.
-                            </label>
-                            @error('confirm')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input @error('aware') is-invalid @enderror" type="checkbox" value="" name="aware" required>
-                            <label class="form-check-label">
-                                I aware that I will be suspended if I misused this system and authorities have a right to issue legal action.
-                            </label>
-                            @error('aware')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input @error('terms') is-invalid @enderror" type="checkbox" value="" name="terms" required>
-                            <label class="form-check-label">
-                                By checking this box, I agree to terms and condition for this function
-                            </label>
-                            @error('aware')
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                            @enderror
-                        </div>
+                    <div class="d-flex flex-row justify-content-center mt-8">
+                        <p>Please wait <span id="countdowntimer" style="color: #622c8c">60 </span> seconds to resend</p>
                     </div>
                     </br>
                     </br>
                     <button type="button" class="btn emergencyBtn float-right" data-dismiss="modal" data-toggle="modal" data-target="#security">
-                        {{ __('REPORT NOW') }}
+                        {{ __('CONFIRM') }}
                     </button>
+                </form>
             </div>
         </div>
     </div>
-                        <div class="modal fade" id="security" tabindex="-1" role="dialog" aria-labelledby="OTP" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        @include('layouts.logo')
-                                        <button type="button" class="close" data-dismiss="modal">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body text-justify">
-                                        <h1>{!! __('alert.alert_title') !!}</h1>
-                                        <p>{!! __('alert.monitored', [ 'url' => 'tel:15999' ]) !!}</p>
-                                        <p>{!! __('alert.suggestion') !!}</p>
-                                        <p><b>{!! __('alert.close') !!}</b></p>
-                                        <div class="mt-4">
-                                            <button type="submit" class="btn emergencyBtn btn-lg float-right">OKAY</button>
-                </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALiAsEpXW9QCdQD1ZN29xzizLNohMYKhE&callback=initMap"></script>
     <script>
@@ -254,6 +214,21 @@
                     alert(`Error: ${getPositionErrorMessage(err.code) || err.message}`)
             });
         }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            function OTPInput() {
+                const inputs = document.querySelectorAll('#otp > *[name]');
+                for (let i = 0; i < inputs.length; i++) { inputs[i].addEventListener('keydown', function(event) { if (event.key==="Backspace" ) { inputs[i].value='' ; if (i !==0) inputs[i - 1].focus(); } else { if (i===inputs.length - 1 && inputs[i].value !=='' ) { return true; } else if (event.keyCode> 47 && event.keyCode < 58) { inputs[i].value=event.key; if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } else if (event.keyCode> 64 && event.keyCode < 91) { inputs[i].value=String.fromCharCode(event.keyCode); if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } } }); } } OTPInput();
+        });
+
+        var timeleft = 60;
+        var downloadTimer = setInterval(function(){
+            timeleft--;
+            document.getElementById("countdowntimer").textContent = timeleft;
+            if(timeleft <= 0)
+                clearInterval(downloadTimer);
+        },1000);
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
