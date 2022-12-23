@@ -50,16 +50,23 @@ Route::resource('blog', BlogController::class, [
     'only' => ['index', 'show']
 ]);
 
-Route::resource('emergency', EmergencyController::class);
+//TO SEND OTP TO THE USER AFTER CLICK CONFIRM PHONE NUMBER
+Route::post('emergency/verifyemergency', [EmergencyController::class,'sendSMS'])->name('emergency.sms');
 
-
-Route::post('/verifyemergency', [EmergencyController::class,'sendSMS'])->name('emergency.sms');
-
-Route::get('/verifyphoneemergency', function () {
+//SHOW FORM FOR USER TO KEY-IN OTP CODE
+Route::get('emergency/verifyphoneemergency', function () {
     return view('emergency/verifyphone');
 })->name('emergency-verify-phone');
-Route::post('/verifyphoneemergency', [EmergencyController::class,'verifyPhone'])->name('emergency-verify-phone.verify');
 
+//VERIFY OTP BASED ON 6 DIGIT CODE
+Route::post('emergency/verifyphoneemergency', [EmergencyController::class,'verifyPhone'])->name('emergency-verify-phone.verify');
+
+//SHOW STATUS AFTER SUBMIT REPORT
+Route::get('emergency/success', function () {
+    return view('emergency/status');
+})->name('emergency-status');
+
+Route::resource('emergency', EmergencyController::class);
 
 /*User must login to access page*/
 Route::middleware(['CheckRole:AllUser'])->group(function (){
