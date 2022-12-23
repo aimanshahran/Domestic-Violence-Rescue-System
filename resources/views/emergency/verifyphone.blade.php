@@ -95,15 +95,9 @@
                         {{ session('unsuccessful') }}
                     </div>
                 @endif
-                @error('verification_code')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
                 <p>We have sent you 6 digits OTP code for +60{{session('phone')}}.</p>
                 <form action="{{route('emergency-verify-phone.verify')}}" method="POST">
                     @csrf
-                    @method('PUT')
                     <input type="hidden" name="phone" value="{{session('phone')}}">
                     <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
                         <input class="m-2 text-center form-control rounded" type="text" name="first"
@@ -124,7 +118,7 @@
                     </div>
                     </br>
                     </br>
-                    <button type="button" class="btn emergencyBtn float-right" data-dismiss="modal" data-toggle="modal" data-target="#security">
+                    <button type="submit" class="btn emergencyBtn float-right" data-dismiss="modal" data-toggle="modal" data-target="#security">
                         {{ __('CONFIRM') }}
                     </button>
                 </form>

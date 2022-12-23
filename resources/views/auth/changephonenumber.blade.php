@@ -61,7 +61,7 @@
                                                         </div>
                                                         <div class="modal-body text-justify">
                                                             <h3>{!! __('alert.alert_title') !!}</h3>
-                                                            <p>{!! __('alert.monitored', [ 'url' => 'tel:15999' ]) !!}</p>
+                                                            <p>{!! __('alert.sms_monitored', [ 'url' => 'tel:15999' ]) !!}</p>
                                                             <p>{!! __('alert.send_message') !!}</p>
                                                             <p><b>{!! __('alert.close') !!}</b></p>
                                                             <div class="mt-4"><button type="submit" class="btn btn-danger btn-lg float-right">OKAY</button></div>
