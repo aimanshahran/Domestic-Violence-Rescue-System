@@ -108,6 +108,49 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
+        DB::table('case_status')->insert([
+            [
+                'id' => '1',
+                'name' => 'received',
+            ],
+            [
+                'id' => '2',
+                'name' => 'notify authorities',
+            ],
+            [
+                'id' => '3',
+                'name' => 'authorities notified',
+            ],
+            [
+                'id' => '4',
+                'name' => 'on the way',
+            ],
+            [
+                'id' => '5',
+                'name' => 'victim picked-up',
+            ],
+            [
+                'id' => '6',
+                'name' => 'victim under investigation',
+            ],
+            [
+                'id' => '7',
+                'name' => 'victim under process by the authorities',
+            ],
+            [
+                'id' => '8',
+                'name' => 'case in court',
+            ],
+            [
+                'id' => '9',
+                'name' => 'case settled',
+            ],
+            [
+                'id' => '10',
+                'name' => 'archived',
+            ],
+        ]);
+
         User::create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',

@@ -15,7 +15,6 @@ class AddForeignKeysToEmergencyPhotoTable extends Migration
     {
         Schema::table('emergency_photo', function (Blueprint $table) {
             $table->foreign(['case_id'], 'FK_CaseID')->references(['id'])->on('emergency')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->foreign(['user_id'], 'FK_UserID_EmerPhoto')->references(['id'])->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

@@ -16,7 +16,6 @@ class CreateEmergencyPhotoTable extends Migration
         Schema::create('emergency_photo', function (Blueprint $table) {
             $table->integer('ID', true);
             $table->integer('case_id')->index('FK_CaseID');
-            $table->integer('user_id')->index('FK_UserID_EmerPhoto');
             $table->string('photo_name')->nullable();
         });
     }
