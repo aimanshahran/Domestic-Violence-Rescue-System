@@ -68,7 +68,6 @@
         }
     </style>
     </head>
-    <div>
     <!-- EXIT BUTTON -->
     @include('nav.exit')
     <!-- EXIT BUTTON -->
@@ -83,7 +82,11 @@
                     <a href="{{ url('/') }}" type="button" style="float: right" class="close">×</a>
                 </div>
                 <h2>Don't worry!</br>We are here to help!</h2>
-                <p>Before begin.... please key-in your phone number</p>
+                @if(Auth::user())
+                    <p>Before begin.... please agree the terms and conditions below</p>
+                @else
+                    <p>Before begin.... please key-in your phone number</p>
+                @endif
                 <form id="otp" method="POST" action="{{ route('emergency.sms') }}">
                     @csrf
                     <div class="form-group col-md-6 col-sm">
@@ -91,7 +94,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text form-control" id="basic-addon1">+60</span>
                             </div>
-                            <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="{{ old('phone') }}" required>
+                            <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="@if(Auth::user()) {{Auth::user()->phone}} @else {{old('phone')}} @endif" @if(Auth::user()) readonly @endif required>
                             @error('phone')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -159,9 +162,9 @@
                                         </button>
                                     </div>
                                     <div class="modal-body text-justify">
-                                        <h1>{!! __('alert.alert_title') !!}</h1>
-                                        <p>{!! __('alert.monitored', [ 'url' => 'tel:15999' ]) !!}</p>
-                                        <p>{!! __('alert.suggestion') !!}</p>
+                                        <h3>{!! __('alert.alert_title') !!}</h3>
+                                        <p>{!! __('alert.sms_monitored', [ 'url' => 'tel:15999' ]) !!}</p>
+                                        <p>{!! __('alert.send_message') !!}</p>
                                         <p><b>{!! __('alert.close') !!}</b></p>
                                         <div class="mt-4">
                                             <button type="submit" class="btn emergencyBtn btn-lg float-right">OKAY</button>
@@ -172,7 +175,31 @@
                             </div>
                         </div>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALiAsEpXW9QCdQD1ZN29xzizLNohMYKhE&callback=initMap"></script>
+    <div class="modal fade" id="allow" tabindex="-1" role="dialog" aria-labelledby="OTP" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @include('layouts.logo')
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-justify">
+                    <h3>{!! __('Turn on Location Services on your browser') !!}</h3>
+                    <p>{!! __('To use this service, you must allow us to access your location when you are using the app') !!}</p>
+                    <p>{!! __('By activating this location service, it allows us to use your device\'s location, such as GPS information, to give the exact location to the authorities.') !!}</p>
+                    <p>
+                        <a id="link" href="" target="_blank" rel="noopener noreferrer">Click here to learn how to turn on your location in browser</a>
+                    </p>
+                    <p><b>{!! __('alert.close') !!}</b></p>
+                    <div class="mt-4">
+                        <button type="submit" class="btn emergencyBtn btn-lg float-right">OKAY</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const createMap = ({ lat, lng }) => {
             return new google.maps.Map(document.getElementById('map'), {
@@ -250,11 +277,33 @@
                     marker.setPosition({ lat, lng });
                     map.panTo({ lat, lng });
                 },
-                onError: err =>
-                    alert(`Error: ${getPositionErrorMessage(err.code) || err.message}`)
+                onError: function errorHandler(err){
+                    if( (err.code == 1)|| (err.code == 2) || (err.code == 3) ){
+                        $('#allow').modal('show');
+                    }
+                }
             });
         }
     </script>
+    <script>
+        let userAgent = navigator.userAgent;
+            let browserName;
+
+            if(userAgent.match(/chrome|chromium|crios/i)){
+                document.getElementById('link').href = "https://support.google.com/chrome/answer/142065?hl=en";
+            }else if(userAgent.match(/firefox|fxios/i)){
+                document.getElementById('link').href = "https://support.mozilla.org/en-US/kb/does-firefox-share-my-location-websites";
+            }  else if(userAgent.match(/safari/i)){
+                document.getElementById('link').href = "https://support.apple.com/en-gb/guide/mac-help/mh35873/mac";
+            }else if(userAgent.match(/opr\//i)){
+                document.getElementById('link').href = "https://help.opera.com/en/latest/web-preferences/";
+            } else if(userAgent.match(/edg/i)){
+                document.getElementById('link').href = "https://support.microsoft.com/en-us/microsoft-edge/location-and-privacy-in-microsoft-edge-31b5d154-0b1b-90ef-e389-7c7d4ffe7b04";
+            }else{
+                document.getElementById('link').href = "";
+            }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALiAsEpXW9QCdQD1ZN29xzizLNohMYKhE&callback=initMap"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
