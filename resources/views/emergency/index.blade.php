@@ -53,12 +53,17 @@
             opacity: 1; /* Set the opacity for a slightly transparent Google Form */
         }
 
-        .card{
+        .card-emergency{
             margin: auto;
             border: 1px solid #FFFFFF;
             border-radius: 26px;
             width: 700px;
             padding: 10px;
+            background: #fff;
+            overflow: hidden;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            min-height: 600px;
         }
 
         @media (max-width: 729px) {
@@ -71,84 +76,156 @@
     <!-- EXIT BUTTON -->
     @include('nav.exit')
     <!-- EXIT BUTTON -->
-
+    @admin_authorities
+    <div class="col mx-auto">
+        <div class="card card-2">
+            <div class="container pt-5">
+                <h2>Manage Emergency</h2>
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ session('success') }}
+                    </div>
+                @elseif(session('unsuccessful'))
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ session('unsuccessful') }}
+                    </div>
+                @endif
+                <div class="input-group col-md-4 mb-3" style="float: right" >
+                    <input type="text" id="myInput" class="form-control py-2 border-right-0 border" placeholder="Search for id..." onkeyup="myFunction()" >
+                    <span class="input-group-append">
+                        <button class="btn btn-outline-secondary border-left-0 border" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <table id="emergencyDetails" class="table table-bordered table-striped table-hover" style="width:100%;border: none;">
+                    <thead class="thead-purple">
+                    <tr>
+                        <th scope="col" style="width:15%;text-align: center;vertical-align: middle;">Case ID</th>
+                        <th scope="col" style="width:30%;text-align: center;vertical-align: middle;">Name/Phone number</th>
+                        <th scope="col" style="width:20%;text-align: center;vertical-align: middle;">Report</th>
+                        <th scope="col" style="width:20%;text-align: center;vertical-align: middle;">Status</th>
+                        <th scope="col" style="width:15%;text-align: center;vertical-align: middle;">Archive</th>
+                    </tr>
+                    </thead>
+                    @forelse($emergencies as $emergency)
+                        <tbody>
+                        <td style="text-align: center">{{$emergency->id}}</td>
+                        <td style="text-align: center">{{$emergency->name ?? '+60'.$emergency->phone }}</td>
+                        <td style="text-align: center"><a type="button" class="btn btn-primary" href="{{route('emergency.edit', $emergency->id)}}">Details</a></td>
+                        {{--<td>{{date_format($emergency->updated_at, "d/m/Y h.i A")}}</td>--}}
+                        <td style="text-align: center">{{$emergency->status}}</td>
+                        <td style="text-align: center">
+                            <form action="{{ route('emergency.destroy' , $emergency->id)}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <a type="button" class="fas fa-trash-can" data-toggle="modal" data-target="#confirm"></a>
+                                <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="confirmation" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-s" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3>Warning!</h3>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <p>Are you sure you want to delete blog {{ $emergency->id }}?</p>
+                                                <div class="mt-4"><button type="submit" class="btn btn-success btn-lg">YES</button>&nbsp<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal" aria-label="Close">NO</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                        </tbody>
+                    @empty
+                        <td colspan="6" style="text-align: center">{{ 'No blog post as '.date_format(now(), "d-m-Y H:i:s") }}</td>
+                    @endforelse
+                </table>
+                {!! $emergencies->links() !!}
+            </div>
+        </div>
+    </div>
+    @else
     <div class="map" id="map" ></div>
-
     <div class="contactform">
         <div class="col">
-            <div class="card">
-                <div class="brand-wrapper">
-                    @include('layouts.logo')
-                    <a href="{{ url('/') }}" type="button" style="float: right" class="close">×</a>
-                </div>
-                <h2>Don't worry!</br>We are here to help!</h2>
-                @if(Auth::user())
-                    <p>Before begin.... please agree the terms and conditions below</p>
-                @else
-                    <p>Before begin.... please key-in your phone number</p>
-                @endif
-                <form id="otp" method="POST" action="{{ route('emergency.sms') }}">
-                    @csrf
-                    <div class="form-group col-md-6 col-sm">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text form-control" id="basic-addon1">+60</span>
+            <div class="card-emergency">
+                    <div class="brand-wrapper">
+                        @include('layouts.logo')
+                        <a href="{{ url('/') }}" type="button" style="float: right" class="close">×</a>
+                    </div>
+                    <h2>Don't worry!</br>We are here to help!</h2>
+                    @if(Auth::user())
+                        <p>Before begin.... please agree the terms and conditions below</p>
+                    @else
+                        <p>Before begin.... please key-in your phone number</p>
+                    @endif
+                    <form id="otp" method="POST" action="{{ route('emergency.sms') }}">
+                        @csrf
+                        <div class="form-group col-md-6 col-sm">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text form-control" id="basic-addon1">+60</span>
+                                </div>
+                                <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="@if(Auth::user()) {{Auth::user()->phone}} @else {{old('phone')}} @endif" @if(Auth::user()) readonly @endif required>
+                                @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                                @enderror
                             </div>
-                            <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="@if(Auth::user()) {{Auth::user()->phone}} @else {{old('phone')}} @endif" @if(Auth::user()) readonly @endif required>
-                            @error('phone')
-                            <span class="invalid-feedback" role="alert">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input @error('confirm') is-invalid @enderror" type="checkbox" value="" name="confirm" required>
+                                <label class="form-check-label">
+                                    By checking this box, I hereby confirm that I got abused and need immediate help by authorities.
+                                </label>
+                                @error('confirm')
+                                <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                            @enderror
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input @error('confirm') is-invalid @enderror" type="checkbox" value="" name="confirm" required>
-                            <label class="form-check-label">
-                                By checking this box, I hereby confirm that I got abused and need immediate help by authorities.
-                            </label>
-                            @error('confirm')
-                            <span class="invalid-feedback" role="alert">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input @error('aware') is-invalid @enderror" type="checkbox" value="" name="aware" required>
+                                <label class="form-check-label">
+                                    I aware that I will be suspended if I misused this system and authorities have a right to issue legal action.
+                                </label>
+                                @error('aware')
+                                <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
-                            @enderror
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input @error('aware') is-invalid @enderror" type="checkbox" value="" name="aware" required>
-                            <label class="form-check-label">
-                                I aware that I will be suspended if I misused this system and authorities have a right to issue legal action.
-                            </label>
-                            @error('aware')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input @error('terms') is-invalid @enderror" type="checkbox" value="" name="terms" required>
-                            <label class="form-check-label">
-                                By checking this box, I agree to terms and condition for this function
-                            </label>
-                            @error('aware')
-                            <span class="invalid-feedback" role="alert">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input @error('terms') is-invalid @enderror" type="checkbox" value="" name="terms" required>
+                                <label class="form-check-label">
+                                    By checking this box, I agree to terms and condition for this function
+                                </label>
+                                @error('aware')
+                                <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
-                            @enderror
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    </br>
-                    </br>
-                    <button type="button" class="btn emergencyBtn float-right" data-dismiss="modal" data-toggle="modal" data-target="#security">
-                        {{ __('REPORT NOW') }}
-                    </button>
+                        </br>
+                        </br>
+                        <button type="button" class="btn emergencyBtn float-right" data-dismiss="modal" data-toggle="modal" data-target="#security">
+                            {{ __('REPORT NOW') }}
+                        </button>
             </div>
         </div>
     </div>
@@ -174,6 +251,7 @@
                                 </div>
                             </div>
                         </div>
+    @endadmin_authorities
 
     <div class="modal fade" id="allow" tabindex="-1" role="dialog" aria-labelledby="OTP" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -193,13 +271,36 @@
                     </p>
                     <p><b>{!! __('alert.close') !!}</b></p>
                     <div class="mt-4">
-                        <button type="submit" class="btn emergencyBtn btn-lg float-right">OKAY</button>
+                        <button class="btn emergencyBtn btn-lg float-right" class="close" data-dismiss="modal">OKAY</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("emergencyDetails");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
     <script>
         const createMap = ({ lat, lng }) => {
             return new google.maps.Map(document.getElementById('map'), {

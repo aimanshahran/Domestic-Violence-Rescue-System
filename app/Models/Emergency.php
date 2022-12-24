@@ -14,6 +14,7 @@ class Emergency extends Model
 
     protected $fillable = [
         'user_id',
+        'phone',
         'longitude',
         'latitude',
         'address',

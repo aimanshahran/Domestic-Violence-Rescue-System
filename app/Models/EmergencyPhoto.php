@@ -16,7 +16,7 @@ class EmergencyPhoto extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'case_id',
+        'emergency_id',
         'photo_name'
     ];
 

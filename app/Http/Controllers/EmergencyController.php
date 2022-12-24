@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Emergency;
 use App\Mail\EmergencyNotification;
+use App\Models\EmergencyCategory;
 use App\Models\EmergencyPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,20 @@ class EmergencyController extends Controller
 {
     public function index()
     {
+        if( Auth::user() && (((Auth::user()->role_id)==1) || ((Auth::user()->role_id)==5))) {
+            $emergencies = Emergency::select(
+                'emergency.id', 'users.name AS name', 'emergency.phone', 'emergency.longitude', 'emergency.latitude',
+                'emergency.details', 'emergency.severity_status', 'emergency.status', 'emergency.remarks')
+                ->leftjoin('users', 'emergency.user_id', '=', 'users.id')
+                ->orderBy('emergency.created_at', 'DESC')
+                ->paginate(5);
+
+            if (!$emergencies) {
+                abort(404);
+            }
+            return view ('emergency.index', compact('emergencies'));
+        }
+
         return view ('emergency.index');
     }
 
@@ -30,11 +45,12 @@ class EmergencyController extends Controller
     {
         //VALIDATE USER INPUT BEFORE INSERT INTO DATABASE
         $request->validate([
-            'details' => 'required|alpha_spaces|max:255',
+            'details' => 'required|max:255',
         ]);
 
         //INSERT DATA TO DATABASE
         $emergency=Emergency::create();
+        $emergency->phone = $request['phone'];
         $emergency->longitude = $request['long'];
         $emergency->latitude = $request['lat'];
         $emergency->details = $request['details'];
@@ -42,6 +58,18 @@ class EmergencyController extends Controller
 
         if($emergency->save()){
 
+            // SAVE CATEGORY TO DATABASE
+            $category = new EmergencyCategory();
+
+            foreach ($request->input('category') as $categories) {
+
+                $category::create([
+                    'emergency_id'      => $emergency->id,
+                    'case_category_id' => $categories
+                ]);
+            }
+
+            // SAVE PHOTO TO DATABASE
             $files = [];
             if($request->hasfile('images'))
             {
@@ -55,7 +83,7 @@ class EmergencyController extends Controller
 
             $file = new EmergencyPhoto();
             $file->filenames = $files;
-            $file->case_id = $emergency->id;
+            $file->emergency_id = $emergency->id;
             $file->save();
 
             $admin = User::select(
@@ -73,14 +101,14 @@ class EmergencyController extends Controller
         }
     }
 
-    public function show($id)
+    public function show(Emergency $emergency)
     {
-        //
+        //return view('emergency.show', compact('emergency'));
     }
 
-    public function edit($id)
+    public function edit(Emergency $emergency)
     {
-        //
+        return view('emergency.edit', compact('emergency'));
     }
 
     public function update(Request $request, $id)

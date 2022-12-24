@@ -1,11 +1,11 @@
 @extends('layouts.header')
 
-{{--@if (!session('phone'))
+@if (!session('phone'))
     @php
         header("Location: " . URL::to('/emergency'), true, 302);
         exit();
     @endphp
-@endif--}}
+@endif
 
 @section('content')
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
@@ -238,7 +238,7 @@
                         <input type="hidden" id="lat" name="lat" value="" readonly>
                         <input type="hidden" id="long" name="long" value="" readonly>
                         <label class="labels pr-3">The details of accident:</label>
-                        <textarea id="details" class="form-control @error('details') is-invalid @enderror" name="details" placeholder="Details...." value="{{ old('name') }}" rows="3" required></textarea>
+                        <textarea id="details" class="form-control @error('details') is-invalid @enderror" name="details" placeholder="Details...." value="{{ old('details') }}" rows="3" required></textarea>
                         @error('details')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -251,31 +251,31 @@
                             <td style="padding: 0;">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
-                                        <select  multiple class="custom-select col-md-9 col-sm" data-placeholder="Describe more...">
+                                        <select multiple="multiple" class="custom-select col-md-9 col-sm" data-placeholder="Describe more..." name="category[]">
                                             <option value=""></option>
-                                            <option>physical abused</option>
-                                            <option>sexual abused</option>
-                                            <option>threatening to kill you</option>
-                                            <option>smashing things</option>
-                                            <option>destroying property</option>
-                                            <option>abusing pets</option>
-                                            <option>abusing kids</option>
-                                            <option>do illegal things</option>
-                                            <option>displaying weapons</option>
-                                            <option>threatening to leave you alone</option>
-                                            <option>threatening to commit suicide</option>
-                                            <option>making you afraid of him/her by using looks, actions, gestures</option>
-                                            <option>controlling your behaviour and action</option>
-                                            <option>limiting you from outside involvements</option>
-                                            <option>using jealousy to justify actions</option>
-                                            <option>making you feel guilty about the children</option>
-                                            <option>using the children to relay messages</option>
-                                            <option>using visitation to harass you</option>
-                                            <option>threatening to take the children away</option>
-                                            <option>saying you caused it</option>
-                                            <option>being the one to define men's and women's roles</option>
-                                            <option>threatening you like a servant</option>
-                                            <option>preventing you from getting a job/keeping a job</option>
+                                            <option value="1">physical abused</option>
+                                            <option value="2">sexual abused</option>
+                                            <option value="3">threatening to kill you</option>
+                                            <option value="4">smashing things</option>
+                                            <option value="5">destroying property</option>
+                                            <option value="6">abusing pets</option>
+                                            <option value="7">abusing kids</option>
+                                            <option value="8">do illegal things</option>
+                                            <option value="9">displaying weapons</option>
+                                            <option value="10">threatening to leave you alone</option>
+                                            <option value="11">threatening to commit suicide</option>
+                                            <option value="12">making you afraid of him/her by using looks, actions, gestures</option>
+                                            <option value="13">controlling your behaviour and action</option>
+                                            <option value="14">limiting you from outside involvements</option>
+                                            <option value="15">using jealousy to justify actions</option>
+                                            <option value="16">making you feel guilty about the children</option>
+                                            <option value="17">using the children to relay messages</option>
+                                            <option value="18">using visitation to harass you</option>
+                                            <option value="19">threatening to take the children away</option>
+                                            <option value="20">saying you caused it</option>
+                                            <option value="21">being the one to define men's and women's roles</option>
+                                            <option value="22">threatening you like a servant</option>
+                                            <option value="23">preventing you from getting a job/keeping a job</option>
                                         </select>
                                     </div>
                                 </div>
