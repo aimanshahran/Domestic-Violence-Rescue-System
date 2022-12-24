@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDvCategoryTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateDvCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('dv_category', function (Blueprint $table) {
+        Schema::create('case_category', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('name');
+            $table->integer('severity_status_ID')->index('FK_SeverityStatusID_CaseCategory');
         });
     }
 
@@ -26,6 +27,6 @@ class CreateDvCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dv_category');
+        Schema::dropIfExists('case_category');
     }
-}
+};

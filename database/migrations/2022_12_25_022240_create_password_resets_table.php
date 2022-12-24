@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCaseStatusTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateCaseStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('case_status', function (Blueprint $table) {
+        Schema::create('password_resets', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->string('name');
+            $table->string('email')->index('FK_Email_PassRes');
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -26,6 +28,6 @@ class CreateCaseStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('case_status');
+        Schema::dropIfExists('password_resets');
     }
-}
+};

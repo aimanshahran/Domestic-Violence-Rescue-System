@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysToPostsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -26,8 +26,7 @@ class AddForeignKeysToPostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropForeign('FK_PhotoID_Posts');
             $table->dropForeign('FK_UserID_Posts');
         });
     }
-}
+};

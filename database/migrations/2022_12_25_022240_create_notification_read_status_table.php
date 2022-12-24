@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDvStatisticsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateDvStatisticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dv_statistics', function (Blueprint $table) {
-            $table->integer('id')->primary();
-            $table->integer('user_id')->index('FK_UserID_Stats');
-            $table->year('year');
-            $table->integer('data');
+        Schema::create('notification_read_status', function (Blueprint $table) {
+            $table->integer('id', true);
+            $table->string('status_name');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateDvStatisticsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dv_statistics');
+        Schema::dropIfExists('notification_read_status');
     }
-}
+};
