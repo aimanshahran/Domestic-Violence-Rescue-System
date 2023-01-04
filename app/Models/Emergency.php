@@ -31,6 +31,16 @@ class Emergency extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function severity()
+    {
+        return $this->belongsTo(SeverityStatus::class, 'severity_status', 'id');
+    }
+
+    public function statusCase()
+    {
+        return $this->belongsTo(CaseStatus::class, 'status', 'id');
+    }
+
     protected static function booted()
     {
         static::creating(function ($emergency) {

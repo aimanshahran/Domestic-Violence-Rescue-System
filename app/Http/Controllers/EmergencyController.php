@@ -43,6 +43,16 @@ class EmergencyController extends Controller
 
     public function store(Request $request)
     {
+        $severity = min($request['category']);
+
+        if ($severity <= 10){
+            $severity = 3;
+        }elseif ($severity <= 15){
+            $severity = 2;
+        }else{
+            $severity = 1;
+        }
+
         //VALIDATE USER INPUT BEFORE INSERT INTO DATABASE
         $request->validate([
             'details' => 'required|max:255',
@@ -54,7 +64,7 @@ class EmergencyController extends Controller
         $emergency->longitude = $request['long'];
         $emergency->latitude = $request['lat'];
         $emergency->details = $request['details'];
-        $emergency->severity_status = 1;
+        $emergency->severity_status = $severity;
 
         if($emergency->save()){
 
@@ -70,21 +80,17 @@ class EmergencyController extends Controller
             }
 
             // SAVE PHOTO TO DATABASE
-            $files = [];
-            if($request->hasfile('images'))
-            {
-                foreach($request->file('images') as $file)
-                {
+
+            if ($request->hasfile('images')) {
+                foreach ($request->file('images') as $key => $file) {
                     $name = time().rand(1,100).'.'.$file->extension();
                     $file->move(public_path('/img/uploads'), $name);
-                    $files[] = $name;
+                    $data = new EmergencyPhoto();
+                    $data->photo_name = str_replace('"', "", $name);
+                    $data->emergency_id = $emergency->id;
+                    $data->save();
                 }
             }
-
-            $file = new EmergencyPhoto();
-            $file->filenames = $files;
-            $file->emergency_id = $emergency->id;
-            $file->save();
 
             $admin = User::select(
                 'email')
@@ -106,9 +112,12 @@ class EmergencyController extends Controller
         //return view('emergency.show', compact('emergency'));
     }
 
-    public function edit(Emergency $emergency)
+    public function edit($id)
     {
-        return view('emergency.edit', compact('emergency'));
+        $emergency = Emergency::all()->find($id);
+        $category = EmergencyCategory::where('emergency_id', '=', $id)->get();
+        $photo = EmergencyPhoto::where('emergency_id', '=', $id)->get('photo_name');
+        return view('emergency.edit', compact('emergency', 'category', 'photo'));
     }
 
     public function update(Request $request, $id)

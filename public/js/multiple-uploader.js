@@ -10,7 +10,7 @@ class MultipleUploader {
         this.#$imagesUploadInput = document.createElement('input')
     }
 
-    init( { maxUpload = 5 , maxSize = 4 , formSelector = 'form' , filesInpName = 'images'  } = {} )
+    init( { maxUpload = 5 , maxSize = 5 , formSelector = 'form' , filesInpName = 'images'  } = {} )
     {
 
         const form = document.querySelector(formSelector);

@@ -23,8 +23,10 @@ class CheckRole
                 'User' => [2],
                 'Counselor' => [3],
                 'Writer' => [4],
+                'Authorities' => [5],
                 'Admin-Writer' => [1,4],
-                'AllUser' => [1,2,3,4]
+                'Admin-Authorities' => [1,5],
+                'AllUser' => [1,2,3,4,5]
                 ];
 
             $roleIds = $roles[$role] ?? [];

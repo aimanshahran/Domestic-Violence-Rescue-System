@@ -57,7 +57,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|alpha_spaces|max:255',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            //'phone' => 'required|regex:/^(1)[0-46-9]-*[0-9]{7,8}$/|numeric|unique:users',
             'password' => [
                 'required',
                 'string',
@@ -67,7 +66,7 @@ class RegisterController extends Controller
                     ->uncompromised(),
                 'confirmed'
             ],
-        ]/*, ['phone.regex' => 'The :attribute number must be a valid :attribute number.']*/);
+        ]);
     }
 
     /**
@@ -125,7 +124,7 @@ class RegisterController extends Controller
         if ($OTP==$inputOTP) {
             return redirect()->route('register')->with(['phone' => $request->phone]);
         }
-        return back()->with(['phone' => $request->phone, 'unsuccessful' => 'Wrong OTP.'.$OTP]);
+        return back()->with(['phone' => $request->phone, 'unsuccessful' => 'Wrong OTP.']);
     }
 
 }

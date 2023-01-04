@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EmergencyCategory extends Model
+class CaseCategory extends Model
 {
     use HasFactory;
 
-    protected $table = 'emergency_case_category';
+    protected $table = 'case_category';
 
     protected $primaryKey = 'id';
 
@@ -17,11 +17,9 @@ class EmergencyCategory extends Model
 
     protected $fillable = [
         'emergency_id',
-        'case_category_id'
+        'case_category_id',
+        'severity_status_id'
     ];
 
-    public function caseName()
-    {
-        return $this->belongsTo(CaseCategory::class, 'case_category_id', 'id');
-    }
+
 }

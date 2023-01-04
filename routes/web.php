@@ -66,7 +66,9 @@ Route::get('emergency/success', function () {
     return view('emergency/status');
 })->name('emergency-status');
 
-Route::resource('emergency', EmergencyController::class);
+Route::resource('emergency', EmergencyController::class, [
+    'only' => ['index', 'create', 'store']
+]);
 
 /*User must login to access page*/
 Route::middleware(['CheckRole:AllUser'])->group(function (){
@@ -115,5 +117,11 @@ Route::prefix('admin-writer')->middleware(['CheckRole:Admin-Writer'])->group(fun
 
     Route::resource('/blog', BlogController::class, [
         'except' => ['index', 'show']
+    ]);
+});
+
+Route::prefix('admin-authorities')->middleware(['CheckRole:Admin-Authorities'])->group(function (){
+    Route::resource('emergency', EmergencyController::class, [
+        'except' => ['index', 'create', 'store']
     ]);
 });

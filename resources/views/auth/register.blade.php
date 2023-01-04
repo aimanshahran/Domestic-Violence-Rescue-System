@@ -1,6 +1,6 @@
 @extends('layouts.header')
 
-@if (!session('phone'))
+@if (!session('phone') AND !old('phone'))
     @php
         header("Location: " . URL::to('/registerphone'), true, 302);
         exit();
@@ -61,7 +61,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text form-control" id="basic-addon1">+60</span>
                                     </div>
-                                    <input id="phone" type="tel" class="form-control" name="phone" placeholder="Phone Number" value="{{ session('phone') }}" readonly>
+                                    <input id="phone" type="tel" class="form-control" name="phone" placeholder="Phone Number" value="{{ session('phone') ?? old('phone') }}" readonly>
                                 </div>
                                 <div class="input-group mb-3">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">

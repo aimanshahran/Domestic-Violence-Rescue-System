@@ -142,7 +142,7 @@
                         </td>
                         </tbody>
                     @empty
-                        <td colspan="6" style="text-align: center">{{ 'No blog post as '.date_format(now(), "d-m-Y H:i:s") }}</td>
+                        <td colspan="6" style="text-align: center">{{ 'No emergency as '.date_format(now(), "d-m-Y H:i:s") }}</td>
                     @endforelse
                 </table>
                 {!! $emergencies->links() !!}
@@ -171,7 +171,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text form-control" id="basic-addon1">+60</span>
                                 </div>
-                                <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="@if(Auth::user()) {{Auth::user()->phone}} @else {{old('phone')}} @endif" @if(Auth::user()) readonly @endif required>
+                                <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="@if(Auth::user()) {{Auth::user()->phone}} @elseif(old('phone')) {{old('phone')}} @endif" @if(Auth::user()) readonly @endif required>
                                 @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -223,7 +223,7 @@
                         </div>
                         </br>
                         </br>
-                        <button type="button" class="btn emergencyBtn float-right" data-dismiss="modal" data-toggle="modal" data-target="#security">
+                        <button id="reportBtn" type="button" class="btn emergencyBtn float-right" data-dismiss="modal" data-toggle="modal" data-target="#security">
                             {{ __('REPORT NOW') }}
                         </button>
             </div>
@@ -323,19 +323,6 @@
             return navigator.geolocation.getCurrentPosition(onSuccess, onError);
         };
 
-        const getPositionErrorMessage = code => {
-            switch (code) {
-                case 1:
-                    return 'Permission denied. Please allow us to access your location for better response.';
-                case 2:
-                    return 'Position unavailable.  Please allow us to access your location for better response.';
-                case 3:
-                    return 'Timeout reached. Please try again.';
-                default:
-                    return null;
-            }
-        }
-
         function createEmergencyButton() {
             const controlButton = document.createElement("button");
 
@@ -381,6 +368,8 @@
                 onError: function errorHandler(err){
                     if( (err.code == 1)|| (err.code == 2) || (err.code == 3) ){
                         $('#allow').modal('show');
+                        document.getElementById("reportBtn").disabled = true;
+                        document.getElementById("reportBtn").title = "Please turn on location before proceed";
                     }
                 }
             });

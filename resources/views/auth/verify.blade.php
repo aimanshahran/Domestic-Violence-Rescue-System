@@ -12,6 +12,11 @@
     @include('nav.navbar')
     <!-- navbar
 ================================================== -->
+    <style>
+        .card{
+            min-height: 100px;
+        }
+    </style>
 </head>
     <body>
         <div class="container">

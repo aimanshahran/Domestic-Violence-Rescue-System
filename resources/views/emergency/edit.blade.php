@@ -23,37 +23,63 @@
                 <h2><a href="{{ url()->previous() }}" style="color: black"><i class="fa fa-arrow-left" aria-hidden="true"></i></a> Case ID - {{ $emergency->id }}</h2>
                 <table class="table table-active table-borderless table-hover" style="width:100%;border-radius: 5px">
                     <tr>
-                        <th scope="col" style="width:10%">Name</th>
-                        <td>{{ $emergency->user->name }}</td>
+                        <th scope="col" style="width:15%">Name</th>
+                        <td>{{ $emergency->user->name ?? 'Not registered' }}</td>
                     </tr>
                     <tr>
-                        <th scope="col" style="width:10%">Phone</th>
-                        <td>{{ $emergency->phone }}</td>
+                        <th scope="col" style="width:15%">Phone</th>
+                        <td><a href="tel: {{'+60'.$emergency->phone}}">{{'+60'.$emergency->phone}}</a>&nbsp;&nbsp;<span class="badge badge-success">Verified</span></td>
                     </tr>
                     <tr>
-                        <th scope="col" style="width:10%">Longitude</th>
+                        <th scope="col" style="width:15%">Longitude</th>
                         <td>{{ $emergency->longitude }}</td>
                     </tr>
                     <tr>
-                        <th scope="col" style="width:10%">Latitude</th>
+                        <th scope="col" style="width:15%">Latitude</th>
                         <td>{{ $emergency->latitude }}</td>
                     </tr>
                     <tr>
-                        <th scope="col" style="width:10%">Details</th>
+                        <th scope="col" style="width:15%">Details</th>
                         <td>{{ $emergency->details }}</td>
                     </tr>
                     <tr>
-                        <th scope="col" style="width:10%">Details</th>
-                        <td>{{ $emergency->details }}</td>
+                        <th scope="col" style="width:15%">Category</th>
+                        <td>
+                        @foreach($category as $categories)
+                            {{ ucfirst($categories->caseName->name) }}@if(!$loop->last), @endif
+                        @endforeach
+                        </td>
                     </tr>
                     <tr>
-                        <th scope="col" style="width:10%">Remark</th>
+                        <th scope="col" style="width:15%">Photo Evidence</th>
+                        <td>
+                            @forelse($photo as $photos)
+                                <a href="{{URL::asset('img/uploads/'.$photos->photo_name)}}" target="_blank" rel="noopener noreferrer""><img src="{{URL::asset('img/uploads/'.$photos->photo_name)}}" width="50px" height="50px"></a>
+                            @empty
+                                No image submitted
+                            @endforelse
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col" style="width:15%">Severity status</th>
+                        <td>{{ $emergency->severity->name}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col" style="width:15%">Report time</th>
+                        <td>{{ $emergency->created_at}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col" style="width:15%">Status</th>
+                        <td>{{ ucfirst($emergency->statusCase->name)}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col" style="width:15%">Remark</th>
                         <td>
                             <textarea name="remark" class="form-control @error('remark') is-invalid @enderror" placeholder="Write your remark here" rows="4">{{ old('remark') ?? $emergency->remark }}</textarea>
                             @error('remark')
                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </td>
                     </tr>

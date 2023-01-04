@@ -395,7 +395,7 @@
 
         let multipleUploader = new MultipleUploader('#multiple-uploader').init({
             maxUpload : 5, // maximum number of uploaded images
-            maxSize:4, // in size in mb
+            maxSize:5, // in size in mb
             filesInpName:'images', // input name sent to backend
             formSelector: '#my-form', // form selector
         });
