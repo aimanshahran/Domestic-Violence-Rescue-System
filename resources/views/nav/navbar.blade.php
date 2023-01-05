@@ -39,6 +39,9 @@
                     @else
                         <li><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">Feedback</a></li>
                         <li><a href="{{ route('manage-profile') }}" class="n-none" >Manage Profile</a></li>
+                        @if((Auth::user()->role_id)==2)
+                            <a href="{{ route('manage-emergency') }}" class="n-none">{{ __('Manage Emergency') }}</a>
+                        @endif
                         @if((Auth::user()->role_id)!=1)
                         <li><a href="{{ route('feedback.index') }}" class="n-none" >Manage Feedback</a></li>
                         @endif
@@ -65,6 +68,9 @@
                         <button class="btn btn--stroke s-header__cta-btn">{{ __('Hi, ') }}{{ ucfirst(Auth::user()->name) }}&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
                         <div class="dropdown-content">
                             <a href="{{ route('manage-profile') }}">{{ __('Manage Profile') }}</a>
+                            @if((Auth::user()->role_id)==2)
+                                <a href="{{ route('manage-emergency') }}">{{ __('Manage Emergency') }}</a>
+                            @endif
                             @if((Auth::user()->role_id)!=1)
                             <a href="{{ route('feedback.index') }}">{{ __('Manage Feedback') }}</a>
                             @endif
@@ -120,6 +126,9 @@
                     @else
                         <li @if(str_contains(Route::currentRouteName(), 'feedback'))class="current"@endif><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">Feedback</a></li>
                         <li><a href="{{ route('manage-profile') }}" class="n-none" >Manage Profile</a></li>
+                        @if((Auth::user()->role_id)==2)
+                            <a href="{{ route('manage-emergency') }}" class="n-none">{{ __('Manage Emergency') }}</a>
+                        @endif
                         @if((Auth::user()->role_id)!=1)
                         <li><a href="{{ route('feedback.index') }}" class="n-none" >Manage Feedback</a></li>
                         @endif
@@ -146,6 +155,9 @@
                         <button class="btn btn--stroke s-header__cta-btn">{{ __('Hi, ') }}{{ ucfirst(Auth::user()->name) }}&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
                         <div class="dropdown-content">
                             <a href="{{ route('manage-profile') }}">{{ __('Manage Profile') }}</a>
+                            @if((Auth::user()->role_id)==2)
+                                <a href="{{ route('manage-emergency') }}">{{ __('Manage Emergency') }}</a>
+                            @endif
                             @if((Auth::user()->role_id)!=1)
                             <a href="{{ route('feedback.index') }}">{{ __('Manage Feedback') }}</a>
                             @endif

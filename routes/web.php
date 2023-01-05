@@ -50,6 +50,10 @@ Route::resource('blog', BlogController::class, [
     'only' => ['index', 'show']
 ]);
 
+Route::get('emergency/welcome', function () {
+    return view('emergency/welcome');
+})->name('emergency-welcome');
+
 //TO SEND OTP TO THE USER AFTER CLICK CONFIRM PHONE NUMBER
 Route::post('emergency/verifyemergency', [EmergencyController::class,'sendSMS'])->name('emergency.sms');
 
@@ -106,6 +110,9 @@ Route::prefix('user')->middleware(['CheckRole:User'])->group(function (){
     Route::resource('feedback', FeedbackController::class, [
         'only' => ['create', 'store']
     ]);
+    //MANAGE EMERGENCY
+    Route::get('emergency/manageemergency', [EmergencyController::class,'manageEmergency'])->name('manage-emergency');
+    //Route::get('emergency/manageemergency', [EmergencyController::class,'manageEmergency'])->name('manage-emergency');
 });
 
 

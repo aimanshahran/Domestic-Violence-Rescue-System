@@ -71,7 +71,7 @@
                             Please inform your trusted family or friend about your situation. If you manage to escape before authorities reach you,
                             please find the nearest safe place or local police station.</p>
 
-                        <p>You may check your report status in ‘<a href="">Manage Emergency</a>’ page if you are registered in this system.
+                        <p>You may check your report status in ‘<a href="{{ route('manage-emergency') }}">Manage Emergency</a>’ page if you are registered in this system.
                             If you did not register yet, please <a href="{{ route('register') }}">register</a> to this system or wait until our authorities contact you.</p>
                     @else
                         <img src="{{ URL::asset('svg/error.svg') }}" alt="success" width="15%">
@@ -82,7 +82,7 @@
 
                         <p>If you're running out of time, please directly call <a href="tel: 15999">Talian Kasih</a>.</br>We are sorry for any inconvenience caused.</p>
 
-                        <p>You may check if your report recorded in the system by browsing ‘<a href="">Manage Emergency</a>’ page if you are registered in this system.
+                        <p>You may check if your report recorded in the system by browsing ‘<a href="{{ route('manage-emergency') }}">Manage Emergency</a>’ page if you are registered in this system.
                             If you did not register yet, please <a href="{{ route('register') }}">register</a> to this system or wait until our authorities contact you.</p>
                     @endif
                 </div>

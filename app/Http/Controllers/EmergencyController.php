@@ -30,7 +30,7 @@ class EmergencyController extends Controller
             if (!$emergencies) {
                 abort(404);
             }
-            return view ('emergency.index', compact('emergencies'));
+            return view ('emergency.welcome', compact('emergencies'));
         }
 
         return view ('emergency.index');
@@ -196,5 +196,21 @@ class EmergencyController extends Controller
             return redirect()->route('emergency.create')->with(['phone' => $request->phone]);
         }
         return back()->with(['phone' => $request->phone, 'unsuccessful' => 'Wrong OTP.'.$OTP]);
+    }
+
+    protected function manageEmergency(){
+        $emergencies = Emergency::select(
+            'emergency.id', 'emergency.created_at', 'emergency.longitude', 'emergency.status', 'emergency.remarks')
+            ->leftjoin('users', 'emergency.user_id', '=', 'users.id')
+            ->where('emergency.user_id', '=', Auth::user()->id)
+            ->orderBy('emergency.created_at', 'DESC')
+            ->limit(1)
+            ->get();
+
+        if (!$emergencies) {
+            abort(404);
+        }
+
+        return view ('emergency.manageemergency', compact('emergencies'));
     }
 }
