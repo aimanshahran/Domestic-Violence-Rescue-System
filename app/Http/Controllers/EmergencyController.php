@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CaseStatus;
 use App\Models\Emergency;
 use App\Mail\EmergencyNotification;
 use App\Models\EmergencyCategory;
@@ -43,6 +44,11 @@ class EmergencyController extends Controller
 
     public function store(Request $request)
     {
+        //VALIDATE USER INPUT BEFORE INSERT INTO DATABASE
+        $request->validate([
+            'details' => 'required|max:255',
+        ]);
+
         $severity = min($request['category']);
 
         if ($severity <= 10){
@@ -52,11 +58,6 @@ class EmergencyController extends Controller
         }else{
             $severity = 1;
         }
-
-        //VALIDATE USER INPUT BEFORE INSERT INTO DATABASE
-        $request->validate([
-            'details' => 'required|max:255',
-        ]);
 
         //INSERT DATA TO DATABASE
         $emergency=Emergency::create();
@@ -93,12 +94,30 @@ class EmergencyController extends Controller
             }
 
             $admin = User::select(
-                'email')
+                'email', 'phone')
                 ->where('role_id', '=', '1')
                 ->get();
 
             foreach($admin as $a) {
                 Mail::to($a->email)->send(new EmergencyNotification());
+                $receiverNumber = '+60'.$a->phone;
+                $message = "DVRS: [ALERT] Emergency Notification. Please check in the system.";
+
+                try {
+                    $account_sid = getenv("TWILIO_SID");
+                    $auth_token = getenv("TWILIO_TOKEN");
+                    //$twilio_number = env("TWILIO_NUMBER");
+                    $twilio_messaging_sid = getenv("TWILIO_MESSAGING_SID");
+
+                    $client = new Client($account_sid, $auth_token);
+                    $client->messages->create($receiverNumber, [
+                        //'from' => $twilio_number,
+                        'messagingServiceSid' => $twilio_messaging_sid,
+                        'body' => $message]);
+
+                } catch (Exception $e) {
+                    echo("Error: ". $e->getMessage());
+                }
             }
 
             return redirect()->route('emergency-status')->with('success', 'success');
@@ -116,13 +135,24 @@ class EmergencyController extends Controller
     {
         $emergency = Emergency::all()->find($id);
         $category = EmergencyCategory::where('emergency_id', '=', $id)->get();
+        $statusCategory = CaseStatus::get();
         $photo = EmergencyPhoto::where('emergency_id', '=', $id)->get('photo_name');
-        return view('emergency.edit', compact('emergency', 'category', 'photo'));
+        return view('emergency.edit', compact('emergency', 'category', 'photo', 'statusCategory'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Emergency $emergency)
     {
-        //
+        $request->validate([
+            'status' => 'required',
+            'remarks' => ['string', 'max:255', 'nullable']
+        ]);
+
+        $update = $emergency->fill($request->post())->save();
+
+        if($update)
+            return redirect()->back()->with('success','Emergency updated successfully');
+        else
+            return redirect()->back()->with('unsuccessful','An error occurred. Please contact administrator.');
     }
 
     public function destroy($id)
@@ -159,7 +189,8 @@ class EmergencyController extends Controller
             //VALIDATE USER INPUT BEFORE SEND SMS
             $request->validate([
                 'phone' => 'required|regex:/^(1)[0-46-9]-*[0-9]{7,8}$/|numeric|unique:users',
-            ], ['phone.regex' => 'The :attribute number must be a valid :attribute number.']);
+            ], ['phone.regex' => 'The :attribute number must be a valid :attribute number.',
+                'phone.unique' => 'This :attribute number has already been registered. Please login to use this function.']);
 
             // CREATE OTP CODE
             $code = rand(100000, 999999);
@@ -203,7 +234,7 @@ class EmergencyController extends Controller
             'emergency.id', 'emergency.created_at', 'emergency.longitude', 'case_status.name', 'emergency.remarks')
             ->leftjoin('users', 'emergency.user_id', '=', 'users.id')
             ->leftjoin('case_status', 'emergency.status', '=', 'case_status.id')
-            ->where('emergency.user_id', '=', Auth::user()->id)
+            ->where('emergency.phone', '=', Auth::user()->phone)
             ->orderBy('emergency.created_at', 'DESC')
             ->limit(1)
             ->get();

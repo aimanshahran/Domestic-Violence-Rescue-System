@@ -21,7 +21,7 @@
         <div class="card card-2">
             <div class="container pt-5">
                 <h2><a href="{{ url()->previous() }}" style="color: black"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>&nbsp;Manage Blog</h2>
-            @if (session('success'))
+                @if (session('success'))
                     <div class="alert alert-success" role="alert">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         {{ session('success') }}

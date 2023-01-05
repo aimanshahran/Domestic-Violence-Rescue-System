@@ -27,6 +27,11 @@
                                 <button type="button" class="close" data-dismiss="alert">×</button>
                                 {{ session('success') }}
                             </div>
+                        @elseif(session('unsuccessful'))
+                            <div class="alert alert-danger" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                {{ session('unsuccessful') }}
+                            </div>
                         @endif
                         <table class="table table-active table-borderless table-hover" style="width:100%;border-radius: 5px">
                             <tr>
@@ -56,18 +61,10 @@
                                     <th scope="col" style="width:10%">Status</th>
                                     <td>
                                         <select name="status" class="custom-select @error('status') is-invalid @enderror">
-                                            <option @if(( old('status') ?? $feedback->status)==NULL)selected
-                                                @endif value="0">Choose...</option>
-                                            <option @if(( old('status') ?? $feedback->status)==1)selected
-                                                    @endif value="1">Received</option>
-                                            <option @if(( old('status') ?? $feedback->status)==2)selected
-                                                    @endif value="2">In Process</option>
-                                            <option @if(( old('status') ?? $feedback->status)==3)selected
-                                                    @endif value="3">Reply</option>
-                                            <option @if(( old('status') ?? $feedback->status)==4)selected
-                                                    @endif value="4">Closed</option>
-                                            <option @if(( old('status') ?? $feedback->status)==5)selected
-                                                    @endif value="5">Archived</option>
+                                            @foreach($status as $feedbackStatus)
+                                                <option @if(( old('status') ?? ($feedback->status)==($feedbackStatus->id)))selected
+                                                        @endif value="{{$feedbackStatus->id}}">{{$feedbackStatus->name}}</option>
+                                            @endforeach
                                         </select>
                                         @error('status')
                                             <span class="invalid-feedback" role="alert">

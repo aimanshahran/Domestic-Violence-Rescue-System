@@ -26,7 +26,7 @@
                     @forelse($emergencies as $emergency)
                     <tr>
                         <th scope="col" style="width:20%;text-align: center;vertical-align: middle;font-weight: bold">Case ID</th>
-                        <td>{{$emergency->id}}</td>
+                        <td>**{{$emergency->id}}</td>
                     </tr>
                     <tr>
                         <th scope="col" style="width:20%;text-align: center;vertical-align: middle;font-weight: bold">Report time</th>
@@ -45,6 +45,8 @@
                         <td colspan="6" style="text-align: center">{{ 'No emergency as '.date_format(now(), "d-m-Y H:i:s") }}</td>
                     @endforelse
                 </table>
+                <p style="color: red">**This is the latest emergency case for your user ID. If the status doesn't change and
+                    you are not in the safe situations, please directly call the nearest police station or call <a href="tel:999">999</a>.</p>
             </div>
         </div>
         <!-- /.8 -->

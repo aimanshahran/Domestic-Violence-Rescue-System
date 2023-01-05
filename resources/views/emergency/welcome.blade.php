@@ -115,7 +115,6 @@
                         <td style="text-align: center">{{$emergency->id}}</td>
                         <td style="text-align: center">{{$emergency->name ?? '+60'.$emergency->phone }}</td>
                         <td style="text-align: center"><a type="button" class="btn btn-primary" href="{{route('emergency.edit', $emergency->id)}}">Details</a></td>
-                        {{--<td>{{date_format($emergency->updated_at, "d/m/Y h.i A")}}</td>--}}
                         <td style="text-align: center">{{$emergency->status}}</td>
                         <td style="text-align: center">
                             <form action="{{ route('emergency.destroy' , $emergency->id)}}" method="POST">

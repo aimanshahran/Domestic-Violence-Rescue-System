@@ -1,7 +1,7 @@
 @extends('layouts.header')
 
 @section('content')
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <script src="https://kit.fontawesome.com/9dc0cd5b8c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ URL::asset('css/content-styles.css')}}">
     <!-- Favicon -->
@@ -36,7 +36,7 @@
                 <table class="table table-bordered table-striped table-hover" style="width:100%;border: none;">
                     <thead class="thead-purple">
                     <tr>
-                        <th class="borderless" colspan="6" style="text-align: right; border: none !important;"><a href="{{route('blog.create')}}" style="text-decoration:none;color: inherit;"><i class="fa-regular fa-circle-plus"></i></a></th>
+                        <th class="borderless" colspan="6" style="text-align: right; border: none !important;"><a href="{{route('blog.create')}}" style="text-decoration:none;color: inherit;"><i class="fa-solid fa-circle-plus"  aria-hidden="true"></i></a></th>
                     </tr>
                     <tr>
                         <th scope="col" style="width:10%;text-align: center;vertical-align: middle;">Post ID</th>

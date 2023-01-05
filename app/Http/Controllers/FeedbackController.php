@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Feedback;
+use App\Models\FeedbackStatus;
 use DB;
 use Illuminate\Http\Request;
 use Auth;
@@ -66,8 +67,8 @@ class FeedbackController extends Controller
 
     public function edit(Feedback $feedback){
         $feedback->load('user');
-
-        return view('feedback.edit',compact('feedback'));
+        $status = FeedbackStatus::get();
+        return view('feedback.edit',compact('feedback', 'status'));
     }
 
     public function update(Request $request, Feedback $feedback){

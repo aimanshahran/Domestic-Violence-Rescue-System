@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -31,7 +32,8 @@ class ManageProfileController extends Controller
      */
     public function index()
     {
-        return view('manage-profile');
+        $gender = Gender::get();
+        return view('manage-profile', compact('gender'));
     }
 
     public function edit(Request $request) {

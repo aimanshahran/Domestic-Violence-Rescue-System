@@ -124,11 +124,11 @@
                                         <label class="labels">Gender</label>
                                         <select name="gender" class="custom-select @error('gender') is-invalid @enderror" id="inputGroupSelect02">
                                             <option @if((Auth::user()->gender_id)==NULL)selected
-                                                @endif value="">Choose...</option>
-                                            <option @if((Auth::user()->gender_id)==1)selected
-                                                    @endif value="1">Male</option>
-                                            <option @if((Auth::user()->gender_id)==2)selected
-                                                    @endif value="2">Female</option>
+                                                    @endif value="">Choose...</option>
+                                            @foreach($gender as $genders)
+                                                <option @if((Auth::user()->gender_id)==($genders->id))selected
+                                                        @endif value="{{$genders->id}}">{{$genders->type}}</option>
+                                            @endforeach
                                         </select>
                                         @error('gender')
                                         <span class="invalid-feedback" role="alert">
