@@ -200,8 +200,9 @@ class EmergencyController extends Controller
 
     protected function manageEmergency(){
         $emergencies = Emergency::select(
-            'emergency.id', 'emergency.created_at', 'emergency.longitude', 'emergency.status', 'emergency.remarks')
+            'emergency.id', 'emergency.created_at', 'emergency.longitude', 'case_status.name', 'emergency.remarks')
             ->leftjoin('users', 'emergency.user_id', '=', 'users.id')
+            ->leftjoin('case_status', 'emergency.status', '=', 'case_status.id')
             ->where('emergency.user_id', '=', Auth::user()->id)
             ->orderBy('emergency.created_at', 'DESC')
             ->limit(1)

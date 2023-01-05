@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                         <th scope="col" style="width:20%;text-align: center;vertical-align: middle;font-weight: bold">Status</th>
-                        <td>{{$emergency->status}}</td>
+                        <td>{{ucfirst($emergency->name)}}</td>
                     </tr>
                     <tr>
                         <th scope="col" style="width:20%;text-align: center;vertical-align: middle;font-weight: bold">Remarks</th>
