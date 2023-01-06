@@ -77,8 +77,12 @@ class FeedbackController extends Controller
             'remark' => ['string', 'max:255', 'nullable']
         ]);
 
-        $feedback->fill($request->post())->save();
+        $status = $feedback->fill($request->post())->save();
 
-        return redirect()->back()->with('success','Feedback updated successfully');
+        if ($status){
+            return redirect()->back()->with('success','Feedback updated successfully');
+        }else {
+            return redirect()->back()->with('unsuccessful','An error occurred. Please contact administrator.');
+        }
     }
 }

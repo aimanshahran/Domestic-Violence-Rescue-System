@@ -112,7 +112,6 @@ Route::prefix('user')->middleware(['CheckRole:User'])->group(function (){
     ]);
     //MANAGE EMERGENCY
     Route::get('emergency/manageemergency', [EmergencyController::class,'manageEmergency'])->name('manage-emergency');
-    //Route::get('emergency/manageemergency', [EmergencyController::class,'manageEmergency'])->name('manage-emergency');
 });
 
 
