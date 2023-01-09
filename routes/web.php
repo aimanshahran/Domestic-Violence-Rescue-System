@@ -4,6 +4,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\DvinfoController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EmergencyController;
+use App\Http\Controllers\ManageUserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -103,6 +104,7 @@ Route::prefix('admin')->middleware(['CheckRole:Admin'])->group(function (){
     Route::resource('feedback', FeedbackController::class, [
         'except' => ['create', 'store', 'index']
     ]);
+    Route::resource('manage-user', ManageUserController::class);
 });
 
 //User

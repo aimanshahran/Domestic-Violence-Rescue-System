@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'phone',
         'password',
+        'gender_id',
         'role_id',
     ];
 
@@ -36,6 +37,16 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
+    }
 
     /**
      * The attributes that should be cast.

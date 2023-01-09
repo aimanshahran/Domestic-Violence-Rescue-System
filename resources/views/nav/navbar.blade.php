@@ -40,7 +40,10 @@
                         <li><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">Feedback</a></li>
                         <li><a href="{{ route('manage-profile') }}" class="n-none" >Manage Profile</a></li>
                         @if((Auth::user()->role_id)==2)
-                            <a href="{{ route('manage-emergency') }}" class="n-none">{{ __('Manage Emergency') }}</a>
+                            <li><a href="{{ route('manage-emergency') }}" class="n-none">{{ __('Manage Emergency') }}</a></li>
+                        @endif
+                        @if((Auth::user()->role_id)==1)
+                            <li><a href="{{ route('manage-user.index') }}" class="n-none">{{ __('Manage User') }}</a></li>
                         @endif
                         @if((Auth::user()->role_id)!=1)
                         <li><a href="{{ route('feedback.index') }}" class="n-none" >Manage Feedback</a></li>
@@ -71,8 +74,11 @@
                             @if((Auth::user()->role_id)==2)
                                 <a href="{{ route('manage-emergency') }}">{{ __('Manage Emergency') }}</a>
                             @endif
+                            @if((Auth::user()->role_id)==1)
+                                <a href="{{ route('manage-user.index') }}">{{ __('Manage User') }}</a>
+                            @endif
                             @if((Auth::user()->role_id)!=1)
-                            <a href="{{ route('feedback.index') }}">{{ __('Manage Feedback') }}</a>
+                                <a href="{{ route('feedback.index') }}">{{ __('Manage Feedback') }}</a>
                             @endif
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -127,10 +133,13 @@
                         <li @if(str_contains(Route::currentRouteName(), 'feedback'))class="current"@endif><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">Feedback</a></li>
                         <li><a href="{{ route('manage-profile') }}" class="n-none" >Manage Profile</a></li>
                         @if((Auth::user()->role_id)==2)
-                            <a href="{{ route('manage-emergency') }}" class="n-none">{{ __('Manage Emergency') }}</a>
+                            <li><a href="{{ route('manage-emergency') }}" class="n-none">{{ __('Manage Emergency') }}</a></li>
+                        @endif
+                        @if((Auth::user()->role_id)==1)
+                            <li><a href="{{ route('manage-user.index') }}" class="n-none">{{ __('Manage User') }}</a></li>
                         @endif
                         @if((Auth::user()->role_id)!=1)
-                        <li><a href="{{ route('feedback.index') }}" class="n-none" >Manage Feedback</a></li>
+                            <li><a href="{{ route('feedback.index') }}" class="n-none" >Manage Feedback</a></li>
                         @endif
                         <li><a href="{{ route('logout') }}" class="n-none"
                                onclick="event.preventDefault();
@@ -158,8 +167,11 @@
                             @if((Auth::user()->role_id)==2)
                                 <a href="{{ route('manage-emergency') }}">{{ __('Manage Emergency') }}</a>
                             @endif
+                            @if((Auth::user()->role_id)==1)
+                                <a href="{{ route('manage-user.index') }}">{{ __('Manage User') }}</a>
+                            @endif
                             @if((Auth::user()->role_id)!=1)
-                            <a href="{{ route('feedback.index') }}">{{ __('Manage Feedback') }}</a>
+                                <a href="{{ route('feedback.index') }}">{{ __('Manage Feedback') }}</a>
                             @endif
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
