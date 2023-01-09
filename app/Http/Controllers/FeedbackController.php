@@ -16,6 +16,7 @@ class FeedbackController extends Controller
                 'feedback.remark AS remark', 'feedback.created_at AS created_at')
                 ->leftjoin('feedback_status', 'feedback.status', '=', 'feedback_status.id')
                 ->leftjoin('users', 'feedback.user_id', '=', 'users.id')
+                ->whereNot('feedback_status.name', '=', 'Archived')
                 ->paginate(6);
         }else{
             $feedbacks = Feedback::select(

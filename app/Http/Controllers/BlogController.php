@@ -57,7 +57,7 @@ class BlogController extends Controller
 
     public function edit(BlogPost $blog)
     {
-        return view('blog.edit',compact('blog'));
+        return view('blog.edit', compact('blog'));
     }
 
     public function update(Request $request, BlogPost $blog){

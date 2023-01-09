@@ -102,6 +102,7 @@ class ManageProfileController extends Controller
         $inputOTP = $request['first'].$request['second'].$request['third'].$request['fourth'].$request['fifth'].$request['sixth'];
 
         if ($OTP==$inputOTP) {
+
                 $user =Auth::user();
                 $user->phone = $request['phone'];
                 if($user->save()){

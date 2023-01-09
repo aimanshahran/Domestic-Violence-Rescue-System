@@ -58,8 +58,8 @@
                                 <form action="{{ route('blog.destroy' , $post->id)}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE" />
-                                    <a type="button" class="fas fa-trash-can" data-toggle="modal" data-target="#confirm"></a>
-                                    <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="confirmation" aria-hidden="true">
+                                    <a type="button" class="fas fa-trash-can" data-toggle="modal" data-target="#confirm-{{ $post->id }}"></a>
+                                    <div class="modal fade" id="confirm-{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmation" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-s" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">

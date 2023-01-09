@@ -1,7 +1,7 @@
 @extends('layouts.header')
 
 @section('content')
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <script src="https://kit.fontawesome.com/9dc0cd5b8c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ URL::asset('css/content-styles.css')}}">
     <!-- Favicon -->
@@ -120,8 +120,8 @@
                             <form action="{{ route('emergency.destroy' , $emergency->id)}}" method="POST">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE" />
-                                <a type="button" class="fas fa-trash-can" data-toggle="modal" data-target="#confirm"></a>
-                                <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="confirmation" aria-hidden="true">
+                                <a type="button" class="fas fa-trash-can" data-toggle="modal" data-target="#confirm-{{ $emergency->id }}"></a>
+                                <div class="modal fade" id="confirm-{{ $emergency->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmation" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-s" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -131,7 +131,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body text-center">
-                                                <p>Are you sure you want to delete blog {{ $emergency->id }}?</p>
+                                                <p>Are you sure you want to archive {{ $emergency->id }}?</p>
                                                 <div class="mt-4"><button type="submit" class="btn btn-success btn-lg">YES</button>&nbsp<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal" aria-label="Close">NO</button></div>
                                             </div>
                                         </div>

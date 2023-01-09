@@ -26,6 +26,7 @@ class EmergencyController extends Controller
                 'emergency.details', 'emergency.severity_status', 'emergency.status', 'emergency.remarks')
                 ->leftjoin('users', 'emergency.user_id', '=', 'users.id')
                 ->orderBy('emergency.created_at', 'DESC')
+                ->whereNot('emergency.status', '=', '10')
                 ->paginate(5);
 
             if (!$emergencies) {
@@ -75,7 +76,7 @@ class EmergencyController extends Controller
             foreach ($request->input('category') as $categories) {
 
                 $category::create([
-                    'emergency_id'      => $emergency->id,
+                    'emergency_id'     => $emergency->id,
                     'case_category_id' => $categories
                 ]);
             }
@@ -155,9 +156,17 @@ class EmergencyController extends Controller
             return redirect()->back()->with('unsuccessful','An error occurred. Please contact administrator.');
     }
 
-    public function destroy($id)
+    public function destroy(Emergency $emergency)
     {
-        //
+
+        $emergency->status = 10;
+        $archive = $emergency->save();
+
+        if ($archive){
+            return redirect()->back()->with('success','Case archived.');
+        }
+
+        return redirect()->back()->with('unsuccessful','There is an error occurred. Please contact administrator');
     }
 
     protected function sendSMS(Request $request){

@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <body>
-NEW EMERGENCY!
+[EMERGENCY ALERT]
 </br>
-Please check now!
+
 </body>
 </html>

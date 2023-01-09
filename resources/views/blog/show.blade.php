@@ -1,7 +1,7 @@
 @extends('layouts.header')
 
 @section('content')
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <script src="https://kit.fontawesome.com/9dc0cd5b8c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ URL::asset('css/content-styles.css')}}">
     <!-- Favicon -->
@@ -20,7 +20,7 @@
     <div class="col mx-auto">
         <div class="card card-2">
             <div class="container pt-5">
-                <h2><a href="{{ url()->previous() }}" style="color: black"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>&nbsp;Blog</h2>
+                <h2><a href="{{ route('blog.index') }}" style="color: black"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>&nbsp;Blog</h2>
                 <div class="row align-items-center">
                     <div class="col">
                         <h4>{{ ucfirst($blog->title) }}</h4>

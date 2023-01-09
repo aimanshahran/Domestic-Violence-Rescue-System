@@ -23,7 +23,7 @@
             <div class="container pt-5">
                 <div class="row">
                     <div class="col-11">
-                        <h2><a href="{{ url()->previous() }}" style="color: black"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>&nbsp;Domestic Violence information and safety planning</h2>
+                        <h2><a href="{{ route('DV-Information.show') }}" style="color: black"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>&nbsp;Domestic Violence information and safety planning</h2>
 
                         <div class="submitbtn-mobile">
                             <form action = "{{ route('DV-Information.update') }}" method="post">
