@@ -5,6 +5,7 @@ use App\Http\Controllers\DvinfoController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EmergencyController;
 use App\Http\Controllers\ManageUserController;
+use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -75,6 +76,10 @@ Route::resource('emergency', EmergencyController::class, [
     'only' => ['index', 'create', 'store']
 ]);
 
+Route::resource('statistic', StatisticController::class, [
+    'only' => ['index']
+]);
+
 /*User must login to access page*/
 Route::middleware(['CheckRole:AllUser'])->group(function (){
     Route::get('manageprofile', 'App\Http\Controllers\Auth\ManageProfileController@index')->name('manage-profile');
@@ -104,7 +109,17 @@ Route::prefix('admin')->middleware(['CheckRole:Admin'])->group(function (){
     Route::resource('feedback', FeedbackController::class, [
         'except' => ['create', 'store', 'index']
     ]);
+
     Route::resource('manage-user', ManageUserController::class);
+
+    Route::singleton('statistic', StatisticController::class, [
+        'only' => ['show'],
+        'names' => ['show' => 'statistic.show']
+    ]);
+
+    Route::resource('statistic', StatisticController::class, [
+        'except' => ['index', 'show']
+    ]);
 });
 
 //User
