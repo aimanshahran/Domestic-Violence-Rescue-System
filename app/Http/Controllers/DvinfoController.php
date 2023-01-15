@@ -24,7 +24,7 @@ class DvinfoController extends Controller
         return view('dv-information.index',compact('dvinfos'));
     }
 
-    public function edit(DVInfo $dvinfo)
+    public function edit()
     {
         $dvinfos = DVInfo::select(
             'dv_information.id AS id', 'users.name AS name', 'dv_information.title AS title', 'dv_information.content AS content', 'dv_category.name AS categoryName',
