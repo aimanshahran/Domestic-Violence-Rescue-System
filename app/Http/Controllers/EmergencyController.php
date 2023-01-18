@@ -136,7 +136,7 @@ class EmergencyController extends Controller
     {
         $emergency = Emergency::all()->find($id);
         $category = EmergencyCategory::where('emergency_id', '=', $id)->get();
-        $statusCategory = CaseStatus::get();
+        $statusCategory = CaseStatus::where('id', '!=', '10')->get();
         $photo = EmergencyPhoto::where('emergency_id', '=', $id)->get('photo_name');
         return view('emergency.edit', compact('emergency', 'category', 'photo', 'statusCategory'));
     }
@@ -158,15 +158,18 @@ class EmergencyController extends Controller
 
     public function destroy(Emergency $emergency)
     {
+        if ($emergency->status == 9) {
+            $emergency->status = 10;
+            $archive = $emergency->save();
 
-        $emergency->status = 10;
-        $archive = $emergency->save();
-
-        if ($archive){
-            return redirect()->back()->with('success','Case archived.');
+            if ($archive){
+                return redirect()->back()->with('success','Case archived.');
+            }else{
+                return redirect()->back()->with('unsuccessful','There is an error occurred. Please contact administrator');
+            }
+        }else{
+            return redirect()->back()->with('unsuccessful','Only case with settle status can be archived.');
         }
-
-        return redirect()->back()->with('unsuccessful','There is an error occurred. Please contact administrator');
     }
 
     protected function sendSMS(Request $request){
