@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gender;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -146,5 +147,18 @@ class ManageProfileController extends Controller
         }else{
             return redirect()->back()->with('unsuccessful1', 'There is an error occurred. Please contact administrator');
         }
+    }
+
+    public function destroy()
+    {
+        $id = Auth::user()->id;
+
+        $delete = User::find($id)->delete();
+
+        if ($delete){
+            return redirect('/home');
+        }
+
+        return redirect()->back()->with('unsuccessful','There is an error occurred. Please contact administrator');
     }
 }

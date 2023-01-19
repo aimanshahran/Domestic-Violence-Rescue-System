@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginOTPController;
+use App\Http\Controllers\Auth\ManageProfileController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\DvinfoController;
 use App\Http\Controllers\BlogController;
@@ -92,9 +93,11 @@ Route::resource('statistic', StatisticController::class, [
 
 /*User must login to access page*/
 Route::middleware(['CheckRole:AllUser'])->group(function (){
-    Route::get('manageprofile', 'App\Http\Controllers\Auth\ManageProfileController@index')->name('manage-profile');
-    Route::post('manageprofile/profile','App\Http\Controllers\Auth\ManageProfileController@edit')->name('manage-profile.edit');
-    Route::post('manageprofile/password','App\Http\Controllers\Auth\ManageProfileController@editpassword')->name('manage-profile.editpassword');
+    Route::get('manageprofile', [ManageProfileController::class, 'index'])->name('manage-profile');
+    Route::post('manageprofile/profile',[ManageProfileController::class, 'edit'])->name('manage-profile.edit');
+    Route::post('manageprofile/password',[ManageProfileController::class, 'editpassword'])->name('manage-profile.editpassword');
+    Route::post('manageprofile/destroy',[ManageProfileController::class, 'destroy'])->name('manage-profile.destroy');
+
     Route::resource('feedback', FeedbackController::class, [
         'only' => ['index']
     ]);

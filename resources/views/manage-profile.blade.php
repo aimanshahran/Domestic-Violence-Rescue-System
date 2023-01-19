@@ -54,6 +54,29 @@
                             <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                             <span class="font-weight-bold">{{ Auth::user()->name }}</span><span class="text-black-50">{{ Auth::user()->email }}</span>
                         </div>
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delete">Delete Account</button>
+                            <form action="{{ route('manage-profile.destroy') }}" method="POST">
+                                @csrf
+                                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="OTP" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                @include('layouts.logo')
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body text-justify">
+                                                <h3>{!! __('Delete Alert!') !!}</h3>
+                                                <p>{!! __('When you delete your account, your data will be permanently removed this is include your records in our system.') !!}</p>
+                                                <div class="mt-4"><button type="submit" class="btn btn-danger btn-lg float-right">OKAY</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="col-md-5 border-right">
                         <div class="p-3 py-5">
