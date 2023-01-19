@@ -173,8 +173,8 @@
                                 <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="Phone Number" value="@if(Auth::user()) {{Auth::user()->phone}} @elseif(old('phone')) {{old('phone')}} @endif" @if(Auth::user()) readonly @endif required>
                                 @error('phone')
                                 <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>

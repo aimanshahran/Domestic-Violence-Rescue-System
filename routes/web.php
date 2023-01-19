@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginOTPController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\DvinfoController;
 use App\Http\Controllers\BlogController;
@@ -25,7 +26,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', function () {
     return view('index');
 });
-Route::view('/loginemail', 'Auth/loginemail')->name('loginemail');
+
+//LOGIN WITH OTP
+Route::view('/loginotp', 'Auth/loginotp')->name('login-otp');
+//TO SEND OTP TO THE USER AFTER CLICK CONFIRM PHONE NUMBER
+Route::post('/loginotp', [LoginOTPController::class,'sendSMS'])->name('login-otp.verify');
+//TO VERIFY OTP
+Route::get('/loginotp-verify', function () {
+    return view('auth/loginverifyphone');
+})->name('login-otp.verify.verifyphone');
+Route::post('/loginotp-verify', [LoginOTPController::class,'verifyPhone'])->name('login-otp.verifyphone');
 
 Auth::routes(['verify' => true]); // Helper class that helps to generate all the routes required for user authentication
 

@@ -67,14 +67,10 @@
                             <button type="submit" class="btn btn-block button--loading login-btn mb-4">
                                 {{ __('Login') }}
                             </button>
-                            <!--<button class="btn btn-primary" type="button" disabled>
-                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="false"></span>
-                                <span class="sr-only">Loading...</span>
-                            </button>!-->
                         </div>
                     </form>
                     <p class="login-card-footer-text">
-                        <a href="#!" class="text-reset">Login with OTP</a></br>
+                        <a href="{{ route('login-otp') }}" class="text-reset">Login with OTP</a></br>
                         Don't have an account?<a href="{{ route('register') }}" class="text-reset"> Register here</a>
                     @if (Route::has('password.request'))
                         </br>

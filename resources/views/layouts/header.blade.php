@@ -15,7 +15,7 @@
     @elseif(View::hasSection('title'))
         <title> @yield('title') | {{ config ('app.name', 'Laravel') }}</title>
     @else
-        <title>{{ ucwords(str_replace(array( '-', '.', 'index', 'show', 'welcome', 'create', 'status', 'edit'), ' ', Request::route()->getName())) }} | {{ config ('app.name', 'Laravel') }}</title>
+        <title>{{ ucwords(str_replace(array( '-', '.', 'index', 'show', 'welcome', 'create', 'status', 'edit', 'otp'), ' ', Request::route()->getName())) }} | {{ config ('app.name', 'Laravel') }}</title>
     @endif
 
     @yield('content')

@@ -72,7 +72,6 @@
                                         </div>
                                     </form>
                                 </div>
-                                <span class="forgot-password-link"><a href="#!" class="forgot-password-link">Login with OTP</a></span>
                                 <p class="login-card-footer-text">Already have an account? <a href="{{ route('login') }}" class="text-reset">Login here</a></p>
                                 <nav class="login-card-footer-nav">
                                     <a href="#!">Terms of use.</a>
