@@ -73,6 +73,12 @@
 
                         <p>You may check your report status in ‘<a href="{{ route('manage-emergency') }}">Manage Emergency</a>’ page if you are registered in this system.
                             If you did not register yet, please <a href="{{ route('register') }}">register</a> to this system or wait until our authorities contact you.</p>
+                    @elseif(session('misuse'))
+                        <img src="{{ URL::asset('svg/error.svg') }}" alt="success" width="15%">
+                        <h3>{{ __('It seems that you have misused this feature.') }}</h3>
+                        <p>Our misuse detection found out that your case does not fall under the category that needs immediate attention.</p>
+                        <p>Alternatively, you may use the <a href="">chat feature</a> to interact with our counselor for more assistance.</p>
+                        <p>If you're running out of time, please directly call <a href="tel: 15999">Talian Kasih</a>.</br>We are sorry for any inconvenience caused.</p>
                     @else
                         <img src="{{ URL::asset('svg/error.svg') }}" alt="success" width="15%">
                         <h3>{{ __('Ops! Something went wrong!') }}</h3>

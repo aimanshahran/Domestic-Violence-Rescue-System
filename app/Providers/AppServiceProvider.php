@@ -68,5 +68,12 @@ class AppServiceProvider extends ServiceProvider
             return 0;
         });
 
+        Blade::if('admin_writer_authorities', function () {
+            if (auth()->user() && (auth()->user()->role_id == 1 || auth()->user()->role_id == 4 || auth()->user()->role_id == 5)) {
+                return 1;
+            }
+            return 0;
+        });
+
     }
 }

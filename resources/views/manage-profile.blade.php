@@ -52,7 +52,7 @@
                     <div class="col-md-3 border-right">
                         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                             <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                            <span class="font-weight-bold">{{ Auth::user()->name }}</span><span class="text-black-50">{{ Auth::user()->email }}</span>
+                            <span class="font-weight-bold">{{ Auth::user()->name }} ({{ Auth::user()->role->name }})</span><span class="text-black-50">{{ Auth::user()->email }}</span>
                         </div>
                         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                             <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delete">Delete Account</button>

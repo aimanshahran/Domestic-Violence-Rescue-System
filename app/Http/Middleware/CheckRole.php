@@ -26,6 +26,7 @@ class CheckRole
                 'Authorities' => [5],
                 'Admin-Writer' => [1,4],
                 'Admin-Authorities' => [1,5],
+                'Admin-Writer-Authorities' => [1,4,5],
                 'AllUser' => [1,2,3,4,5]
                 ];
 

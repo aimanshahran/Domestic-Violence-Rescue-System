@@ -146,13 +146,16 @@ Route::prefix('user')->middleware(['CheckRole:User'])->group(function (){
 
 
 Route::prefix('admin-writer')->middleware(['CheckRole:Admin-Writer'])->group(function (){
-    Route::singleton('dvinfo', DvinfoController::class, [
-        'only' => ['edit', 'update'],
-        'names' => ['edit' =>'DV-Information.edit', 'update' =>'DV-Information.update']
-    ]);
 
     Route::resource('/blog', BlogController::class, [
         'except' => ['index', 'show']
+    ]);
+});
+
+Route::prefix('enhanced-user')->middleware(['CheckRole:Admin-Writer-Authorities'])->group(function (){
+    Route::singleton('dvinfo', DvinfoController::class, [
+        'only' => ['edit', 'update'],
+        'names' => ['edit' =>'DV-Information.edit', 'update' =>'DV-Information.update']
     ]);
 });
 
@@ -160,4 +163,6 @@ Route::prefix('admin-authorities')->middleware(['CheckRole:Admin-Authorities'])-
     Route::resource('emergency', EmergencyController::class, [
         'except' => ['index', 'create', 'store']
     ]);
+
+    Route::post('emergency/download', [EmergencyController::class,'exportProductDatabase'])->name('manage-emergency.download');
 });

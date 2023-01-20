@@ -23,7 +23,7 @@
                     @guest
                         <li><a href="#about" class="smoothscroll">About Us</a></li>
                     @else
-                        @if((Auth::user()->role_id)==1)
+                        @if(((Auth::user()->role_id)==1) || ((Auth::user()->role_id)==5))
                             <li @if(str_contains(Route::currentRouteName(), 'emergency'))class="current"@endif><a href="{{ url('/emergency') }}">Emergency</a></li>
                         @else
                             <li><a href="#about" class="smoothscroll">About Us</a></li>
@@ -116,7 +116,7 @@
                     @guest
                         <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
                     @else
-                        @if((Auth::user()->role_id)==1)
+                        @if(((Auth::user()->role_id)==1) || ((Auth::user()->role_id)==5))
                             <li @if(str_contains(Route::currentRouteName(), 'emergency'))class="current"@endif><a href="{{ url('/emergency') }}">Emergency</a></li>
                         @else
                             <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
