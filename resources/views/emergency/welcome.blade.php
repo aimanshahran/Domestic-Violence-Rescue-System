@@ -92,6 +92,12 @@
                         {{ session('unsuccessful') }}
                     </div>
                 @endif
+                <div class="input-group col-md-4" style="float: left" >
+                    <form action="{{ route('manage-emergency.download') }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-success py-2">Download archive cases</button>
+                    </form>
+                </div>
                 <div class="input-group col-md-4 mb-3" style="float: right" >
                     <input type="text" id="myInput" class="form-control py-2 border-right-0 border" placeholder="Search for id..." onkeyup="myFunction()" >
                     <span class="input-group-append">

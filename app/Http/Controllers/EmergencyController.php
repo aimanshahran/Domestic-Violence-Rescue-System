@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EmergencyExport;
 use App\Models\CaseStatus;
 use App\Models\Emergency;
 use App\Mail\EmergencyNotification;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 use Twilio\Rest\Client;
 use App\Models\User;
 use DB;
@@ -55,9 +57,9 @@ class EmergencyController extends Controller
         if ($severity <= 10){
             $severity = 3;
         }elseif ($severity <= 15){
-            $severity = 2;
+            return redirect()->route('emergency-status')->with('misuse', 'unsuccessful');
         }else{
-            $severity = 1;
+            return redirect()->route('emergency-status')->with('misuse', 'unsuccessful');
         }
 
         //INSERT DATA TO DATABASE
@@ -256,5 +258,13 @@ class EmergencyController extends Controller
         }
 
         return view ('emergency.manageemergency', compact('emergencies'));
+    }
+
+    public function exportProductDatabase()
+    {
+        $timestamp = time();
+        $filename = 'emergency_archive_' . $timestamp;
+
+        return Excel::download(new EmergencyExport, $filename.'.xlsx');
     }
 }

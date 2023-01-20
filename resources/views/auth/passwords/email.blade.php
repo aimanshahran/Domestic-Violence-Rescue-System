@@ -30,11 +30,12 @@
                                 @include('layouts.logo')
                             </div>
                             <h3>Reset password</h3>
-                            @if (session('status'))
+                            <div class="col-md-9" style="padding: 0px">
                                 <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    Please check your email.
                                 </div>
-                            @endif
+                            </div>
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
                                 <div class="form-group">
