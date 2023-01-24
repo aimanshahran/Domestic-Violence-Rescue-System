@@ -33,6 +33,13 @@ class AppServiceProvider extends ServiceProvider
 
         });
 
+        Blade::if('non_user', function () {
+            if (auth()->user()) {
+                return 0;
+            }
+            return 1;
+        });
+
         Blade::if('admin', function () {
             if (auth()->user() && auth()->user()->role_id == 1) {
                 return 1;
