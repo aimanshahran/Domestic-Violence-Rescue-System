@@ -226,7 +226,7 @@ class Person extends \Faker\Provider\Person
         'Ah', 'Ai', 'Aik', 'An', 'Ann', 'Ang', 'Au', 'Aun', 'Aw',
         'Bae', 'Bai', 'Bak', 'Ban', 'Bang', 'Bao', 'Bau', 'Bee', 'Beh', 'Bei', 'Ben', 'Beng', 'Bi', 'Bik', 'Bin', 'Bing', 'Bo', 'Bok', 'Bong', 'Boo', 'Boon', 'Bow', 'Bu', 'Bui', 'Buk', 'Bun', 'Bung',
         'Cai', 'Car', 'Caw', 'Cee', 'Ceh', 'Cek', 'Cen', 'Cer',
-        'Cha', 'Chah', 'Chai', 'Chak', 'Cham', 'Chan', 'Chang', 'Chao', 'Chap', 'Char', 'Chat', 'Chau', 'Chaw',
+        'Cha', 'Chah', 'Chai', 'Chak', 'Cham', 'Chan', 'Chang', 'Chao', 'Chap', 'Char', 'Message', 'Chau', 'Chaw',
         'Chea', 'Cheah', 'Cheam', 'Chean', 'Cheang', 'Chee', 'Cheen', 'Chek', 'Chen', 'Cheng', 'Cheok', 'Cheong', 'Cher', 'Chet', 'Chew',
         'Chi', 'Chia', 'Chih', 'Chik', 'Chin', 'Ching', 'Chio', 'Chit', 'Chiu',
         'Cho', 'Choi', 'Chok', 'Chon', 'Chong', 'Choo', 'Chooi', 'Choon', 'Choong', 'Chor', 'Chou', 'Chow', 'Choy',
@@ -283,7 +283,7 @@ class Person extends \Faker\Provider\Person
     protected static $firstNameMaleChinese = [
         'Aik', 'Ang', 'Au', 'Aun',
         'Bak', 'Ban', 'Bang', 'Bao', 'Bau', 'Ben', 'Beng', 'Bing', 'Bok', 'Bong', 'Boo', 'Boon', 'Bow', 'Buk', 'Bun', 'Bung',
-        'Chai', 'Chak', 'Chan', 'Chang', 'Chao', 'Chap', 'Chat', 'Chau', 'Chaw',
+        'Chai', 'Chak', 'Chan', 'Chang', 'Chao', 'Chap', 'Message', 'Chau', 'Chaw',
         'Cheah', 'Chee', 'Cheen', 'Chek', 'Chen', 'Cheong', 'Cher', 'Chet', 'Chew',
         'Chia', 'Chih', 'Chik', 'Chin', 'Ching', 'Chit', 'Chiu',
         'Cho', 'Choi', 'Chok', 'Chon', 'Chong', 'Choo', 'Chooi', 'Choon', 'Choong', 'Chor', 'Chou', 'Chow', 'Choy',

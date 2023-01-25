@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('chat', function (Blueprint $table) {
-            $table->foreign(['receiver_id'], 'FK_UserID_Chat_Receiver')->references(['id'])->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->foreign(['sender_id'], 'FK_UserID_Chat_Sender')->references(['id'])->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign(['to_user'], 'FK_UserID_Chat_Receiver')->references(['id'])->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign(['from_user'], 'FK_UserID_Chat_Sender')->references(['id'])->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

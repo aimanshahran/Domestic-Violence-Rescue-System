@@ -30,15 +30,15 @@
                                 @include('layouts.logo')
                             </div>
                             <h3>Reset password</h3>
-                            <div class="col-md-9" style="padding: 0px">
-                                <div class="alert alert-success" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    Please check your email.
-                                </div>
-                            </div>
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
                                 <div class="form-group">
+                                    @if (session('status'))
+                                        <div class="alert alert-success" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
                                     <div class="input-group mb-3">
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                         @error('email')

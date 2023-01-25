@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('dv_statistics', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->integer('id', true);
             $table->integer('user_id')->index('FK_UserID_Stats');
             $table->year('year');
             $table->integer('data');

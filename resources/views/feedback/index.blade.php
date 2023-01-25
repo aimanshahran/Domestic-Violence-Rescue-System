@@ -3,7 +3,13 @@
 @section('content')
     <script src="https://kit.fontawesome.com/9dc0cd5b8c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{ URL::asset('css/content-styles.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}" />
+    <script>
+        var base_url = '{{ url("/") }}';
+    </script>
     <!-- Favicon -->
     @include('nav.favicon')
     <!-- Favicon -->
@@ -72,12 +78,31 @@
                     </table>
                     {!! $feedbacks->links() !!}
                 </div>
+
+
+                <div class="row">
+                    <div class="col-md-5">
+                        @if(($users->count()) > 0)
+                            <h3>Pick a user to chat with</h3>
+                            <ul id="users">
+                                @foreach($users as $user)
+                                    <li><span class="label label-info">{{ $user->name }}</span> <a href="javascript:void(0);" class="chat-toggle" data-id="{{ $user->id }}" data-user="{{ $user->name }}">Open chat</a></li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p>No users found! try to add a new user using another browser by going to <a href="{{ url('register') }}">Register page</a></p>
+                        @endif
+                    </div>
+                </div>
+                <div id="chat-overlay" class="row"></div>
+                </div>
+                <input type="hidden" id="current_user" value="{{ \Auth::user()->id }}" />
+                @include('chat/chat-box')
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="{{ URL::asset('js/nav.js') }}"></script>
     <script src="{{ URL::asset('js/exit.js') }}"></script>
 </body>

@@ -8,7 +8,7 @@ class Address extends \Faker\Provider\Address
 
     protected static $syllables = [
         'A', 'Ai', 'Ak', 'Am', 'An', 'Ang', 'Ap', 'At', 'Au',
-        'Cha', 'Chai', 'Chak', 'Cham', 'Chan', 'Chang', 'Chap', 'Chat', 'Chau',
+        'Cha', 'Chai', 'Chak', 'Cham', 'Chan', 'Chang', 'Chap', 'Message', 'Chau',
         'Che', 'Chek', 'Cheng', 'Cheuk', 'Cheung',
         'Chi', 'Chik', 'Chim', 'Chin', 'Ching', 'Chip', 'Chit', 'Chiu',
         'Cho', 'Choi', 'Chok', 'Chong', 'Chou',

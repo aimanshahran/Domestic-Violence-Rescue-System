@@ -7,6 +7,7 @@ use App\Http\Controllers\DvinfoController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EmergencyController;
 use App\Http\Controllers\ManageUserController;
+use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
@@ -90,6 +91,18 @@ Route::resource('emergency', EmergencyController::class, [
 Route::resource('statistic', StatisticController::class, [
     'only' => ['index']
 ]);
+
+Route::get('/load-latest-messages', [MessagesController::class, 'getLoadLatestMessages']);
+
+Route::post('/send', [MessagesController::class, 'postSendMessage']);
+
+Route::get('/fetch-old-messages', [MessagesController::class, 'getOldMessages']);
+
+Route::get('/emit', function () {
+    \App\Events\MessageSent::broadcast(\App\Models\User::find(1));
+});
+
+Auth::routes();
 
 /*User must login to access page*/
 Route::middleware(['CheckRole:AllUser'])->group(function (){

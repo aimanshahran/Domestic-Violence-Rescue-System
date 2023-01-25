@@ -1,0 +1,120 @@
+.chat_box > p {
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 3px;
+    color: white;
+}
+
+.messages{
+    padding-bottom: 10px;
+}
+
+.msg_container{
+    width: auto;
+}
+
+.base_receive p {
+    background-color: #622C8C;
+    color: white;
+    padding: 10px 10px;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.base_sent p {
+    background-color: #D9D9D9;
+    color: black;
+    padding: 10px 10px;
+    margin: 0;
+    border-radius: 5px;
+}
+
+time {
+    font-size: 11px;
+    font-style: italic;
+}
+
+#login-box {
+    margin-top: 20px
+}
+
+#chat_box {
+    position: fixed;
+    top: 10%;
+    right: 5%;
+    width: 27%;
+}
+
+.close-chat {
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.chat_box {
+    margin-right: 20px;
+    width: 300px;
+}
+
+.chat-area {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#users li {
+    margin-bottom: 5px;
+}
+
+#chat-overlay {
+    position: fixed;
+    right: 0%;
+    bottom: 0%;
+}
+
+.loader {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+.chat_input {
+    font-size: 12px;
+}
+
+.no-more-messages {
+    background-color: #b32b2b;
+    margin: 3px;
+    margin-bottom: 6px;
+    padding: 3px;
+    font-size: 12px;
+    color: #fff;
+}
+
+div.chat_box .card > .card-header {
+    background-color: #622C8C;
+    color: white;
+}
+
+div.chat_box .card {
+    min-height: 300px;
+}
+
+div.chat_box .card-body {
+    padding: 2px;
+}
+
+.panel-footer {
+    padding-left: 3px !important;
+}
+
+.upload-btn {
+    font-size: 19px;
+    color: #2b2be6;
+}

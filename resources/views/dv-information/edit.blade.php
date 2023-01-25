@@ -34,13 +34,25 @@
 
                         <div style="clear: both;"></div>
 
+                        @if (session('success'))
+                            <div class="alert alert-success col-md-9" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                {{ session('success') }}
+                            </div>
+                        @elseif(session('unsuccessful'))
+                            <div class="alert alert-danger col-md-9" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                {{ session('unsuccessful') }}
+                            </div>
+                        @endif
+
                         {{--TABS FOR DV INFORMATION--}}
 
                         <div id="tabs" class="nav nav-tabs">
-                                    @foreach($dvinfos as $count => $dvinfo)
-                                        <button id="tab-{{$count}}" href="#pane-{{$count}}"  @if($count == 0) class="active" @endif data-toggle="tab" role="tab">{{ $dvinfo->categoryName }}</button>
-                                    @endforeach
-                                </div>
+                            @foreach($dvinfos as $count => $dvinfo)
+                                <button id="tab-{{$count}}" href="#pane-{{$count}}"  @if($count == 0) class="active" @endif data-toggle="tab" role="tab">{{ $dvinfo->categoryName }}</button>
+                            @endforeach
+                        </div>
 
                                 {{--CONTENT FOR TABS DV INFORMATION--}}
                                 <div id="content" class="tab-content" role="tablist">

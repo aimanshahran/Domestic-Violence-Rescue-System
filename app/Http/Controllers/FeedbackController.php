@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Feedback;
 use App\Models\FeedbackStatus;
+use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
 use Auth;
@@ -10,6 +11,8 @@ use Auth;
 class FeedbackController extends Controller
 {
     public function index(){
+        $users = User::where('id', '!=', \Illuminate\Support\Facades\Auth::user()->id)->get();
+
         if((Auth::user()->role_id)==1){
             $feedbacks = Feedback::select(
                 'feedback.id AS id', 'users.name AS name', 'users.email AS email', 'feedback.title AS title', 'feedback.details AS details', 'feedback_status.name AS status',
@@ -32,7 +35,7 @@ class FeedbackController extends Controller
             abort(404);
         }
 
-        return view('feedback.index',compact('feedbacks'));
+        return view('feedback.index',compact('feedbacks', 'users'));
     }
 
     public function create(){
