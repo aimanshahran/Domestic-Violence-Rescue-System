@@ -27,7 +27,6 @@
                         alreadyLoadedLatestMessages = true;
                     });
                 }
-
                 chatBox.find(".chat-area").animate({scrollTop: chatBox.find(".chat-area").outerHeight(true)}, 800, 'swing');
             }
         });
@@ -35,7 +34,6 @@
 
     // on close chat close the chat box but don't remove it from the dom
     $(".close-chat").on("click", function (e) {
-
         $(this).parents("div.chat-opened").removeClass("chat-opened").slideUp("fast");
     });
 

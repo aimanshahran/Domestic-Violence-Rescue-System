@@ -13,7 +13,7 @@
                         <textarea class="form-control input-sm chat_input" placeholder="Write your message here..."></textarea>
                         &nbsp;
                         <button class="btn btn-primary btn-sm btn-chat" type="button" data-to-user="" disabled>
-                            <i class="glyphicon glyphicon-send"></i>
+                            <i class="fa fa-send"></i>
                             Send</button>
                     </div>
                 </div>

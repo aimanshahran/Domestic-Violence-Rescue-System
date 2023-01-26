@@ -1949,7 +1949,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   broadcaster: 'pusher',
-  key: "363f0892afc9e3f347c2",
+  key: "65da94151816bf6ad6f0",
   cluster: "ap1",
   forceTLS: true,
   authEndpoint: window.base_url + '/broadcasting/auth'
@@ -2059,6 +2059,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   setTimeout(function () {
     var current_user_id = $("#current_user").val();
     window.Echo["private"]("chat-message.".concat(current_user_id)).listen('.message.sent', function (e) {
+        console.log('close-chat');
       displayReceiverMessage(e.message);
     });
   }, 200);
@@ -2146,9 +2147,6 @@ function displaySenderMessage(message) {
 
 function displayReceiverMessage(message) {
   if ($("#current_user").val() == message.to_user.id) {
-    var alert_sound = document.getElementById("chat-alert-sound");
-    alert_sound.play(); // for the receiver user check if the chat box is already opened otherwise open it
-
     openChatBox(message.from_user.id, message.from_user.name, function () {
       var chatBox = $("#chat_box_" + message.from_user.id);
 
