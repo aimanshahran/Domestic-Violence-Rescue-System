@@ -14,45 +14,43 @@
                     </a>
                 </div>
 
-                <a class="s-header__menu-toggle" href="#"><span>Menu</span></a>
+                <a class="s-header__menu-toggle" href="#"><span>{!! __('nav.menu') !!}</span></a>
             </div><!-- end s-header__block -->
 
             <nav class="s-header__nav">
                 <ul>
-                    <li class="current"><a href="#intro" class="smoothscroll">Home</a></li>
+                    <li class="current"><a href="#intro" class="smoothscroll">{!! __('nav.home') !!}</a></li>
                     @guest
-                        <li><a href="#about" class="smoothscroll">About Us</a></li>
+                        <li><a href="#about" class="smoothscroll">{!! __('nav.about') !!}</a></li>
                     @else
                         @if(((Auth::user()->role_id)==1) || ((Auth::user()->role_id)==5))
-                            <li @if(str_contains(Route::currentRouteName(), 'emergency'))class="current"@endif><a href="{{ url('/emergency') }}">Emergency</a></li>
-                        @elseif(((Auth::user()->role_id)==3))
-                            <li @if(str_contains(Route::currentRouteName(), 'chat'))class="current"@endif><a href="{{ url('/chat') }}">Chat</a></li>
+                            <li @if(str_contains(Route::currentRouteName(), 'emergency'))class="current"@endif><a href="{{ url('/emergency') }}">{!! __('nav.emergency') !!}</a></li>
                         @else
-                        <li><a href="#about" class="smoothscroll">About Us</a></li>
+                            <li><a href="#about" class="smoothscroll">{!! __('nav.about') !!}</a></li>
                         @endif
                     @endguest
-                    <li @if(str_contains(Route::currentRouteName(), 'DV-Information'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
-                    <li @if(str_contains(Route::currentRouteName(), 'blog'))class="current"@endif><a href="{{ url('/blog') }}">Blog</a></li>
-                    <li @if(str_contains(Route::currentRouteName(), 'statistic'))class="current"@endif><a href="{{ url('/statistic') }}">Statistics</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'DV-Information'))class="current"@endif><a href="{{ url('/dvinfo') }}">{!! __('nav.dvinfo') !!}</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'blog'))class="current"@endif><a href="{{ url('/blog') }}">{!! __('nav.blog') !!}</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'statistic'))class="current"@endif><a href="{{ url('/statistic') }}">{!! __('nav.stat') !!}</a></li>
                     @guest
                         @if (Route::has('login'))
-                            <li><a href="{{ route('login') }}" class="n-none">{{ __('Login') }}</a></li>
+                            <li><a href="{{ route('login') }}" class="n-none">{!! __('nav.login') !!}</a></li>
                         @endif
                     @else
-                        <li><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">Feedback</a></li>
-                        <li><a href="{{ route('manage-profile') }}" class="n-none" >Manage Profile</a></li>
+                        <li><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">{!! __('nav.feedback') !!}</a></li>
+                        <li><a href="{{ route('manage-profile') }}" class="n-none" >{!! __('nav.manage_profile') !!}</a></li>
                         @if((Auth::user()->role_id)==2)
-                            <li><a href="{{ route('manage-emergency') }}" class="n-none">{{ __('Manage Emergency') }}</a></li>
+                            <li><a href="{{ route('manage-emergency') }}" class="n-none">{!! __('nav.manage_emergency') !!}</a></li>
                         @endif
                         @if((Auth::user()->role_id)==1)
-                            <li><a href="{{ route('manage-user.index') }}" class="n-none">{{ __('Manage User') }}</a></li>
+                            <li><a href="{{ route('manage-user.index') }}" class="n-none">{!! __('nav.manage_user') !!}</a></li>
                         @endif
                         @if((Auth::user()->role_id)!=1)
-                        <li><a href="{{ route('feedback.index') }}" class="n-none" >Manage Feedback</a></li>
+                        <li><a href="{{ route('feedback.index') }}" class="n-none" >{!! __('nav.manage_feedback') !!}</a></li>
                         @endif
                         <li><a href="{{ route('logout') }}" class="n-none"
                                onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+                        document.getElementById('logout-form').submit();">{!! __('nav.logout') !!}</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="f-none">
                             @csrf
                         </form>
@@ -64,28 +62,28 @@
             @guest
                 @if (Route::has('login'))
                     <nav class="s-header__cta">
-                        <a href="{{ route('login') }}" class="btn btn--stroke s-header__cta-btn">{{ __('Login') }}</a>
+                        <a href="{{ route('login') }}" class="btn btn--stroke s-header__cta-btn">{!! __('nav.login') !!}</a>
                     </nav>
                 @endif
             @else
                 <nav class="s-header__cta">
                     <div class="dropdown">
-                        <button class="btn btn--stroke s-header__cta-btn">{{ __('Hi, ') }}{{ ucfirst(Auth::user()->name) }}&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
+                        <button class="btn btn--stroke s-header__cta-btn">{!! __('nav.Hi') !!},&nbsp;{{ ucfirst(Auth::user()->name) }}&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
                         <div class="dropdown-content">
-                            <a href="{{ route('manage-profile') }}">{{ __('Manage Profile') }}</a>
+                            <a href="{{ route('manage-profile') }}">{!! __('nav.manage_profile') !!}</a>
                             @if((Auth::user()->role_id)==2)
-                                <a href="{{ route('manage-emergency') }}">{{ __('Manage Emergency') }}</a>
+                                <a href="{{ route('manage-emergency') }}">{!! __('nav.manage_emergency') !!}</a>
                             @endif
                             @if((Auth::user()->role_id)==1)
-                                <a href="{{ route('manage-user.index') }}">{{ __('Manage User') }}</a>
+                                <a href="{{ route('manage-user.index') }}">{!! __('nav.manage_user') !!}</a>
                             @endif
                             @if((Auth::user()->role_id)!=1)
-                                <a href="{{ route('feedback.index') }}">{{ __('Manage Feedback') }}</a>
+                                <a href="{{ route('feedback.index') }}">{!! __('nav.manage_feedback') !!}</a>
                             @endif
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {!! __('nav.logout') !!}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="f-none">
                                 @csrf
@@ -109,45 +107,43 @@
                     </a>
                 </div>
 
-                <a class="s-header__menu-toggle" href="#"><span>Menu</span></a>
+                <a class="s-header__menu-toggle" href="#"><span>{!! __('nav.menu') !!}</span></a>
             </div><!-- end s-header__block -->
 
             <nav class="s-header__nav">
                 <ul>
-                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/') }}">{!! __('nav.home') !!}</a></li>
                     @guest
-                        <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
+                        <li><a href="{{ url('/#about') }}" class="smoothscroll">{!! __('nav.about') !!}</a></li>
                     @else
                         @if(((Auth::user()->role_id)==1) || ((Auth::user()->role_id)==5))
-                            <li @if(str_contains(Route::currentRouteName(), 'emergency'))class="current"@endif><a href="{{ url('/emergency') }}">Emergency</a></li>
-                        @elseif(((Auth::user()->role_id)==3))
-                            <li @if(str_contains(Route::currentRouteName(), 'chat'))class="current"@endif><a href="{{ url('/chat') }}">Chat</a></li>
+                            <li @if(str_contains(Route::currentRouteName(), 'emergency'))class="current"@endif><a href="{{ url('/emergency') }}">{!! __('nav.emergency') !!}</a></li>
                         @else
-                            <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
+                            <li><a href="{{ url('/#about') }}" class="smoothscroll">{!! __('nav.about') !!}</a></li>
                         @endif
                     @endguest
-                    <li @if(str_contains(Route::currentRouteName(), 'DV-Information'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
-                    <li @if(str_contains(Route::currentRouteName(), 'blog'))class="current"@endif><a href="{{ url('/blog') }}">Blog</a></li>
-                    <li @if(str_contains(Route::currentRouteName(), 'statistic'))class="current"@endif><a href="{{ url('/statistic') }}">Statistics</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'DV-Information'))class="current"@endif><a href="{{ url('/dvinfo') }}">{!! __('nav.dvinfo') !!}</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'blog'))class="current"@endif><a href="{{ url('/blog') }}">{!! __('nav.blog') !!}</a></li>
+                    <li @if(str_contains(Route::currentRouteName(), 'statistic'))class="current"@endif><a href="{{ url('/statistic') }}">{!! __('nav.stat') !!}</a></li>
                     @guest
                         @if (Route::has('login'))
-                            <li><a href="{{ route('login') }}" class="n-none">{{ __('Login') }}</a></li>
+                            <li><a href="{{ route('login') }}" class="n-none">{!! __('nav.login') !!}</a></li>
                         @endif
                     @else
-                        <li @if(str_contains(Route::currentRouteName(), 'feedback'))class="current"@endif><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">Feedback</a></li>
-                        <li><a href="{{ route('manage-profile') }}" class="n-none" >Manage Profile</a></li>
+                        <li @if(str_contains(Route::currentRouteName(), 'feedback'))class="current"@endif><a href="@if((Auth::user()->role_id)==1){{ route('feedback.index') }}@else{{ route('feedback.create') }}@endif">{!! __('nav.feedback') !!}</a></li>
+                        <li><a href="{{ route('manage-profile') }}" class="n-none" >{!! __('nav.manage_profile') !!}</a></li>
                         @if((Auth::user()->role_id)==2)
-                            <li><a href="{{ route('manage-emergency') }}" class="n-none">{{ __('Manage Emergency') }}</a></li>
+                            <li><a href="{{ route('manage-emergency') }}" class="n-none">{!! __('nav.manage_emergency') !!}</a></li>
                         @endif
                         @if((Auth::user()->role_id)==1)
-                            <li><a href="{{ route('manage-user.index') }}" class="n-none">{{ __('Manage User') }}</a></li>
+                            <li><a href="{{ route('manage-user.index') }}" class="n-none">{!! __('nav.manage_user') !!}</a></li>
                         @endif
                         @if((Auth::user()->role_id)!=1)
-                            <li><a href="{{ route('feedback.index') }}" class="n-none" >Manage Feedback</a></li>
+                            <li><a href="{{ route('feedback.index') }}" class="n-none" >{!! __('nav.manage_feedback') !!}</a></li>
                         @endif
                         <li><a href="{{ route('logout') }}" class="n-none"
                                onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>
+                        document.getElementById('logout-form').submit();">{!! __('nav.logout') !!}</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="f-none">
                             @csrf
                         </form>
@@ -159,28 +155,28 @@
             @guest
                 @if (Route::has('login'))
                     <nav class="s-header__cta">
-                        <a href="{{ route('login') }}" class="btn btn--stroke s-header__cta-btn">{{ __('Login') }}</a>
+                        <a href="{{ route('login') }}" class="btn btn--stroke s-header__cta-btn">{!! __('nav.login') !!}</a>
                     </nav>
                 @endif
             @else
                 <nav class="s-header__cta">
                     <div class="dropdown">
-                        <button class="btn btn--stroke s-header__cta-btn">{{ __('Hi, ') }}{{ ucfirst(Auth::user()->name) }}&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
+                        <button class="btn btn--stroke s-header__cta-btn">{!! __('nav.Hi') !!},&nbsp;{{ ucfirst(Auth::user()->name) }}&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
                         <div class="dropdown-content">
-                            <a href="{{ route('manage-profile') }}">{{ __('Manage Profile') }}</a>
+                            <a href="{{ route('manage-profile') }}">{!! __('nav.manage_profile') !!}</a>
                             @if((Auth::user()->role_id)==2)
-                                <a href="{{ route('manage-emergency') }}">{{ __('Manage Emergency') }}</a>
+                                <a href="{{ route('manage-emergency') }}">{!! __('nav.manage_emergency') !!}</a>
                             @endif
                             @if((Auth::user()->role_id)==1)
-                                <a href="{{ route('manage-user.index') }}">{{ __('Manage User') }}</a>
+                                <a href="{{ route('manage-user.index') }}">{!! __('nav.manage_user') !!}</a>
                             @endif
                             @if((Auth::user()->role_id)!=1)
-                                <a href="{{ route('feedback.index') }}">{{ __('Manage Feedback') }}</a>
+                                <a href="{{ route('feedback.index') }}">{!! __('nav.manage_feedback') !!}</a>
                             @endif
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {!! __('nav.logout') !!}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="f-none">

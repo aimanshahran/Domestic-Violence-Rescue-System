@@ -73,7 +73,7 @@
                             </p>
 
                             <div class="s-intro__content-buttons">
-                                <a href="{{ route('emergency.index') }}" class="btn btn-danger s-intro__content-btn">Open Map for Emergency</a>
+                                <a href="{{ route('emergency.index') }}" class="btn btn-danger s-intro__content-btn">{!! __('home.emergency_button') !!}</a>
                             </div>
                         </div>
                     </div> <!-- s-intro__content-inner -->
@@ -96,7 +96,7 @@
                         </div>
                         <div class="column lg-6 stack-on-1000 desc-block">
                             <p>
-                                {{ config ('app.description', 'Laravel') }}
+                                {!! __('home.app_description') !!}
                             </p>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                     </div>
 
                     <p>
-                        {{ config ('app.description', 'Laravel') }}
+                        {!! __('home.app_description') !!}
                     </p>
 
                     <ul class="s-footer__social">
@@ -194,6 +194,7 @@
                         <a href="{{ route('feedback.create') }}">{!! __('home.feedback_title') !!}</a>
                     </p>
                 @endauth
+                    @include('nav/language_switcher')
                     <div class="ss-copyright">
                         <span>&#169;&nbsp;{{ config ('app.name', 'Laravel') }}</span>
                         <span>{!! __('home.copyright') !!}&nbsp;{{ config ('app.creator') }}</span>

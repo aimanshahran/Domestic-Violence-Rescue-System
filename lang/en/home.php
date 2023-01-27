@@ -7,7 +7,7 @@ return [
     | Home Language Lines
     |--------------------------------------------------------------------------
     */
-
+    'app_description' => 'An emergency system to help Domestic Violence (DV) victims to get immediate support.',
     'consultation_description' => 'To provide advice, options, online consultation, counselling service and emotional support for domestic violence victims by using the chat function.',
     'consultation_header' => 'Consultation',
     'copyright' => 'Designed and developed by',
@@ -22,6 +22,6 @@ return [
     'statistic_description' => 'Awareness of current data of Domestic Violence in this system and Malaysia.',
     'statistic_header' => 'DV Statistic',
     'javascript' => 'Please enable javascript for better experience',
-
-    'emergency_button' => 'Open Map for Emergency'
+    'emergency_button' => 'Open Map for Emergency',
+    'exitBtn' => 'EXIT',
 ];

@@ -73,11 +73,11 @@
                     </button>
                 </div>
                 <div class="modal-body text-justify">
-                    <h3>{!! __('Turn on Location Services on your browser') !!}</h3>
-                    <p>{!! __('To use this service, you must allow us to access your location when you are using the app') !!}</p>
-                    <p>{!! __('By activating this location service, it allows us to use your device\'s location, such as GPS information, to give the exact location to the authorities.') !!}</p>
+                    <h3>{!! __('emergency.turnOn') !!}</h3>
+                    <p>{!! __('emergency.allowLocation') !!}</p>
+                    <p>{!! __('emergency.activateLocation') !!}</p>
                     <p>
-                        <a id="link" href="" target="_blank" rel="noopener noreferrer">Click here to learn how to turn on your location in browser</a>
+                        <a id="link" href="" target="_blank" rel="noopener noreferrer">{!! __('emergency.learnLocation') !!}</a>
                     </p>
                     <p><b>{!! __('alert.close') !!}</b></p>
                     <div class="mt-4">
@@ -117,8 +117,8 @@
             // Set CSS for the control.
             controlButton.id = "reportBtn";
             controlButton.className = "btn emergencyBtn";
-            controlButton.textContent = "I NEED EMERGENCY HELP";
-            controlButton.title = "Click to report";
+            controlButton.textContent = "{!! __('emergency.helpBtn') !!}";
+            controlButton.title = "{!! __('emergency.reportBtn') !!}";
             controlButton.type = "submit";
 
             controlButton.addEventListener("click", () => {
@@ -132,13 +132,13 @@
 
             // Set CSS for the control.
             controlButton.className = "btn noEmergencyBtn"
-            controlButton.textContent = "I don't need immediate help";
-            controlButton.title = "Click to exit";
+            controlButton.textContent = "{!! __('emergency.noEmergencyBtn') !!}";
+            controlButton.title = "{!! __('emergency.exitBtn') !!}";
             controlButton.type = "submit";
 
             // Setup the click event listeners: simply set the map to Chicago.
             controlButton.addEventListener("click", () => {
-                window.location.href = "<?php echo URL::to('emergency/welcome'); ?>";
+                window.location.href = "<?php echo URL::to('dvinfo'); ?>";
             });
             return controlButton;
         }

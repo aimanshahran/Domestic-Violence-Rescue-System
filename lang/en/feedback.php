@@ -7,7 +7,7 @@ return [
     | Feedback Language Lines
     |--------------------------------------------------------------------------
     */
-    
+
     //create
     'youMay' => 'You may check your ',
     'email' => 'email',
@@ -18,15 +18,16 @@ return [
     'someProblem' => ' There were some problems.',
     'title' => 'Title*',
     'message' => 'Message*',
+    'titlePlaceholder' => 'Write your title here',
+    'messagePlaceholder' => 'Write your feedback here',
+    'sendBtn' => 'Sent',
+    'resetBtn' => 'Reset',
 
     //edit
     'caseID' => ' Case ID - ',
     'name' => 'Name',
-    'title' => 'Title',
-    'message' => 'Message',
     'createdAt' => 'Created at',
     'reply' => 'Reply',
-    'email' => 'Email',
     'status' => 'Status',
     'remark' => 'Remark',
     'save' => 'Save',

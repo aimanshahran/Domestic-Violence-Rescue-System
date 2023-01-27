@@ -79,7 +79,7 @@
                                                 </div>
                                                 <div class="modal-body text-center">
                                                     <p>Are you sure you want to delete blog {{ $post->id }}?</p>
-                                                    <div class="mt-4"><button type="submit" class="btn btn-success btn-lg">YES</button>&nbsp<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal" aria-label="Close">NO</button></div>
+                                                    <div class="mt-4"><button type="submit" class="btn btn-success btn-lg">YES</button>&nbsp;<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal" aria-label="Close">NO</button></div>
                                                 </div>
                                             </div>
                                         </div>

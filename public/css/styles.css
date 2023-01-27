@@ -1952,7 +1952,7 @@ button {
     z-index:9999;
 }
 
-.exit1-wrap button {
+html[lang="en"] .exit1-wrap button {
     background-color: #DC3545;
     color: #fff;
     border-radius: 0;
@@ -1964,6 +1964,21 @@ button {
     align-items: center;
     text-decoration: none;
     outline: none;
+}
+
+html[lang="my"] .exit1-wrap button {
+    background-color: #DC3545;
+    color: #fff;
+    border-radius: 0;
+    border: none;
+    padding: 5px 14px;
+    line-height: 1.2;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    outline: none;
+    font-size: 13px;
 }
 
 .exit1-wrap button:hover {

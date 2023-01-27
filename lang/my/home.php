@@ -7,7 +7,7 @@ return [
     | Home Language Lines
     |--------------------------------------------------------------------------
     */
-
+    'app_description' => 'Sistem kecemasan untuk membantu mangsa Keganasan Rumah Tangga mendapatkan bantuan segera.',
     'consultation_description' => 'Untuk memberikan nasihat, pilihan, perundingan atas talian, perkhidmatan kaunseling dan sokongan emosi untuk mangsa keganasan rumah tangga dengan menggunakan fungsi Bual',
     'consultation_header' => 'Perundingan',
     'copyright' => 'Direka dan dibangunkan oleh ',
@@ -22,5 +22,6 @@ return [
     'statistic_description' => 'Kesedaran tentang data semasa Keganasan Rumah Tangga di dalam sistem dan Malaysia.',
     'statistic_header' => 'Statistik mengenai Keganasan Rumah Tangga',
     'javascript' => 'Sila membenarkan Javascript untuk pengalaman yang lebih baik',
-    'emergency_button' => 'Buka Peta Untuk Kecemasan'
+    'emergency_button' => 'Buka Peta Untuk Kecemasan',
+    'exitBtn' => 'KELUAR'
 ];

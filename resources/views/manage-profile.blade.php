@@ -30,7 +30,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ __('Verify Your Email Address') }}</h5>
+                    <h5 class="modal-title">{!! __('manageProfile.verify') !!}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -38,18 +38,18 @@
                 <div class="modal-body">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+                            {!! __('manageProfile.link') !!}
                         </div>
                     @endif
-                    {{ __('Please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
+                    {!! __('manageProfile.check') !!}
+                    {!! __('manageProfile.if') !!},
                     <form class="d-inline" action="{{ route('verification.resend') }}" method="POST" >
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
+                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{!! __('manageProfile.req_another') !!}</button>.
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{!! __('manageProfile.close') !!}</button>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
                             <span class="font-weight-bold">{{ Auth::user()->name }} ({{ Auth::user()->role->name }})</span><span class="text-black-50">{{ Auth::user()->email }}</span>
                         </div>
                         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delete">Delete Account</button>
+                            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#delete">{!! __('manageProfile.delete') !!}</button>
                             <form action="{{ route('manage-profile.destroy') }}" method="POST">
                                 @csrf
                                 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="OTP" aria-hidden="true">
@@ -77,8 +77,8 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body text-justify">
-                                                <h3>{!! __('Delete Alert!') !!}</h3>
-                                                <p>{!! __('When you delete your account, your data will be permanently removed this is include your records in our system.') !!}</p>
+                                                <h3>{!! __('manageProfile.delAlert') !!}</h3>
+                                                <p>{!! __('manageProfile.delWarn') !!}</p>
                                                 <div class="mt-4"><button type="submit" class="btn btn-danger btn-lg float-right">OKAY</button></div>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@
                     <div class="col-md-5 border-right">
                         <div class="p-3 py-5">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="text-right">Profile Settings</h4>
+                                <h4 class="text-right">{!! __('manageProfile.settings') !!}</h4>
                             </div>
                             @if (session('success'))
                                 <div class="alert alert-success" role="alert">
@@ -107,10 +107,10 @@
                                 @csrf
                                 <div class="row mt-2">
                                     <div class="col-md-12">
-                                        <label class="labels">Name</label>
+                                        <label class="labels">{!! __('manageProfile.name') !!}</label>
                                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Name" value="{{ Auth::user()->name }}">
                                         @error('name')
-                                            <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
@@ -118,17 +118,17 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-12">
-                                        <label class="labels pr-3">Mobile Number</label>
-                                            <span class="badge badge-success">Verified</span>
+                                        <label class="labels pr-3">{!! __('manageProfile.num') !!}</label>
+                                        <span class="badge badge-success">{!! __('manageProfile.verified') !!}</span>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text form-control" id="basic-addon1">+60</span>
                                             </div>
                                             <input type="number" name="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="Phone number" value="{{ old('phone') ?? (Auth::user()->phone) }}" readonly>
                                             &nbsp;
-                                            <a href="{{ route('change-phone-number') }}" class="btn btn-dark mb-2">Change</a>
+                                            <a href="{{ route('change-phone-number') }}" class="btn btn-dark mb-2">{!! __('manageProfile.change') !!}</a>
                                             @error('phone')
-                                                <span class="invalid-feedback" role="alert">
+                                            <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -137,11 +137,11 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-12">
-                                        <label class="labels pr-3">Email</label>
+                                        <label class="labels pr-3">{!! __('manageProfile.email') !!}</label>
                                         @if((Auth::user()->email_verified_at)!=NULL)
                                             <span class="badge badge-success">Verified</span>
                                         @else
-                                            <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#verifyModal" style="border: 0;">Not Verified</button>
+                                            <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#verifyModal" style="border: 0;">{!! __('manageProfile.nVerified') !!}</button>
                                         @endif
                                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') ?? Auth::user()->email }}">
                                         @error('email')
@@ -153,10 +153,10 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-12">
-                                        <label class="labels">Gender</label>
+                                        <label class="labels">{!! __('manageProfile.gender') !!}</label>
                                         <select name="gender" class="custom-select @error('gender') is-invalid @enderror" id="inputGroupSelect02">
                                             <option @if((Auth::user()->gender_id)==NULL)selected
-                                                    @endif value="">Choose...</option>
+                                                    @endif value="">{!! __('manageProfile.choose') !!}</option>
                                             @foreach($gender as $genders)
                                                 <option @if((Auth::user()->gender_id)==($genders->id))selected
                                                         @endif value="{{$genders->id}}">{{$genders->type}}</option>
@@ -170,7 +170,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-5 text-center">
-                                    <button class="btn btn-block change-btn mb-4" type="submit">Save Profile</button>
+                                    <button class="btn btn-block change-btn mb-4" type="submit">{!! __('manageProfile.save') !!}</button>
                                 </div>
                             </form>
                         </div>
@@ -178,7 +178,7 @@
                     <div class="col-md-4">
                         <div class="p-3 py-5">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="text-right">{{ __('Change Password') }}</h4>
+                                <h4 class="text-right">{!! __('manageProfile.changeP') !!}</h4>
                             </div>
                             @if (session('success1'))
                                 <div class="alert alert-success" role="alert">
@@ -192,52 +192,52 @@
                                 </div>
                             @endif
                             <div class="justify-content-between align-items-center">
-                                    <form action = "{{ route('manage-profile.editpassword') }}" method = "post">
-                                        @csrf
-                                        <div class="row mt-2">
-                                            <div class="col-md-12">
-                                                <label class="labels">Old password</label>
-                                                <input type="password" name="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror" placeholder="Old Password" ">
-                                                @error('oldpassword')
-                                                <span class="invalid-feedback" role="alert">
+                                <form action = "{{ route('manage-profile.editpassword') }}" method = "post">
+                                    @csrf
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                            <label class="labels">{!! __('manageProfile.oldP') !!}</label>
+                                            <input type="password" name="oldpassword" class="form-control @error('oldpassword') is-invalid @enderror" placeholder="{!! __('manageProfile.oldP') !!}" ">
+                                            @error('oldpassword')
+                                            <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
-                                                @enderror
-                                            </div>
+                                            @enderror
                                         </div>
-                                        <div class="row mt-2">
-                                            <div class="col-md-12">
-                                                <label class="labels">New password</label>
-                                                <input type="password" name="newpassword" class="form-control @error('newpassword') is-invalid @enderror" placeholder="New Password" ">
-                                                @error('newpassword')
-                                                <span class="invalid-feedback" role="alert">
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                            <label class="labels">{!! __('manageProfile.newP') !!}</label>
+                                            <input type="password" name="newpassword" class="form-control @error('newpassword') is-invalid @enderror" placeholder="{!! __('manageProfile.newP') !!}" ">
+                                            @error('newpassword')
+                                            <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
-                                                @enderror
-                                            </div>
+                                            @enderror
                                         </div>
-                                        <div class="row mt-2">
-                                            <div class="col-md-12">
-                                                <label class="labels">Confirm password</label>
-                                                <input type="password" name="confirm" class="form-control @error('confirm') is-invalid @enderror" placeholder="Confirm Password" ">
-                                                @error('confirm')
-                                                <span class="invalid-feedback" role="alert">
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                            <label class="labels">{!! __('manageProfile.confirmP') !!}</label>
+                                            <input type="password" name="confirm" class="form-control @error('confirm') is-invalid @enderror" placeholder="{!! __('manageProfile.confirmP') !!}" ">
+                                            @error('confirm')
+                                            <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
-                                                @enderror
-                                            </div>
+                                            @enderror
                                         </div>
-                                        <div class="mt-5 text-center">
-                                            <button class="btn btn-block change-btn mb-4"><i class="fa fa-key"></i>&nbsp;&nbsp;Change Password</button>
-                                        </div>
-                                    </form>
+                                    </div>
+                                    <div class="mt-5 text-center">
+                                        <button class="btn btn-block change-btn mb-4"><i class="fa fa-key"></i>&nbsp;&nbsp;{!! __('manageProfile.changeP') !!}</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
