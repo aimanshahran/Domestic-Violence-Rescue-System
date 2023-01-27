@@ -1395,9 +1395,9 @@
             'dev_requirement' => false,
         ),
         'twilio/sdk' => array(
-            'pretty_version' => '6.43.4',
-            'version' => '6.43.4.0',
-            'reference' => '805dd4890602542c98351921f50a664d89f782a0',
+            'pretty_version' => '6.44.2',
+            'version' => '6.44.2.0',
+            'reference' => 'deec3203857387213825e2634c4eb4b56880877a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../twilio/sdk',
             'aliases' => array(),

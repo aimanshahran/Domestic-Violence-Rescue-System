@@ -240,7 +240,7 @@ class EmergencyController extends Controller
         if ($OTP==$inputOTP) {
             return redirect()->route('emergency.create')->with(['phone' => $request->phone]);
         }
-        return back()->with(['phone' => $request->phone, 'unsuccessful' => 'Wrong OTP.'.$OTP]);
+        return back()->with(['phone' => $request->phone, 'unsuccessful' => 'Wrong OTP.']);
     }
 
     protected function manageEmergency(){

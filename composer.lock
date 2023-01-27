@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "700ff23d47c8066de8abfccd3782dadb",
+    "content-hash": "299eb859f8655c7f59b1624a13c75a62",
     "packages": [
         {
             "name": "brick/math",
@@ -5996,16 +5996,16 @@
         },
         {
             "name": "twilio/sdk",
-            "version": "6.43.4",
+            "version": "6.44.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:twilio/twilio-php.git",
-                "reference": "805dd4890602542c98351921f50a664d89f782a0"
+                "reference": "deec3203857387213825e2634c4eb4b56880877a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/805dd4890602542c98351921f50a664d89f782a0",
-                "reference": "805dd4890602542c98351921f50a664d89f782a0",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/deec3203857387213825e2634c4eb4b56880877a",
+                "reference": "deec3203857387213825e2634c4eb4b56880877a",
                 "shasum": ""
             },
             "require": {
@@ -6041,7 +6041,7 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2022-11-30T20:02:35+00:00"
+            "time": "2023-01-25T19:34:30+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

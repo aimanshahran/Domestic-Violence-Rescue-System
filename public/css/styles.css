@@ -2097,12 +2097,21 @@ button {
 }
 
 @media screen and (max-width: 900px) {
-    .chat-wrap {
-        position: fixed;
-        bottom: 9rem;
+    #chat-overlay .row{
+        width: 110%;
+        margin-right: 20px;
+        margin-left: -15px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .chat-wrap{
         right: 2rem;
-        z-index:1;
-        animation: fadeIn 1s;
+    }
+    #chat-overlay{
+        width: 100%;
+        margin-right: 0px;
+        margin-left: 0px;
     }
 }
 

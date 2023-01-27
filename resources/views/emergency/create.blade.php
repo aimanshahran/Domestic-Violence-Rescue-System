@@ -237,7 +237,7 @@
                         <input type="hidden" name="phone" value="{{session('phone')}}" readonly>
                         <input type="hidden" id="lat" name="lat" value="" readonly>
                         <input type="hidden" id="long" name="long" value="" readonly>
-                        <label class="labels pr-3">The details of accident:</label>
+                        <label class="labels pr-3">*The details of accident:</label>
                         <textarea id="details" class="form-control @error('details') is-invalid @enderror" name="details" placeholder="Details...." value="{{ old('details') }}" rows="3" required></textarea>
                         @error('details')
                         <span class="invalid-feedback" role="alert">

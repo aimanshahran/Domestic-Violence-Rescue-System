@@ -42,11 +42,6 @@ class DvinfoController extends Controller
 
     public function update(Request $request, DVInfo $dvinfo)
     {
-        /*$request->validate([
-            'title.*' => ['required','string', 'max:255'],
-            'content.*' => ['required', 'string']
-        ]);*/
-
         foreach ($request->id as $key => $value) {
             $data = array(
                 'title'=>$request->title[$key],

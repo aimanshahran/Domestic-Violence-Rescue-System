@@ -14,7 +14,7 @@ class StatisticController extends Controller
 
     public function index()
     {
-        $statistic = Statistic::all();
+        $statistic = Statistic::orderBy('year', 'ASC')->get();
         $year = array_values($statistic->pluck('year')->toArray());
         $data = array_values($statistic->pluck('data')->toArray());
         $DVyear = array_values(Emergency::select(DB::raw("EXTRACT(year FROM created_at) AS year"))

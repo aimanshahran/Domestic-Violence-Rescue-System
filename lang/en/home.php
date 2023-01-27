@@ -22,4 +22,6 @@ return [
     'statistic_description' => 'Awareness of current data of Domestic Violence in this system and Malaysia.',
     'statistic_header' => 'DV Statistic',
     'javascript' => 'Please enable javascript for better experience',
+
+    'emergency_button' => 'Open Map for Emergency'
 ];

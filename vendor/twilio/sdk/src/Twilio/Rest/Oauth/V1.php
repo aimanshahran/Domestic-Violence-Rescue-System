@@ -12,6 +12,7 @@ namespace Twilio\Rest\Oauth;
 use Twilio\Domain;
 use Twilio\Exceptions\TwilioException;
 use Twilio\InstanceContext;
+use Twilio\Rest\Oauth\V1\DeviceCodeList;
 use Twilio\Rest\Oauth\V1\OauthList;
 use Twilio\Rest\Oauth\V1\OpenidDiscoveryList;
 use Twilio\Rest\Oauth\V1\TokenList;
@@ -20,12 +21,14 @@ use Twilio\Version;
 
 /**
  * @property OauthList $oauth
+ * @property DeviceCodeList $deviceCode
  * @property OpenidDiscoveryList $openidDiscovery
  * @property TokenList $token
  * @property UserInfoList $userInfo
  */
 class V1 extends Version {
     protected $_oauth;
+    protected $_deviceCode;
     protected $_openidDiscovery;
     protected $_token;
     protected $_userInfo;
@@ -45,6 +48,13 @@ class V1 extends Version {
             $this->_oauth = new OauthList($this);
         }
         return $this->_oauth;
+    }
+
+    protected function getDeviceCode(): DeviceCodeList {
+        if (!$this->_deviceCode) {
+            $this->_deviceCode = new DeviceCodeList($this);
+        }
+        return $this->_deviceCode;
     }
 
     protected function getOpenidDiscovery(): OpenidDiscoveryList {
