@@ -8,7 +8,7 @@
     </a>
     @endforeach
 </div>
-<div id="chat-overlay" class="row"></div>
+<div id="chat-overlay" class="row-chat"></div>
 </div>
 <input type="hidden" id="current_user" value="{{ \Auth::user()->id }}" />
 @include('chat/chat-box')

@@ -285,12 +285,21 @@ h6,
         background-color: rgba(0, 0, 0, 0.2);
     }
 
+/* ==========================================================================
+#CHAT BUTTON
+========================================================================== */
+
     .chat-wrap {
         position: fixed;
-        bottom: 10px;
+        bottom: 20px;
         right: 10px;
-        z-index:1;
+        z-index:999;
         animation: fadeIn 1s;
+    }
+
+    .row-chat {
+        margin-right: -15px;
+        margin-left: -15px;
     }
 
     .chat-active {

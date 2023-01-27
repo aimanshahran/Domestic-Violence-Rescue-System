@@ -8,9 +8,14 @@
 
     <!-- CSS
     ================================================== -->
+    <script src="https://kit.fontawesome.com/9dc0cd5b8c.js" crossorigin="anonymous"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ URL::asset('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}" />
+    <script>
+        var base_url = '{{ url("/") }}';
+    </script>
     <!-- Favicon -->
     @include('nav.favicon')
     <!-- Favicon -->
@@ -32,6 +37,11 @@
     <!-- EXIT BUTTON -->
     @include('nav.exit')
     <!-- EXIT BUTTON -->
+    <!-- CHAT BUTTON -->
+    @user
+        @include('nav.chat')
+    @enduser
+    <!-- CHAT BUTTON -->
 
     <!-- page wrap
     ================================================== -->
@@ -240,5 +250,6 @@
     <script src="{{ URL::asset('js/main.js') }}"></script>
     <script src="{{ URL::asset('js/nav.js') }}"></script>
     <script src="{{ URL::asset('js/exit.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 @endsection

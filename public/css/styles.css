@@ -1970,4 +1970,140 @@ button {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+/* ==========================================================================
+#CHAT BUTTON
+========================================================================== */
+
+.chat-wrap {
+    position: fixed;
+    bottom: 13rem;
+    right: 4rem;
+    z-index: 2;
+    animation: fadeIn 1s;
+}
+
+#chat-overlay .row{
+    width: 110%;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+#chat-overlay .card{
+    border: 0px;
+    background-color: white;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    line-height: 24px;
+    width: 305px !important;
+    height: 424px !important;
+    font-size: 16px;
+}
+
+#chat-overlay .card-header{
+    padding: 12px 20px;
+    margin-bottom: 0px;
+}
+
+#chat-overlay .card-body{
+    padding: 2px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+#chat-overlay .card-footer{
+    padding: .75rem 1.25rem;
+    background-color: rgba(0,0,0,.03);
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+
+.row-chat {
+    margin-right: -10px;
+    margin-left: -15px;
+}
+
+.chat_box{
+    margin-right: 0px;
+}
+
+.chat-active {
+    display: none;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#chat-overlay .btn {
+    -webkit-user-select: none;
+    align-items: flex-start;
+    appearance: button;
+    background-color: rgb(0, 123, 255);
+    border-bottom-color: rgb(0, 123, 255);
+    border-bottom-left-radius: 3.2px;
+    border-bottom-right-radius: 3.2px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: rgb(0, 123, 255);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: rgb(0, 123, 255);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: rgb(0, 123, 255);
+    border-top-left-radius: 3.2px;
+    border-top-right-radius: 3.2px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 14px;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-weight: 400;
+    height: 50px;
+    letter-spacing: normal;
+    line-height: 21px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    opacity: 0.65;
+    overflow-wrap: break-word;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    text-align: center;
+    text-indent: 0px;
+    text-shadow: none;
+    text-transform: none;
+    transition-delay: 0s, 0s, 0s, 0s;
+    transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+    vertical-align: middle;
+    width: 68.875px;
+}
+
+@media screen and (max-width: 900px) {
+    .chat-wrap {
+        position: fixed;
+        bottom: 9rem;
+        right: 2rem;
+        z-index:1;
+        animation: fadeIn 1s;
+    }
+}
+
 
