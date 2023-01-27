@@ -1970,6 +1970,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   var alreadyLoadedLatestMessages = false;
   $(".chat-toggle").on("click", function (e) {
     e.preventDefault();
+    $('body>.tooltip').remove();
+    $(".chat-wrap").addClass("chat-active").animate(800);
     var ele = $(this);
     var user_id = ele.attr("data-id");
     var username = ele.attr("data-user");
@@ -1994,6 +1996,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
 
   $(".close-chat").on("click", function (e) {
     $(this).parents("div.chat-opened").removeClass("chat-opened").slideUp("fast");
+    $(".chat-wrap").removeClass("chat-active");
   }); // on click the btn send the message
 
   $(".btn-chat").on("click", function (e) {

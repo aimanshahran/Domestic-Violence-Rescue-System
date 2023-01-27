@@ -92,6 +92,8 @@ Route::resource('statistic', StatisticController::class, [
     'only' => ['index']
 ]);
 
+Route::get('chat', [MessagesController::class, 'index'])->name('chat');
+
 Route::get('/load-latest-messages', [MessagesController::class, 'getLoadLatestMessages']);
 
 Route::post('/send', [MessagesController::class, 'postSendMessage']);
@@ -150,9 +152,6 @@ Route::prefix('admin')->middleware(['CheckRole:Admin'])->group(function (){
 
 //User
 Route::prefix('user')->middleware(['CheckRole:User'])->group(function (){
-    Route::resource('feedback', FeedbackController::class, [
-        'only' => ['create', 'store']
-    ]);
     //MANAGE EMERGENCY
     Route::get('emergency/manageemergency', [EmergencyController::class,'manageEmergency'])->name('manage-emergency');
 });
@@ -165,10 +164,16 @@ Route::prefix('admin-writer')->middleware(['CheckRole:Admin-Writer'])->group(fun
     ]);
 });
 
-Route::prefix('enhanced-user')->middleware(['CheckRole:Admin-Writer-Authorities'])->group(function (){
+Route::prefix('enhanced-user-1')->middleware(['CheckRole:Admin-Writer-Authorities'])->group(function (){
     Route::singleton('dvinfo', DvinfoController::class, [
         'only' => ['edit', 'update'],
         'names' => ['edit' =>'DV-Information.edit', 'update' =>'DV-Information.update']
+    ]);
+});
+
+Route::prefix('enhanced-user')->middleware(['CheckRole:except-admin'])->group(function (){
+    Route::resource('feedback', FeedbackController::class, [
+        'only' => ['create', 'store']
     ]);
 });
 

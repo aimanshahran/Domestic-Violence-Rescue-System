@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 92.78 92.78">
+  <defs>
+    <style>
+      .cls-1 {
+        filter: url(#filter);
+      }
+
+      .cls-2 {
+        fill: #13222a;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+    <filter id="filter">
+      <feOffset dx="3" dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-color="#010101"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g class="cls-1">
+        <circle class="cls-2" cx="46.39" cy="46.39" r="46.39"/>
+        <path class="cls-3" d="M47.41,66.86a21.45,21.45,0,0,1-11.89-3.57L27.22,66l2.7-8a21.6,21.6,0,1,1,17.49,8.94Zm0-47.56A26,26,0,0,0,25.18,58.66L20.49,72.58,34.86,68A26,26,0,1,0,47.41,19.3Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

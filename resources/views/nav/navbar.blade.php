@@ -25,8 +25,10 @@
                     @else
                         @if(((Auth::user()->role_id)==1) || ((Auth::user()->role_id)==5))
                             <li @if(str_contains(Route::currentRouteName(), 'emergency'))class="current"@endif><a href="{{ url('/emergency') }}">Emergency</a></li>
+                        @elseif(((Auth::user()->role_id)==3))
+                            <li @if(str_contains(Route::currentRouteName(), 'chat'))class="current"@endif><a href="{{ url('/chat') }}">Chat</a></li>
                         @else
-                            <li><a href="#about" class="smoothscroll">About Us</a></li>
+                        <li><a href="#about" class="smoothscroll">About Us</a></li>
                         @endif
                     @endguest
                     <li @if(str_contains(Route::currentRouteName(), 'DV-Information'))class="current"@endif><a href="{{ url('/dvinfo') }}">DV Information</a></li>
@@ -118,6 +120,8 @@
                     @else
                         @if(((Auth::user()->role_id)==1) || ((Auth::user()->role_id)==5))
                             <li @if(str_contains(Route::currentRouteName(), 'emergency'))class="current"@endif><a href="{{ url('/emergency') }}">Emergency</a></li>
+                        @elseif(((Auth::user()->role_id)==3))
+                            <li @if(str_contains(Route::currentRouteName(), 'chat'))class="current"@endif><a href="{{ url('/chat') }}">Chat</a></li>
                         @else
                             <li><a href="{{ url('/#about') }}" class="smoothscroll">About Us</a></li>
                         @endif

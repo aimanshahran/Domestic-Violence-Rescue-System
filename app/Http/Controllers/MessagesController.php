@@ -6,8 +6,10 @@ namespace App\Http\Controllers;
 
 use App\Events\MessageSent;
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 
 class MessagesController extends Controller
@@ -16,6 +18,18 @@ class MessagesController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function index()
+    {
+       $users = Message::select('from_user AS id', 'users.id', 'users.name', 'users.phone')
+           ->leftJoin('users', 'chat.from_user', '=', 'users.id')
+           ->where('to_user', '=', Auth::user()->id)
+           ->groupBy('from_user', 'users.id', 'users.name', 'users.phone')
+           ->get();
+
+       return view ('chat.index', compact('users'));
+    }
+
     /**
      * getLoadLatestMessages
      *

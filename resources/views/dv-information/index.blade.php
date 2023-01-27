@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ URL::asset('css/content-styles.css')}}">
     <link rel="stylesheet" href="{{ URL::asset('css/dvinfo.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}" />
+    <script>
+        var base_url = '{{ url("/") }}';
+    </script>
     <!-- Favicon -->
     @include('nav.favicon')
     <!-- Favicon -->
@@ -18,6 +22,11 @@
     <!-- EXIT BUTTON -->
     @include('nav.exit')
     <!-- EXIT BUTTON -->
+    <!-- CHAT BUTTON -->
+    @user
+        @include('nav.chat')
+    @enduser
+    <!-- CHAT BUTTON -->
     <div class="col mx-auto my-auto">
         <div class="card card-2">
             <div class="container pt-5">
@@ -76,18 +85,10 @@
             })
         }
     </script>
-    <script src="https://cdn.tiny.cloud/1/1tf6nfno3yi47i0rna6sogpqmrg2v0f8w12xpt60aegwbhq6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            menubar: false,
-            plugins: [ 'quickbars' ],
-            toolbar: 'undo redo | bold italic underline strikethrough | numlist bullist',
-        });
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ URL::asset('js/nav.js') }}"></script>
     <script src="{{ URL::asset('js/exit.js') }}"></script>
     </body>

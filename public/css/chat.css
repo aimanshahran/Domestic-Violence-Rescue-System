@@ -43,6 +43,7 @@ time {
     top: 10%;
     right: 5%;
     width: 27%;
+    z-index: 999;
 }
 
 .close-chat {
@@ -60,14 +61,11 @@ time {
     overflow-y: scroll;
 }
 
-#users li {
-    margin-bottom: 5px;
-}
-
 #chat-overlay {
     position: fixed;
     right: 0%;
     bottom: 0%;
+    z-index: 999;
 }
 
 .loader {
