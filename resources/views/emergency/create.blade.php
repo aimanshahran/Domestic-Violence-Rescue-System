@@ -1,12 +1,5 @@
 @extends('layouts.header')
 
-@if (!session('phone'))
-    @php
-        header("Location: " . URL::to('/emergency'), true, 302);
-        exit();
-    @endphp
-@endif
-
 @section('content')
     <script src="https://kit.fontawesome.com/9dc0cd5b8c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -231,7 +224,7 @@
                     </div>
                 @endif
                 <p>{{__('We need you to give us details about your case')}}</p>
-                <form action="{{route('emergency.store')}}" method="POST" id="my-form">
+                <form action="{{route('emergency.store')}}" method="POST" id="my-form" name="emergencyForm">
                     @csrf
                     <div class="form-group" style="margin-bottom: 10px;">
                         <input type="hidden" name="phone" value="{{session('phone')}}" readonly>
@@ -253,29 +246,9 @@
                                     <div class="input-group mb-3">
                                         <select multiple="multiple" class="custom-select col-md-9 col-sm" data-placeholder="Describe more..." name="category[]">
                                             <option value=""></option>
-                                            <option value="1">physical abused</option>
-                                            <option value="2">sexual abused</option>
-                                            <option value="3">threatening to kill you</option>
-                                            <option value="4">smashing things</option>
-                                            <option value="5">destroying property</option>
-                                            <option value="6">abusing pets</option>
-                                            <option value="7">abusing kids</option>
-                                            <option value="8">do illegal things</option>
-                                            <option value="9">displaying weapons</option>
-                                            <option value="10">threatening to leave you alone</option>
-                                            <option value="11">threatening to commit suicide</option>
-                                            <option value="12">making you afraid of him/her by using looks, actions, gestures</option>
-                                            <option value="13">controlling your behaviour and action</option>
-                                            <option value="14">limiting you from outside involvements</option>
-                                            <option value="15">using jealousy to justify actions</option>
-                                            <option value="16">making you feel guilty about the children</option>
-                                            <option value="17">using the children to relay messages</option>
-                                            <option value="18">using visitation to harass you</option>
-                                            <option value="19">threatening to take the children away</option>
-                                            <option value="20">saying you caused it</option>
-                                            <option value="21">being the one to define men's and women's roles</option>
-                                            <option value="22">threatening you like a servant</option>
-                                            <option value="23">preventing you from getting a job/keeping a job</option>
+                                            @foreach($category as $categories)
+                                                <option value="{{$categories->id}}">{{$categories->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -295,11 +268,15 @@
                             </td>
                         </tr>
                     </table>
-
-                    <a href="" style="color: grey; float: right">Skip and report now >></a></br>
-                    <button type="submit" class="btn emergencyBtn float-right" data-dismiss="modal" data-toggle="modal" data-target="#security">
-                        {{ __('SUBMIT') }}
-                    </button>
+                    *required
+                    <div style="float: right;">
+                        <button type="submit" id="reportBtn" style="color: grey;border:none;background-color: transparent" data-dismiss="modal" data-toggle="modal" data-target="#security">
+                            {{ __('Skip and report now >>') }}
+                        </button></br>
+                        <button type="submit" id="reportBtn2" class="btn emergencyBtn float-right" data-dismiss="modal" data-toggle="modal" data-target="#security">
+                            {{ __('SUBMIT') }}
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -385,8 +362,14 @@
                     document.getElementById('lat').value = `${lat}`;
                     document.getElementById('long').value = `${lng}`;
                 },
-                onError: err =>
-                    alert(`Error: ${getPositionErrorMessage(err.code) || err.message}`)
+                onError: function errorHandler(err){
+                    if( (err.code == 1)|| (err.code == 2) || (err.code == 3) ){
+                        document.getElementById("reportBtn").disabled = true;
+                        document.getElementById("reportBtn2").disabled = true;
+                        document.getElementById("reportBtn").title = "Please turn on location before proceed";
+                        document.getElementById("reportBtn2").title = "Please turn on location before proceed";
+                    }
+                }
             });
         }
     </script>

@@ -7,26 +7,25 @@ return [
     | Blog Language Lines
     |--------------------------------------------------------------------------
     */
-
-    'manageB' => 'Manage Blog',
-    'nameB' => 'Blog Name',
     'contentB' => 'Blog Content',
+    'delB' => 'Delete',
+    'delWarn' => 'Are you sure you want to delete blog ',
+    'editB' => 'Edit',
+    'idB' => 'Post ID',
+    'last_updatedB' => 'Last Updated',
+    'manageB' => 'Manage Blog',
+    'n' => 'No',
+    'nameB' => 'Blog Name',
+    'noB' => 'No blog post as ',
+    'noBavailable' => 'No blog Posts available',
     'postB' => 'POST',
+    'posted_at' => 'Posted at: ',
+    'readMore' => 'READ MORE',
     'resetB' => 'RESET',
     'updateB' => 'UPDATE',
-    'idB' => 'Post ID',
-    'writerB' => 'Writer Name',
-    'last_updatedB' => 'Last Updated',
-    'editB' => 'Edit',
-    'delB' => 'Delete',
+    'updated_on' => ' Updated on: ',
     'warning' => 'Warning!',
-    'delWarn' => 'Are you sure you want to delete blog ',
-    'y' => 'Yes',
-    'n' => 'No',
-    'noB' => 'No blog post as ',
-    'posted_at' => 'Posted at: ',
-    'noBavailable' => 'No blog Posts available',
     'writer' => 'Writer: ',
-    'updated_on' => ' Updated on: '
-
+    'writerB' => 'Writer Name',
+    'y' => 'Yes',
 ];

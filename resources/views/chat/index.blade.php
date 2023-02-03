@@ -42,7 +42,7 @@
                         <td style="text-align: center"><a href="javascript:void(0);" class="chat-toggle" data-id="{{ $user->id }}" data-user="{{ $user->name }}">Open chat</a></td>
                         </tbody>
                     @empty
-                        <td colspan="6" style="text-align: center">{{ 'No blog post as '.date_format(now(), "d-m-Y H:i:s") }}</td>
+                        <td colspan="6" style="text-align: center">{{ 'No patient as '.date_format(now(), "d-m-Y H:i:s") }}</td>
                     @endforelse
                 </table>
             <div id="chat-overlay" class="row"></div>

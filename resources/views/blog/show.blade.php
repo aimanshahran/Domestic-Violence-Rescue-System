@@ -35,12 +35,12 @@
                         <h4>{{ ucfirst($blog->title) }}</h4>
                     </div>
                     <div class="col-offset-* my-auto">
-                        <p>Posted at: {{date_format($blog->created_at, "d/m/Y")}}</p>
+                        <p>{!! __('blog.posted_at') !!}{{date_format($blog->created_at, "d/m/Y")}}</p>
                     </div>
                 </div>
                 <div class="row align-items-center">
                     <div class="col">
-                        <span>Writer: {{ ($blog->user->name) }} | Updated on: {{date_format($blog->updated_at, "d/m/Y")}}</span>
+                        <span>{!! __('blog.writer') !!}{{ ($blog->user->name) }} |{!! __('blog.updated_on') !!}{{date_format($blog->updated_at, "d/m/Y")}}</span>
                     </div>
                 </div>
                 <div class="row align-items-center" style="padding-top: 20px">

@@ -139,7 +139,7 @@
                                     <div class="col-md-12">
                                         <label class="labels pr-3">{!! __('manageProfile.email') !!}</label>
                                         @if((Auth::user()->email_verified_at)!=NULL)
-                                            <span class="badge badge-success">Verified</span>
+                                            <span class="badge badge-success">{!! __('manageProfile.verified') !!}</span>
                                         @else
                                             <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#verifyModal" style="border: 0;">{!! __('manageProfile.nVerified') !!}</button>
                                         @endif

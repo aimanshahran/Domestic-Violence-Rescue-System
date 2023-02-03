@@ -30,7 +30,7 @@ class BlogController extends Controller
     {
         /*VALIDATE DATA BEFORE SAVE TO DATABASE*/
         $request->validate([
-            'title' => ['required', 'string', 'min:3', 'max:20'],
+            'title' => ['required', 'string', 'min:3', 'max:255'],
             'content' => ['required', 'string', 'min:3']
         ]);
 
@@ -62,7 +62,7 @@ class BlogController extends Controller
 
     public function update(Request $request, BlogPost $blog){
         $request->validate([
-            'title' => ['required', 'string', 'min:3', 'max:20'],
+            'title' => ['required', 'string', 'min:3', 'max:255'],
             'content' => ['required', 'string', 'min:3']
         ]);
 

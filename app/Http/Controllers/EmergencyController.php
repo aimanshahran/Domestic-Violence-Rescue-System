@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\EmergencyExport;
+use App\Models\CaseCategory;
 use App\Models\CaseStatus;
 use App\Models\Emergency;
 use App\Mail\EmergencyNotification;
@@ -42,7 +43,8 @@ class EmergencyController extends Controller
 
     public function create()
     {
-        return view('emergency.create');
+        $category = CaseCategory::all();
+        return view('emergency.create', compact('category'));
     }
 
     public function store(Request $request)
@@ -54,9 +56,9 @@ class EmergencyController extends Controller
 
         $severity = min($request['category']);
 
-        if ($severity <= 10){
+        if ($severity < 11){
             $severity = 3;
-        }elseif ($severity <= 15){
+        }elseif ($severity < 16){
             return redirect()->route('emergency-status')->with('misuse', 'unsuccessful');
         }else{
             return redirect()->route('emergency-status')->with('misuse', 'unsuccessful');

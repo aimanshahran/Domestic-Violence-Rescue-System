@@ -20,7 +20,7 @@
     <div class="col mx-auto">
         <div class="card card-2">
             <div class="container pt-5">
-                <h2><a href="{{ route('blog.index') }}" style="color: black"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>&nbsp;Manage Blog</h2>
+                <h2><a href="{{ route('blog.index') }}" style="color: black"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>&nbsp;{!! __('blog.manageB') !!}</h2>
                 @if (session('success'))
                     <div class="alert alert-success" role="alert">
                         <button type="button" class="close" data-dismiss="alert">×</button>
@@ -36,22 +36,10 @@
                     <tr>
                         <form action = "{{ route('blog.store') }}" method="post">
                             @csrf
-                        <th scope="col" style="width:10%">Blog Name</th>
-                        <td><input type="text" name="title" class="form-control @error('title') is-invalid @enderror">
-                            @if ($errors->has('title'))
-                                @foreach ($errors->get('title') as $error)
-                                    <div class="alert alert-danger">
-                                        {{ $error }}
-                                    </div>
-                                @endforeach
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                            <th scope="col" style="width:10%">Blog Content</th>
-                            <td><textarea name="content" id="file-picker"></textarea>
-                                @if ($errors->has('content'))
-                                    @foreach ($errors->get('content') as $error)
+                            <th scope="col" style="width:10%">{!! __('blog.nameB') !!}</th>
+                            <td><input type="text" name="title" class="form-control @error('title') is-invalid @enderror">
+                                @if ($errors->has('title'))
+                                    @foreach ($errors->get('title') as $error)
                                         <div class="alert alert-danger">
                                             {{ $error }}
                                         </div>
@@ -60,7 +48,19 @@
                             </td>
                     </tr>
                     <tr>
-                        <th class="borderless" colspan="2" style="text-align: right; border: none !important;"><button type="submit" class="btn btn-dark">POST</button>&nbsp;&nbsp;<button type="reset" class="btn btn-warning">RESET</button></th>
+                        <th scope="col" style="width:10%">{!! __('blog.contentB') !!}</th>
+                        <td><textarea name="content" id="file-picker"></textarea>
+                            @if ($errors->has('content'))
+                                @foreach ($errors->get('content') as $error)
+                                    <div class="alert alert-danger">
+                                        {{ $error }}
+                                    </div>
+                                @endforeach
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="borderless" colspan="2" style="text-align: right; border: none !important;"><button type="submit" class="btn btn-dark">{!! __('blog.postB') !!}</button>&nbsp;&nbsp;<button type="reset" class="btn btn-warning">{!! __('blog.resetB') !!}</button></th>
                         </form>
                     </tr>
                     <tbody>
@@ -132,6 +132,3 @@
     <script src="{{ URL::asset('js/exit.js') }}"></script>
     </body>
 @endsection
-
-
-

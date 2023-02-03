@@ -30,7 +30,7 @@
                                     @include('layouts.logo')
                                 </div>
                                 <div class="registerForm" >
-                                    <h3>{{ __('Change Phone Number') }}</h3>
+                                    <h3>{!! __('auth.changeN') !!}</h3>
                                     <form method="POST" action="{{ route('change-phone.sms') }}">
                                         @csrf
                                         <div class="form-group">
@@ -47,7 +47,7 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <a type="button" class="btn btn-block button--loading login-btn mb-4" data-toggle="modal" data-target="#security">
-                                                    {{ __('Verify phone number') }}
+                                                    {!! __('auth.verifyN') !!}
                                                 </a>
                                             </div>
                                             <div class="modal fade" id="security" tabindex="-1" role="dialog" aria-labelledby="OTP" aria-hidden="true">
@@ -72,10 +72,10 @@
                                         </div>
                                     </form>
                                 </div>
-                                <span class="forgot-password-link"><a href="{{ route('manage-profile') }}" class="forgot-password-link">Back to manage profile</a></span>
+                                <span class="forgot-password-link"><a href="{{ route('manage-profile') }}" class="forgot-password-link">{!! __('auth.backManageProfile') !!}</a></span>
                                 <nav class="login-card-footer-nav">
-                                    <a href="#!">Terms of use.</a>
-                                    <a href="#!">Privacy policy</a>
+                                    <a href="#!">{!! __('auth.terms') !!}</a>
+                                    <a href="#!">{!! __('auth.policy') !!}</a>
                                 </nav>
                             </div>
                         </div>

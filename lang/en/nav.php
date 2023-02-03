@@ -12,6 +12,7 @@ return [
     'menu' => 'Menu',
     'home' => 'Home',
     'about' => 'About Us',
+    'chat' => 'Chat',
     'emergency' => 'Emergency',
     'dvinfo' => 'DV Information',
     'blog' => 'Blog',

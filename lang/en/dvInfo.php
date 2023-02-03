@@ -7,7 +7,12 @@ return [
     | DV Info Language Lines
     |--------------------------------------------------------------------------
     */
-    'title' => 'Domestic Violence Information and Safety Planning',
+    'FAQ' => 'FAQ',
+    'Getting Help' => 'Getting Help',
+    'Introduction' => 'Introduction',
+    'Laws' => 'Laws',
+    'StayingSafe' => 'Staying Safe',
+    'edit' => 'EDIT',
     'save' => 'SAVE',
-    'edit' => 'EDIT'
+    'title' => 'Domestic Violence Information and Safety Planning',
 ];

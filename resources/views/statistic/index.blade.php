@@ -33,11 +33,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-11">
-                            <h2>DV Statistics</h2>
+                            <h2>{!! __('statistics.dvStat') !!}</h2>
                         </div>
                         @admin_writer
                         <div class="col-sm align-items-right">
-                            <a href="{{ route('statistic.show') }}" class="btn btn-dark" role="button" aria-pressed="true">EDIT</a>
+                            <a href="{{ route('statistic.show') }}" class="btn btn-dark" role="button" aria-pressed="true">{!! __('statistics.edit') !!}</a>
                         </div>
                         @endadmin_writer
                     </div>
@@ -45,7 +45,7 @@
                 <div class="container mx-auto">
                     <div class="row">
                         <div class="p-3 col-sm-3 d-flex align-items-center text-center">
-                            Number of Malaysia’s Domestic Violence Cases
+                            {!! __('statistics.numberMY') !!}
                         </div>
                         <div class="col-sm">
                             <canvas id="myDV" style="width:100%;max-width:500px; max-height: 250px;"></canvas>
@@ -55,13 +55,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="p-3 col-sm-3 d-flex align-items-center text-center">
-                            Number of DVRS’s Domestic Violence Cases in 2022
+                            {!! __('statistics.numberDVRS') !!}
                         </div>
                         <div class="col-sm">
                             <canvas id="dvrs" style="width:100%;max-width:500px; max-height: 250px;"></canvas>
                         </div>
                     </div>
                 </div>
+                <p>*{!! __('statistics.source') !!}</p>
+
+                <p>*{!! __('statistics.note') !!}</p>
             </div>
         </div>
         <!-- /.8 -->

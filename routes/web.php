@@ -145,15 +145,6 @@ Route::prefix('admin')->middleware(['CheckRole:Admin'])->group(function (){
     ]);
 
     Route::resource('manage-user', ManageUserController::class);
-
-    Route::singleton('statistic', StatisticController::class, [
-        'only' => ['show'],
-        'names' => ['show' => 'statistic.show']
-    ]);
-
-    Route::resource('statistic', StatisticController::class, [
-        'except' => ['index', 'show']
-    ]);
 });
 
 //User
@@ -166,6 +157,15 @@ Route::prefix('user')->middleware(['CheckRole:User'])->group(function (){
 Route::prefix('admin-writer')->middleware(['CheckRole:Admin-Writer'])->group(function (){
 
     Route::resource('/blog', BlogController::class, [
+        'except' => ['index', 'show']
+    ]);
+
+    Route::singleton('statistic', StatisticController::class, [
+        'only' => ['show'],
+        'names' => ['show' => 'statistic.show']
+    ]);
+
+    Route::resource('statistic', StatisticController::class, [
         'except' => ['index', 'show']
     ]);
 });

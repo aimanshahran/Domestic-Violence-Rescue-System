@@ -11,6 +11,7 @@ return [
     'menu' => 'Menu',
     'home' => 'Utama',
     'about' => 'Tentang Kami',
+    'chat' => 'Sembang',
     'emergency' => 'Kecemasan',
     'dvinfo' => 'Info',
     'blog' => 'Blog',

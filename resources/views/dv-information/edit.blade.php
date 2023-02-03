@@ -23,13 +23,13 @@
             <div class="container pt-5">
                 <div class="row">
                     <div class="col-11">
-                        <h2><a href="{{ route('DV-Information.show') }}" style="color: black"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>&nbsp;Domestic Violence information and safety planning</h2>
+                        <h2><a href="{{ route('DV-Information.show') }}" style="color: black"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>&nbsp;{!! __('dvInfo.title') !!}</h2>
 
                         <div class="submitbtn-mobile">
                             <form action = "{{ route('DV-Information.update') }}" method="post">
                                 @csrf
                                 @method('PUT')
-                            <button type="submit" class="btn btn-dark" >SAVE</button>
+                                <button type="submit" class="btn btn-dark" >{!! __('dvInfo.save') !!}</button>
                         </div>
 
                         <div style="clear: both;"></div>
@@ -54,30 +54,30 @@
                             @endforeach
                         </div>
 
-                                {{--CONTENT FOR TABS DV INFORMATION--}}
-                                <div id="content" class="tab-content" role="tablist">
-                                    @foreach ($dvinfos as $count => $dvinfo)
-                                    <div id="pane-{{$count}}" class="card tab-pane fade show @if($count == 0) active @endif " role="tabpanel" aria-labelledby="tab-{{$count}}">
-                                        <button data-toggle="collapse" href="#collapse-{{$count}}" aria-expanded="true" aria-controls="collapse-{{$count}}">{{ $dvinfo->categoryName }}</button>
-                                        <div id="collapse-{{$count}}" class="collapse @if($count == 0) show @endif" role="tabpanel" data-parent="#content" aria-labelledby="heading-{{$count}}">
-                                            <div class="card-content">
-                                                    <input name="id[]" value="{{ $dvinfo->id }}" hidden>
-                                                    <input type="text" name="title[]" class="form-control" style="font-weight: bold" placeholder="Title" value="{{ $dvinfo->title }}">
-                                                    <br>
-                                                    <textarea name="contentfaq[]">
+                        {{--CONTENT FOR TABS DV INFORMATION--}}
+                        <div id="content" class="tab-content" role="tablist">
+                            @foreach ($dvinfos as $count => $dvinfo)
+                                <div id="pane-{{$count}}" class="card tab-pane fade show @if($count == 0) active @endif " role="tabpanel" aria-labelledby="tab-{{$count}}">
+                                    <button data-toggle="collapse" href="#collapse-{{$count}}" aria-expanded="true" aria-controls="collapse-{{$count}}">{{ $dvinfo->categoryName }}</button>
+                                    <div id="collapse-{{$count}}" class="collapse @if($count == 0) show @endif" role="tabpanel" data-parent="#content" aria-labelledby="heading-{{$count}}">
+                                        <div class="card-content">
+                                            <input name="id[]" value="{{ $dvinfo->id }}" hidden>
+                                            <input type="text" name="title[]" class="form-control" style="font-weight: bold" placeholder="Title" value="{{ $dvinfo->title }}">
+                                            <br>
+                                            <textarea name="contentfaq[]">
                                                     {!!html_entity_decode($dvinfo->content)!!}
                                                     </textarea>
-                                            </div>
                                         </div>
                                     </div>
-                                    @endforeach
                                 </div>
+                            @endforeach
                         </div>
-                            <div class="col-1">
-                                <div class="submitbtn">
-                                    <button type="submit" class="btn btn-dark">SAVE</button>
-                                </div>
-                            </form>
+                    </div>
+                    <div class="col-1">
+                        <div class="submitbtn">
+                            <button type="submit" class="btn btn-dark">{!! __('dvInfo.save') !!}</button>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

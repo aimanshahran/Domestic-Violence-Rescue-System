@@ -20,7 +20,6 @@ return [
     'confirmP' => 'Sahkan Kata Laluan',
     'please' => 'sila sahkan kata laluan anda sebelum meneruskan.',
     'p' => 'Kata Laluan',
-    'forgotP' => 'Lupa Kata Laluan Anda?',
     'resetP' => 'Menetapkan semula Kata Laluan',
     'check' => 'Please check your email.',
     'link' => 'Hantar Pautan Tetapan Semula Kata Laluan',

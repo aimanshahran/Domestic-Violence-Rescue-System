@@ -16,9 +16,8 @@ class CaseCategory extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'emergency_id',
-        'case_category_id',
-        'severity_status_id'
+        'name',
+        'severity_status_ID'
     ];
 
 

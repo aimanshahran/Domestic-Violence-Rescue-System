@@ -29,7 +29,7 @@
                             <div class="brand-wrapper">
                                 @include('layouts.logo')
                             </div>
-                            <h3>Reset password</h3>
+                            <h3>{!! __('auth.resetP') !!}</h3>
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
                                 <div class="form-group">
@@ -40,7 +40,7 @@
                                         </div>
                                     @endif
                                     <div class="input-group mb-3">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="{!! __('auth.email') !!}" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -49,16 +49,16 @@
                                     </div>
                                     <div class="input-group mb-3">
                                         <button type="submit" class="btn btn-block button--loading login-btn mb-4">
-                                            {{ __('Send Password Reset Link') }}
+                                            {!! __('auth.link') !!}
                                         </button>
                                     </div>
                             </form>
                             <p class="login-card-footer-text">
-                                Remember your password? <a href="{{route('login')}}" class="text-reset">Login Here</a>
+                                {!! __('auth.remember') !!} <a href="{{route('login')}}" class="text-reset">{!! __('auth.loginHere') !!}</a>
                             </p>
                             <nav class="login-card-footer-nav">
-                                <a href="#!">Terms of use.</a>
-                                <a href="#!">Privacy policy</a>
+                                <a href="#!">{!! __('auth.terms') !!}</a>
+                                <a href="#!">{!! __('auth.policy') !!}</a>
                             </nav>
                         </div>
                     </div>

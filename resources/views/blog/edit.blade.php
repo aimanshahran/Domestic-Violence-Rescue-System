@@ -37,7 +37,7 @@
                         <form action = "{{ route('blog.update', $blog->id) }}" method="post">
                             @csrf
                             @method('PUT')
-                            <th scope="col" style="width:10%">Blog Name</th>
+                            <th scope="col" style="width:10%">{!! __('blog.nameB') !!}</th>
                             <td><input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') ?? ucfirst($blog->title) }}">
                                 @if ($errors->has('title'))
                                     @foreach ($errors->get('title') as $error)
@@ -49,7 +49,7 @@
                             </td>
                     </tr>
                     <tr>
-                        <th scope="col" style="width:10%">Blog Content</th>
+                        <th scope="col" style="width:10%">{!! __('blog.contentB') !!}</th>
                         <td><textarea name="content" id="file-picker">{{ old('content') ?? ucfirst($blog->content) }}</textarea>
                             @if ($errors->has('content'))
                                 @foreach ($errors->get('content') as $error)
@@ -61,7 +61,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="borderless" colspan="2" style="text-align: right; border: none !important;"><button type="submit" class="btn btn-dark">UPDATE</button>&nbsp;&nbsp;<button type="reset" class="btn btn-warning">RESET</button></th>
+                        <th class="borderless" colspan="2" style="text-align: right; border: none !important;"><button type="submit" class="btn btn-dark">{!! __('blog.updateB') !!}</button>&nbsp;&nbsp;<button type="reset" class="btn btn-warning">{!! __('blog.resetB') !!}</button></th>
                         </form>
                     </tr>
                     <tbody>
@@ -133,6 +133,3 @@
     <script src="{{ URL::asset('js/exit.js') }}"></script>
     </body>
 @endsection
-
-
-

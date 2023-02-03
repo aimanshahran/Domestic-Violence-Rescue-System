@@ -32,11 +32,11 @@
             <div class="container pt-5">
                 <div class="row">
                     <div class="col-11">
-                        <h2>Domestic Violence information and safety planning</h2>
+                        <h2>{!! __('dvInfo.title') !!}</h2>
 
                         @admin_writer_authorities
                         <div class="submitbtn-mobile">
-                            <a href="{{ route('DV-Information.edit') }}" class="btn btn-dark" role="button" aria-pressed="true">EDIT</a>
+                            <a href="{{ route('DV-Information.edit') }}" class="btn btn-dark" role="button" aria-pressed="true">{!! __('dvInfo.edit') !!}</a>
                         </div>
 
                         <div style="clear: both;"></div>
@@ -69,7 +69,7 @@
                     @admin_writer_authorities
                     <div class="col-1">
                         <div class="submitbtn">
-                            <a href="{{ route('DV-Information.edit') }}" class="btn btn-dark" role="button" aria-pressed="true">EDIT</a>
+                            <a href="{{ route('DV-Information.edit') }}" class="btn btn-dark" role="button" aria-pressed="true">{!! __('dvInfo.edit') !!}</a>
                         </div>
                     </div>
                     @endadmin_writer_authorities

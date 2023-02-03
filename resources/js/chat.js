@@ -333,7 +333,7 @@ function getMessageSenderTemplate(message)
         <div class="col-md-9 col-xs-9">
             <div class="messages msg_sent text-right">
                 ${body}
-                <time datetime="${message.date_time_str}"> ${message.from_user.name} • ${message.date_human_readable} </time>
+                <time datetime="${message.date_time_str}"> ${message.from_user.name} • ${message.date_time_str} </time>
             </div>
         </div>
         <div class="col-md-3 col-xs-3 avatar">
